@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : Apr 12, 2019, 5:23:16 PM
+    Author     : Windows 10
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -336,7 +343,7 @@
                 <!--CHUC NANG THU 1-->
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-cutlery"></i> <span>CH?N MEAL T? NGUY�N LI?U</span>
+                        <i class="fa fa-cutlery"></i> <span>CHỌN MEAL TỪ NGUYÊN LIỆU</span>
                         <span class="pull-right-container">
 
             </span>
@@ -347,15 +354,15 @@
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-cart-plus"></i>
-                        <span>CH?N MEALS CHO NHI?U NG�Y</span>
+                        <span>CHỌN MEALS CHO NHIỀU NGÀY</span>
                         <span class="pull-right-container">
-<!--                            <span class="label label-primary pull-right">4h?</span>-->
+<!--                            <span class="label label-primary pull-right">4họ</span>-->
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> MEALS CHO M?T NG�Y</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>MEALS CHO 7 NG�Y</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>MEALS THEO CH? </a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> MEALS CHO MỘT NGÀY</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>MEALS CHO 7 NGÀY</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>MEALS THEO CHẾ </a></li>
 
                     </ul>
                 </li>
