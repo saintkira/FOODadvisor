@@ -44,9 +44,9 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="../loginServlet" method="POST">
+        <form action="../AccountServlet" method="POST">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="ID" name="id">
+                <input type="text" class="form-control" placeholder="ID" name="id" id="validate">
                 <span class="fa fa-leaf form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -63,7 +63,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-success btn-block btn-lg">Sign In</button>
+                    <button type="submit" class="btn btn-success btn-block btn-lg" id="validate">Sign In</button>
                 </div>
                 <!-- /.col -->
             </div>
@@ -105,6 +105,32 @@
 
 
 </script>
+<script>
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validate() {
+  var $result = $("#result");
+  var email = $("#email").val();
+  $result.text("");
+
+  if (validateEmail(email)) {
+    $result.text(email + " is valid :)");
+    $result.css("color", "green");
+  } else {
+    $result.text(email + " is not valid :(");
+    $result.css("color", "red");
+  }
+  return false;
+}
+
+$("#validate").on("click", validate);
+</script>
+    
+
+
 </body>
 </html>
 

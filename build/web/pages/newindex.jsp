@@ -53,7 +53,7 @@
     <div class="warper"> 
         <jsp:include page="partialpage/header.jsp"/>
         <div class="content-wrapper">
-            alksndklas
+            
         </div>
         <jsp:include page="partialpage/footer.jsp"/>
         
