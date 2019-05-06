@@ -49,7 +49,7 @@
     
 </head>
 
-<body class="hold-transition skin-green-light sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
     <div class="warper"> 
         <jsp:include page="header.jsp"/>
         <div class="content-wrapper">

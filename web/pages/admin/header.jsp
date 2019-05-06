@@ -5,9 +5,9 @@
         <!-- Logo -->
         <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>F</b>ad</span>
+            <span class="logo-mini"><b>A</b>d</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>FOOD</b>advisor</span>
+            <span class="logo-lg"><b>AD</b>min</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -134,9 +134,9 @@
         <!-- Logo -->
         <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>F</b>ad</span>
+            <span class="logo-mini"><b>A</b>d</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>FOOD</b>advisor</span>
+            <span class="logo-lg"><b>A</b>dmin</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
