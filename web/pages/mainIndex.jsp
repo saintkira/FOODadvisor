@@ -58,7 +58,8 @@
                     </ol>
                 </section>              
                 <br/>
-                <div class="row">
+                <section class="content">
+                     <div class="row">
                     <div class="col-lg-10 col-lg-offset-1">
                         <div class="box box-solid" id="carousel">
                             <div class="box-body">
@@ -362,6 +363,8 @@
                     </div>
                     <!-- /.col -->
                 </div>
+                </section>
+               
             </div>
             <!--MODALS-->
             <div class="modal fade" id="modal-default">

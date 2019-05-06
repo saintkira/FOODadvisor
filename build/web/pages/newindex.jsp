@@ -53,12 +53,25 @@
     <div class="warper"> 
         <jsp:include page="partialpage/header.jsp"/>
         <div class="content-wrapper">
-            
+           <section class="content-header">
+               <!--BREADCRUMB-->
+                    <h1>
+                        Dashboard
+                        <small>Control panel</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section>
+            <section class="content">
+                <!--MAIN CONTENT START HERE-->
+            </section>
         </div>
         <jsp:include page="partialpage/footer.jsp"/>
         
 <!-- jQuery 3 -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script><
 <!-- jQuery UI 1.11.4 -->
 <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
