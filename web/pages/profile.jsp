@@ -11,6 +11,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>AdminLTE 2 | User Profile</title>
+
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
@@ -24,7 +25,13 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-        <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <!-- bootstrap datepicker -->
+        <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
+        <!-- iCheck -->        
+        <link rel="stylesheet" href="../plugins/iCheck/all.css">
+
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,8 +56,7 @@
                         User Profile
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">Examples</a></li>
+                        <li><a href="mainIndex.jsp"><i class="fa fa-dashboard"></i> Home</a></li>                        
                         <li class="active">User profile</li>
                     </ol>
                 </section>
@@ -68,66 +74,22 @@
 
                                     <h3 class="profile-username text-center">[USERNAME]</h3>
 
-                                    <p class="text-muted text-center">Software Engineer</p>
-
                                     <ul class="list-group list-group-unbordered">
                                         <li class="list-group-item">
-                                            <b>Followers</b> <a class="pull-right">1,322</a>
+                                            <b>Favorites Item</b> <a class="pull-right">322</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Following</b> <a class="pull-right">543</a>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Friends</b> <a class="pull-right">13,287</a>
+                                            <b>Recipes</b> <a class="pull-right">43</a>
                                         </li>
                                     </ul>
 
-                                    <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                                    <a href="#" class="btn btn-success btn-block"><b>Upload New Avatar</b></a>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
 
-                            <!-- About Me Box -->
-                            <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">About Me</h3>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
-                                    <p class="text-muted">
-                                        B.S. in Computer Science from the University of Tennessee at Knoxville
-                                    </p>
-
-                                    <hr>
-
-                                    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-                                    <p class="text-muted">Malibu, California</p>
-
-                                    <hr>
-
-                                    <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-                                    <p>
-                                        <span class="label label-danger">UI Design</span>
-                                        <span class="label label-success">Coding</span>
-                                        <span class="label label-info">Javascript</span>
-                                        <span class="label label-warning">PHP</span>
-                                        <span class="label label-primary">Node.js</span>
-                                    </p>
-
-                                    <hr>
-
-                                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
                         </div>
                         <!-- /.col -->
                         <div class="col-md-9">
@@ -157,29 +119,39 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="dob" class="col-sm-2 control-label">DOB</label>
+                                                <label class="col-sm-2 control-label">DOB</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="text" class="form-control" id="dob" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                                        <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
+                                                <label class="col-sm-2 control-label">Gender</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                                    <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender"/> 
+                                                        <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender"/></p>
+                                                     
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Height</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"
+                                                           data-inputmask="'mask': ['999']" data-mask placeholder="KG">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+                                                <label class="col-sm-2 control-label">Weight</label>
 
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                                    <input type="text" class="form-control"
+                                                           data-inputmask="'mask': ['999']" data-mask placeholder="CM">
                                                 </div>
                                             </div>
 
@@ -187,7 +159,7 @@
 
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                                    <button type="submit" class="btn btn-success">Submit</button>
 
                                                 </div>
                                             </div>
@@ -252,10 +224,38 @@
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- FastClick -->
         <script src="../bower_components/fastclick/lib/fastclick.js"></script>
+        <!-- iCheck 1.0.1 -->
+        <script src="../plugins/iCheck/icheck.min.js"></script>
         <!-- AdminLTE App -->
         <script src="../dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="../dist/js/demo.js"></script>
+        <!-- Select2 -->
+        <script src="../bower_components/select2/dist/js/select2.full.min.js"></script>
+        <!--DATE PICKER-->
+        <!-- bootstrap datepicker -->
+        <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <!-- InputMask -->
+        <script src="../plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+        <script>
+            $(document).ready(
+                    function() {
+                        //Datemask dd/mm/yyyy
+                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
+                        $('[data-mask]').inputmask();
+
+                        $('input[type="radio"].flat-red').iCheck({
+                            checkboxClass: 'icheckbox_flat-green',
+                            radioClass: 'iradio_flat-green'
+                        });
+
+                    });
+                    
+                    
+
+        </script>
     </body>
 </html>
 
