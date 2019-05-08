@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<c:if test="${user eq null}">
+
     <header class="main-header">
         <!-- Logo -->
         <a href="#" class="logo">
@@ -32,29 +32,14 @@
                                 <p>
                                     USER
                                 </p>
-                            </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Meal List</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Something A</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Something B</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
+                            </li>                            
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="profilep4.html" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="admin_profile.jsp" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="notlogin.html" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>
@@ -128,4 +113,4 @@
         </section>
         <!-- /.sidebar -->
     </aside>
-</c:if>
+
