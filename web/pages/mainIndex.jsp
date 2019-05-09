@@ -376,6 +376,9 @@
                             <h4 class="modal-title">Default Modal</h4>
                         </div>
                         <div class="modal-body">
+                            
+                            
+                         
                             <p>One fine body&hellip;</p>
                         </div>
                         <div class="modal-footer">
