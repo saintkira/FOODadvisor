@@ -36,6 +36,11 @@
     <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../bower_components/css_js_toan/animate-3.7.0.css">
+    <link rel="stylesheet" href="../bower_components/css_js_toan/owl-carousel.min.css">
+    <link rel="stylesheet" href="../bower_components/css_js_toan/style.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,15 +68,144 @@
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Dashboard</li>
                     </ol>
-                </section>
+            </section>
             <section class="content">
                 <!--MAIN CONTENT START HERE-->
+                <!-- Food Area starts -->
+                <section class="food-area section-padding">
+                    
+                    <div class="container" id="maincontainer">
+                        
+                        <div class="row" style="padding-bottom: 30px">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-food">
+                                    <div class="food-img">
+                                        <img src="../bower_components/css_js_toan/images/food1.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="food-content">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Mexican Eggrolls</h5>
+                                            <span class="style-change">$14.50</span>
+                                        </div>
+                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-food mt-5 mt-sm-0">
+                                    <div class="food-img">
+                                        <img src="../bower_components/css_js_toan/images/food2.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="food-content">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>chicken burger</h5>
+                                            <span class="style-change">$9.50</span>
+                                        </div>
+                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-food mt-5 mt-md-0">
+                                    <div class="food-img">
+                                        <img src="../bower_components/css_js_toan/images/food3.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="food-content">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>topu lasange</h5>
+                                            <span class="style-change">$12.50</span>
+                                        </div>
+                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="padding-bottom: 30px">
+                           <div class="col-md-4 col-sm-6">
+                                <div class="single-food mt-5">
+                                    <div class="food-img">
+                                        <img src="../bower_components/css_js_toan/images/food4.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="food-content">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>pepper potatoas</h5>
+                                            <span class="style-change">$14.50</span>
+                                        </div>
+                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-food mt-5">
+                                    <div class="food-img">
+                                        <img src="../bower_components/css_js_toan/images/food5.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="food-content">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>bean salad</h5>
+                                            <span class="style-change">$8.50</span>
+                                        </div>
+                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-food mt-5">
+                                    <div class="food-img">
+                                        <img src="../bower_components/css_js_toan/images/food6.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="food-content">
+                                        <div class="d-flex justify-content-between">
+                                            <h5>beatball hoagie</h5>
+                                            <span class="style-change">$11.50</span>
+                                        </div>
+                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="visibility: hidden" id="loadingrow">
+                        <div class="col-md-12 col-sm-12">
+                            <center>
+                                <image src="../bower_components/css_js_toan/images/loading2.gif"/>
+                            </center>
+                        </div>
+                    </div>
+                </section>
+                <!-- Food Area End -->
             </section>
         </div>
         <jsp:include page="partialpage/footer.jsp"/>
-        
 <!-- jQuery 3 -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script><
+<script src="../bower_components/css_js_toan/jquery.min.js"></script>     
+<!-- Morris.js charts -->
+<script src="../bower_components/raphael/raphael.min.js"></script>
+<script src="../bower_components/morris.js/morris.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){ 
+       $contentLoadTriggered = false;
+       var loading = document.querySelector('#loadingrow');
+       
+       $(window).scroll(function(){
+       if($(window).scrollTop()>= $(document).height()-$(window).height() && $contentLoadTriggered == false){
+            $contentLoadTriggered = true;
+            loading.style.visibility="";
+            window.setTimeout(function(){
+                $.get("../LoadIngredServlet", function(data){
+                $("#maincontainer").append(data);
+                $contentLoadTriggered = false;
+                });
+                loading.style.visibility="hidden";
+            },1000);
+            
+       } 
+       });
+       
+    });
+    
+</script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -80,9 +214,6 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="../bower_components/raphael/raphael.min.js"></script>
-<script src="../bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="../bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
