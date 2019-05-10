@@ -53,184 +53,81 @@
                         <small>Control panel</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        <li><a href="#"><i class="fa fa-dashboard active"></i> Home</a></li>
+
                     </ol>
                 </section>              
                 <br/>
                 <section class="content">
-                     <div class="row">
-                    <div class="col-lg-10 col-lg-offset-1">
-                        <div class="box box-solid" id="carousel">
-                            <div class="box-body">
-                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                                        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                                    </ol>
-                                    <div class="carousel-inner" id="carousel">
-                                        <div style="alignment-baseline: middle;" class="item active">
-                                            <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <div class="box box-solid" id="carousel">
+                                <div class="box-body">
+                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                                            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                                        </ol>
+                                        <div class="carousel-inner" id="carousel">
+                                            <div style="alignment-baseline: middle;" class="item active">
+                                                <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
 
-                                            <div class="carousel-caption">
-                                                First Slide
+                                                <div class="carousel-caption">
+                                                    First Slide
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="Second slide">
+
+                                                <div class="carousel-caption">
+                                                    Second Slide
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <img src="http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
+
+                                                <div class="carousel-caption">
+                                                    Third Slide
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="item">
-                                            <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="Second slide">
-
-                                            <div class="carousel-caption">
-                                                Second Slide
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <img src="http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
-
-                                            <div class="carousel-caption">
-                                                Third Slide
-                                            </div>
-                                        </div>
+                                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                            <span class="fa fa-angle-left"></span>
+                                        </a>
+                                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                            <span class="fa fa-angle-right"></span>
+                                        </a>
                                     </div>
-                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                        <span class="fa fa-angle-left"></span>
-                                    </a>
-                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                        <span class="fa fa-angle-right"></span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
-                <!--ITEM TABLE-->
-                <div class="row">
-                    <div class="col-md-10 col-lg-10 col-lg-offset-1">
-                        <div class="box box-primary">
-                            <div class="box-header">
-                                <i class="ion ion-clipboard"></i>
+                    <!--ITEM TABLE-->
+                    <div class="row">
+                        <div class="col-md-10 col-lg-10 col-lg-offset-1">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <i class="ion ion-clipboard"></i>
 
-                                <h3 class="box-title">LIST ITEM</h3>
+                                    <h3 class="box-title">LIST ITEM</h3>
 
-                                <div class="box-tools pull-right">
-                                    <ul class="pagination pagination-sm inline">
-                                        <li><a href="#">&laquo;</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">&raquo;</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                                <div class="col-md-6">
-                                    <ul class="todo-list">
-                                        <li>
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <input type="checkbox"/>
-                                            </span>
-                                            <a href="#">
-                                                <img src="./../dist/img/avatar.png" width="100" height="100" data-toggle="modal" data-target="#modal-default"/>
-                                            </a>
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <input type="checkbox"/>
-                                            </span>
-                                            <a href="#">
-                                                <img src="./../dist/img/avatar.png" width="100" height="100" data-toggle="modal" data-target="#modal-default"/>
-                                            </a>
-
-                                        </li>
-                                        <li>
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <input type="checkbox"/>
-                                            </span>
-                                            <a href="#">
-                                                <img src="./../dist/img/avatar.png" width="100" height="100"/>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <input type="checkbox"/>
-                                            </span>
-                                            <a href="#">
-                                                <img src="./../dist/img/avatar.png" width="100" height="100"/>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <ul class="todo-list">
-                                        <li>
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <input type="checkbox"/>
-                                            </span>
-                                            <a href="#">
-                                                <img src="./../dist/img/avatar.png" width="100" height="100"/>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <input type="checkbox"/>
-                                            </span>
-                                            <a href="#">
-                                                <img src="./../dist/img/avatar.png" width="100" height="100"/>
-                                            </a>
-                                        </li><li>
-                                            <!-- drag handle -->
-                                            <span class="handle">
-                                                <input type="checkbox"/>
-                                            </span>
-                                            <a href="#">
-                                                <img src="./../dist/img/avatar.png" width="100" height="100"/>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                    </div>
-                </div>
-
-                <!--ITEM 2 -->
-                <div class="row">
-                    <div class="col-lg-10 col-lg-offset-1">
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">ITEM LIST</h3>
-
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                    </button>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-wrench"></i></button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
+                                    <div class="box-tools pull-right">
+                                        <ul class="pagination pagination-sm inline">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">&raquo;</a></li>
                                         </ul>
                                     </div>
-                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                                 </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-8">
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+                                    <div class="col-md-6">
                                         <ul class="todo-list">
                                             <li>
                                                 <!-- drag handle -->
@@ -269,102 +166,205 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- /.col -->
-                                    <div class="col-md-4">
-                                        <p class="text-center">
-                                            <strong>DETAIL</strong>
-                                        </p>
+                                    <div class="col-md-6">
+                                        <ul class="todo-list">
+                                            <li>
+                                                <!-- drag handle -->
+                                                <span class="handle">
+                                                    <input type="checkbox"/>
+                                                </span>
+                                                <a href="#">
+                                                    <img src="./../dist/img/avatar.png" width="100" height="100"/>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <!-- drag handle -->
+                                                <span class="handle">
+                                                    <input type="checkbox"/>
+                                                </span>
+                                                <a href="#">
+                                                    <img src="./../dist/img/avatar.png" width="100" height="100"/>
+                                                </a>
+                                            </li><li>
+                                                <!-- drag handle -->
+                                                <span class="handle">
+                                                    <input type="checkbox"/>
+                                                </span>
+                                                <a href="#">
+                                                    <img src="./../dist/img/avatar.png" width="100" height="100"/>
+                                                </a>
+                                            </li>
 
-                                        <div class="progress-group">
-                                            <span class="progress-text">Add Products to Cart</span>
-                                            <span class="progress-number"><b>160</b>/200</span>
-
-                                            <div class="progress sm">
-                                                <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.progress-group -->
-                                        <div class="progress-group">
-                                            <span class="progress-text">Complete Purchase</span>
-                                            <span class="progress-number"><b>310</b>/400</span>
-
-                                            <div class="progress sm">
-                                                <div class="progress-bar progress-bar-red" style="width: 80%"></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.progress-group -->
-                                        <div class="progress-group">
-                                            <span class="progress-text">Visit Premium Page</span>
-                                            <span class="progress-number"><b>480</b>/800</span>
-
-                                            <div class="progress sm">
-                                                <div class="progress-bar progress-bar-green" style="width: 80%"></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.progress-group -->
-                                        <div class="progress-group">
-                                            <span class="progress-text">Send Inquiries</span>
-                                            <span class="progress-number"><b>250</b>/500</span>
-
-                                            <div class="progress sm">
-                                                <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.progress-group -->
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- ./box-body -->
-                            <div class="box-footer">
-                                <div class="row">
-                                    <div class="col-sm-3 col-xs-6">
-                                        <div class="description-block border-right">
-                                            <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                                            <h5 class="description-header">$35,210.43</h5>
-                                            <span class="description-text">TOTAL REVENUE</span>
-                                        </div>
-                                        <!-- /.description-block -->
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-3 col-xs-6">
-                                        <div class="description-block border-right">
-                                            <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                                            <h5 class="description-header">$10,390.90</h5>
-                                            <span class="description-text">TOTAL COST</span>
-                                        </div>
-                                        <!-- /.description-block -->
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-3 col-xs-6">
-                                        <div class="description-block border-right">
-                                            <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                                            <h5 class="description-header">$24,813.53</h5>
-                                            <span class="description-text">TOTAL PROFIT</span>
-                                        </div>
-                                        <!-- /.description-block -->
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-3 col-xs-6">
-                                        <div class="description-block">
-                                            <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                                            <h5 class="description-header">1200</h5>
-                                            <span class="description-text">GOAL COMPLETIONS</span>
-                                        </div>
-                                        <!-- /.description-block -->
+                                        </ul>
                                     </div>
                                 </div>
-                                <!-- /.row -->
+                                <!-- /.box-body -->
                             </div>
-                            <!-- /.box-footer -->
                         </div>
-                        <!-- /.box -->
                     </div>
-                    <!-- /.col -->
-                </div>
+
+                    <!--ITEM 2 -->
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">ITEM LIST</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                                <i class="fa fa-wrench"></i></button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <ul class="todo-list">
+                                                <li>
+                                                    <!-- drag handle -->
+                                                    <span class="handle">
+                                                        <input type="checkbox"/>
+                                                    </span>
+                                                    <a href="#">
+                                                        <img src="./../dist/img/avatar.png" width="100" height="100" data-toggle="modal" data-target="#modal-default"/>
+                                                    </a>
+                                                    <!-- drag handle -->
+                                                    <span class="handle">
+                                                        <input type="checkbox"/>
+                                                    </span>
+                                                    <a href="#">
+                                                        <img src="./../dist/img/avatar.png" width="100" height="100" data-toggle="modal" data-target="#modal-default"/>
+                                                    </a>
+
+                                                </li>
+                                                <li>
+                                                    <!-- drag handle -->
+                                                    <span class="handle">
+                                                        <input type="checkbox"/>
+                                                    </span>
+                                                    <a href="#">
+                                                        <img src="./../dist/img/avatar.png" width="100" height="100"/>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <!-- drag handle -->
+                                                    <span class="handle">
+                                                        <input type="checkbox"/>
+                                                    </span>
+                                                    <a href="#">
+                                                        <img src="./../dist/img/avatar.png" width="100" height="100"/>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-4">
+                                            <p class="text-center">
+                                                <strong>DETAIL</strong>
+                                            </p>
+
+                                            <div class="progress-group">
+                                                <span class="progress-text">Add Products to Cart</span>
+                                                <span class="progress-number"><b>160</b>/200</span>
+
+                                                <div class="progress sm">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Complete Purchase</span>
+                                                <span class="progress-number"><b>310</b>/400</span>
+
+                                                <div class="progress sm">
+                                                    <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Visit Premium Page</span>
+                                                <span class="progress-number"><b>480</b>/800</span>
+
+                                                <div class="progress sm">
+                                                    <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Send Inquiries</span>
+                                                <span class="progress-number"><b>250</b>/500</span>
+
+                                                <div class="progress sm">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- ./box-body -->
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block border-right">
+                                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                                                <h5 class="description-header">$35,210.43</h5>
+                                                <span class="description-text">TOTAL REVENUE</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block border-right">
+                                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                                                <h5 class="description-header">$10,390.90</h5>
+                                                <span class="description-text">TOTAL COST</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block border-right">
+                                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                                                <h5 class="description-header">$24,813.53</h5>
+                                                <span class="description-text">TOTAL PROFIT</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block">
+                                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
+                                                <h5 class="description-header">1200</h5>
+                                                <span class="description-text">GOAL COMPLETIONS</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.box-footer -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
                 </section>
-               
+
             </div>
             <!--MODALS-->
             <div class="modal fade" id="modal-default">
@@ -376,6 +376,9 @@
                             <h4 class="modal-title">Default Modal</h4>
                         </div>
                         <div class="modal-body">
+                            
+                            
+                         
                             <p>One fine body&hellip;</p>
                         </div>
                         <div class="modal-footer">
