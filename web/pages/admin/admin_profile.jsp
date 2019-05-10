@@ -10,12 +10,15 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AdminLTE 2 | User Profile</title>
+        <title>FOOD advisor | Admin Profile</title>
+
 
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <!--Custom CSS-->
+        <link rel="stylesheet" href="../../dist/css/avatarupload.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
@@ -53,48 +56,40 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        User Profile
+                        Admin Profile
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="mainIndex.jsp"><i class="fa fa-dashboard"></i> Home</a></li>                        
-                        <li class="active">User profile</li>
+                        <li class="active">Admin profile</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-
                     <div class="row">
                         <div class="col-md-3">
-
                             <!-- Profile Image -->
-                            <div class="box box-primary">
+                            <div class="box box-success">
                                 <div class="box-body box-profile">
-                                    <img class="profile-user-img img-responsive img-circle" src="../../dist/img/avatar_2x.png" alt="User profile picture">
-
-                                    <h3 class="profile-username text-center">[USERNAME]</h3>
-
-                                    <ul class="list-group list-group-unbordered">
-                                        <li class="list-group-item">
-                                            <b>Favorites Item</b> <a class="pull-right">322</a>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Recipes</b> <a class="pull-right">43</a>
-                                        </li>
-                                    </ul>
-
-                                    <a href="#" class="btn btn-success btn-block"><b>Upload New Avatar</b></a>
+                                    <div class="avatar-wrapper">
+                                        <img class="profile-pic" src="" />
+                                        <div class="upload-button">
+                                            <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                        </div>
+                                        <input class="file-upload" type="file" accept="image/*"/>
+                                    </div>
+                                    <h3 style="text-align:center;">[Admin]</h3> 
+                                    
+                                    <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
-
-
                         </div>
                         <!-- /.col -->
                         <div class="col-md-9">
                             <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs">
+                                <ul class="nav nav-tabs tab-success">
                                     <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
                                     <li><a href="#changepass" data-toggle="tab">Change Password</a></li>
 
@@ -118,45 +113,6 @@
                                                     <input type="email" class="form-control" id="inputEmail" placeholder="Email">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">DOB</label>
-
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Gender</label>
-                                                <div class="col-sm-10">
-                                                    <p><label class="control-label">Male</label> <input type ="radio" checked class="flat-red" name="gender"/> 
-                                                        <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender"/></p>
-                                                     
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Height</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                           data-inputmask="'mask': ['999']" data-mask placeholder="KG">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Weight</label>
-
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                           data-inputmask="'mask': ['999']" data-mask placeholder="CM">
-                                                </div>
-                                            </div>
-
-
-
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-success">Submit</button>
@@ -252,10 +208,12 @@
                         });
 
                     });
-                    
-                    
+
+
 
         </script>
+        <!--UPLOAD AVATAR-->
+        <script src="../../dist/js/profile.js"></script>
     </body>
 </html>
 

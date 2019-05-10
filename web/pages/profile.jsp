@@ -10,12 +10,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AdminLTE 2 | User Profile</title>
+        <title>FOOD advisor | User Profile</title>
 
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <!--Custom CSS-->
+        <link rel="stylesheet" href="../dist/css/avatarupload.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
@@ -70,7 +72,13 @@
                             <!-- Profile Image -->
                             <div class="box box-primary">
                                 <div class="box-body box-profile">
-                                    <img class="profile-user-img img-responsive img-circle" src="../dist/img/avatar.png" alt="User profile picture">
+                                    <div class="avatar-wrapper">
+                                        <img class="profile-pic" src="" />
+                                        <div class="upload-button">
+                                            <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                        </div>
+                                        <input class="file-upload" type="file" accept="image/*"/>
+                                    </div>
 
                                     <h3 class="profile-username text-center">[USERNAME]</h3>
 
@@ -83,7 +91,7 @@
                                         </li>
                                     </ul>
 
-                                    <a href="#" class="btn btn-success btn-block"><b>Upload New Avatar</b></a>
+                                    <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -135,9 +143,9 @@
                                                 <div class="col-sm-10">
                                                     <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender"/> 
                                                         <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender"/></p>
-                                                     
+
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Height</label>
@@ -252,10 +260,12 @@
                         });
 
                     });
-                    
-                    
+
+
 
         </script>
+          <!--UPLOAD AVATAR-->
+        <script src="../dist/js/profile.js"></script>
     </body>
 </html>
 

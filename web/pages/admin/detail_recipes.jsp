@@ -169,7 +169,9 @@
                 $(document).ready(function() {
                     document.getElementById('sidebarheader2').classList.add('active');
                 });
+                
             </script>
+            
 
         </div>
     </body>
