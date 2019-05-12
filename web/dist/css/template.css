@@ -1,0 +1,33 @@
+.modal-confirm-delete {
+    width: 400px;
+    text-align: center;
+}
+
+.modal-radius {
+  border-radius: 5px;
+}
+.modal-radius .modal-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-confirm-delete .icon-box {
+    text-align: center;
+}
+
+.modal-confirm-delete .icon-box i{
+    color: white;
+    height: 100px;
+    width: 100px;
+    font-size: 68px;
+    border: 5px solid white;
+    padding: 10px;
+    border-radius: 50%;
+}
+.modal-confirm-delete .modal-body {
+    text-align: center;
+}
+
+.modal-confirm-delete .modal-footer {
+    text-align: center;
+}

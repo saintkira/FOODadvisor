@@ -17,6 +17,11 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <!--CUSTOMER CSS ToastR and modal-->
+        <link rel="stylesheet" href="../../dist/css/template.css">
+        <link rel="stylesheet" href="../../dist/css/toastr.min.css">
+        <link rel="stylesheet" href="../../dist/css/foodadvisor.css">
+     
         <!-- Font Awesome -->
         <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
@@ -99,8 +104,8 @@
                                                     Active
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-social-icon btn-bitbucket"><i class="disable fa fa-check-circle"></i></a>
-                                                    <a class="btn btn-social-icon btn-bitbucket"><i class="fa fa-ban"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket" onclick="showToastr('success', 'Active User','Active Successfully')"><i class="disable fa fa-check-circle"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick=""><i class="fa fa-ban"></i></a>
 
                                                 </td>
                                             </tr>
@@ -119,7 +124,7 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-social-icon btn-bitbucket"><i class="fa fa-check-circle"></i></a>
-                                                    <a class="btn btn-social-icon btn-bitbucket"><i class="fa fa-ban"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-ban"></i></a>
 
                                                 </td>
                                             </tr>
@@ -423,6 +428,26 @@
                 </section>
             </div>
             <jsp:include page="footer.jsp"/>
+            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-confirm-delete">
+                    <div class="modal-content modal-radius">
+                        <div class="modal-header bg-red-active">
+                            <div class="icon-box bg-red-active">
+                                <i class="fa fa-ban"></i>
+                            </div>
+                            <h3 class="modal-title" style="text-align: center;font-weight: 600;margin: 10px;">BAN</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Do you want to ban</h4>
+                            <span style="font-weight: 600;" id="setting-name"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-danger btn-ok" >OK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- jQuery 3 -->
             <script src="../../bower_components/jquery/dist/jquery.min.js"></script><
@@ -434,7 +459,9 @@
             </script>
             <!-- Bootstrap 3.3.7 -->
             <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
+            <!--Toatr-->
+            <script src="../../dist/js/toastr.min.js"></script>
+            <script src="../../dist/js/utils.js"></script>
             <!-- jvectormap -->
             <script src="../../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
             <script src="../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -468,9 +495,18 @@
                         'searching': true,
                         'ordering': true,
                         'info': true,
-                        'autoWidth': false
+                        'autoWidth': false,
+                        'orderable':true                        
                     });
                 });
+                var handleDelete = function() {
+
+                    $('#confirm-delete').find('.btn-default').click(function() {
+                        toastr.remove();
+                        showToastr('success', 'ok delete', "ok");
+                        $('#confirm-delete').modal('hide');
+                    });
+                };
             </script>
             <script>
                 $(document).ready(function() {
