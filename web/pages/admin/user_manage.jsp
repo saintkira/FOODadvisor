@@ -20,7 +20,8 @@
         <!--CUSTOMER CSS ToastR and modal-->
         <link rel="stylesheet" href="../../dist/css/template.css">
         <link rel="stylesheet" href="../../dist/css/toastr.min.css">
-        <link rel="stylesheet" href="../../dist/css/foodadvisor.css">
+        <link rel="stylesheet" href="../../dist/style.css">
+      
      
         <!-- Font Awesome -->
         <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">

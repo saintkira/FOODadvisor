@@ -67,10 +67,8 @@
             <li class="" id="sidebarheader">
                 <a href="user_manage.jsp">
                     <i class="fa fa-users"></i> 
-                    <span>USER MANAGE</span>
-                    <span class="pull-right-container"></span>
+                    <span>USER MANAGE</span>                   
                 </a>
-
             </li>
 
             <!--CHUC NANG THU 1-->

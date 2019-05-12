@@ -22,12 +22,11 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../../dist/img/avatar_2x.png" class="user-image" alt="User Image">
+                        <img src="../dist/img/avatar_2x.png" class="user-image" alt="User Image">
                         <span class="">[USERNAME]!</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-
                         <li class="user-header">
                             <img src="../dist/img/avatar.png" class="img-circle" alt="User Image">
                             <p>
@@ -60,20 +59,16 @@
     <!-- sidebar: style can be found in sidebar.less -->
 
     <section class="sidebar">
-       
+
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header" style="text-align: center;">MAIN NAVIGATION</li>
             <!--CHUC NANG THU 1-->
-            <li class="active treeview">
-                <a href="#">
-                    <i class="fa fa-cutlery"></i> <span>MEALS FROM INGREDIENT</span>
-                    <span class="pull-right-container">
-
-                    </span>
+            <li class="treeview">
+                <a href="../list_ingredients.jsp">
+                    <i class="fa fa-cutlery"></i> <span>MEALS FROM INGREDIENT</span>                   
                 </a>
-
             </li>
             <!--CHUC NANG THU 2-->
             <li class="treeview menu-open">
@@ -86,10 +81,20 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i>1 DAY COURSE</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1 WEEK COURSE</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>DIET COURSE</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>1 WEEK COURSE</a></li>                  
 
                 </ul>
+            </li>
+
+            <!--CHUC NANG THU 3-->
+            <li class=" treeview">
+                <a href="#">
+                    <i class="fa fa-history"></i> <span>HISTORY USER</span>
+                    <span class="pull-right-container">
+
+                    </span>
+                </a>
+
             </li>
 
         </ul>
