@@ -136,25 +136,21 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header" style="text-align: center;">MAIN NAVIGATION</li>
             <!--CHUC NANG THU 1-->
-            <li class="treeview">
-                <a href="../list_ingredients.jsp">
-                    <i class="fa fa-cutlery"></i> <span>MEALS FROM INGREDIENT</span>                   
+            <li class="">
+                <a href="list_recipes.jsp">
+                    <i class="fa fa-cutlery"></i> <span>RECIPES</span>                   
                 </a>
             </li>
             <!--CHUC NANG THU 2-->
-            <li class="treeview">
-                <a href="#">
+            <li class="">
+                <a href="list_7days.jsp">
                     <i class="fa fa-calendar"></i>
                     <span>FULL COURSE MEAL</span>
                     <span class="pull-right-container">
-                        <span class="fa fa-angle-left pull-right"></span> 
+                        
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1 DAY COURSE</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1 WEEK COURSE</a></li>                  
-
-                </ul>
+                
             </li>
 
             <!--CHUC NANG THU 3-->

@@ -71,30 +71,7 @@
                 </a>
             </li>
 
-            <!--CHUC NANG THU 1-->
-            <li class="treeview menu-open" id="sidebarheader1">
-                <a href="#">
-                    <i class="fa fa-cutlery"></i> <span>INGREDIENT MANAGE</span>
-                    <span class="pull-right-container">
-                        <span class="fa fa-angle-left pull-right"></span> 
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display: block;">
-                    <li>
-                        <a href="add_ingredients.jsp">
-                            <i class="fa fa-circle-o"></i>
-                            Add New Ingredient
-                        </a>
-                    </li>
-                    <li>
-                        <a href="detail_ingredients.jsp">
-                            <i class="fa fa-circle-o"></i>
-                            Edit  Ingredients
-                        </a>
-                    </li>
-                </ul>
-
-            </li>
+            
             <!--CHUC NANG THU 2-->
             <li class="treeview menu-open" id="sidebarheader2">
                 <a href="#">

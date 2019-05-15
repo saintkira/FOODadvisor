@@ -105,7 +105,7 @@
                                                     Active
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-social-icon btn-bitbucket" onclick="showToastr('success', 'Active User','Active Successfully')"><i class="disable fa fa-check-circle"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket"  onclick="showToastr('success', 'Active User','Active Successfully')"><i class="disable fa fa-check-circle"></i></a>
                                                     <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick=""><i class="fa fa-ban"></i></a>
 
                                                 </td>
@@ -124,7 +124,7 @@
                                                     Disable
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-social-icon btn-bitbucket"><i class="fa fa-check-circle"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket" onclick="showToastr('warning', 'Active User','Active Successfully')"><i class="fa fa-check-circle"></i></a>
                                                     <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-ban"></i></a>
 
                                                 </td>
@@ -143,7 +143,7 @@
                                                     Active
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-social-icon btn-bitbucket"><i class="fa fa-check-circle"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket" onclick="handleDelete()"><i class="fa fa-check-circle"></i></a>
                                                     <a class="btn btn-social-icon btn-bitbucket"><i class="fa fa-ban"></i></a>
 
                                                 </td>
@@ -502,10 +502,9 @@
                 });
                 var handleDelete = function() {
 
-                    $('#confirm-delete').find('.btn-default').click(function() {
-                        toastr.remove();
+                    $('#confirm-delete').find('.btn-default').click(function() {                        
                         showToastr('success', 'ok delete', "ok");
-                        $('#confirm-delete').modal('hide');
+                        
                     });
                 };
             </script>

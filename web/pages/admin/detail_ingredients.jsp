@@ -93,7 +93,7 @@
                                                 <td>
                                                     <a class="btn btn-social-icon btn-bitbucket bg-olive"><i class="fa fa-info-circle"></i></a>
                                                     <a class="btn btn-social-icon btn-bitbucket bg-olive"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn-social-icon btn-bitbucket bg-olive"><i class="fa fa-ban"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket bg-olive"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>                                            
                                             <tr>
