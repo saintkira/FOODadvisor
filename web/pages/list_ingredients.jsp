@@ -39,10 +39,12 @@
     
     <!-- CSS Files -->
     <link rel="stylesheet" href="../bower_components/css_js_toan/animate-3.7.0.css">
-    <link rel="stylesheet" href="../bower_components/css_js_toan/owl-carousel.min.css">
     <link rel="stylesheet" href="../bower_components/css_js_toan/style.css">
     
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.css'>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -97,6 +99,11 @@
             -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
             transition: all 0.4s ease 0s;
         }
+        #owl-demo img{
+                display: block;
+                width: 100%;
+                height: auto;
+        }
     </style>
 </head>
 
@@ -141,7 +148,7 @@
                                         </div>
                                         <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
                                         <div class="button_cont" align="center">
-                                            <button class="viewdetailbtn" onclick="w3IncludeHTML();" data-toggle="modal" data-target="#fsModal">More Details</button>
+                                            <button class="viewdetailbtn" onclick="loadFunction()" data-toggle="modal" data-target="#fsModal">More Details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +199,7 @@
         
         
         <!-- modal -->
-        <div id="fsModal" class="modal animated bounceIn">
+        <div id="fsModal" class="modal animated fadeIn">
           <!-- dialog -->
           <div class="modal-dialog">
             <!-- content -->
@@ -201,24 +208,40 @@
               <div class="modal-header">
                 <h1 id="myModalLabel" class="modal-title">Recipe Details</h1>
               </div>
-              <!-- header -->
+              <!-- 
+                <div w3-include-html="template1.html"></div>
+               <img class="item" src="../bower_components/css_js_toan/images/food1.jpg" alt="Food"/>
+              header -->
                
                
               <div class="modal-body">
-                  <div w3-include-html="template.html"></div>  
-                <h2>1. Modal sub-title</h2>
+                  <div class="row" style="width:100%;height:100%">
+                      <div class="col-md-6 col-sm-6">
+                          <div id="food-carousel">
+                              <div class="owl-carousel owl-theme">
+                                  <img class="item" src="../bower_components/css_js_toan/images/food1.jpg" alt="Food"/>
+                                  <img class="item" src="../bower_components/css_js_toan/images/food2.jpg" alt="Food"/>
+                                  <img class="item" src="../bower_components/css_js_toan/images/food3.jpg" alt="Food"/>
+                              </div>
+                          </div>
+                          <div class="btns">
+                              <div class="customNextBtn">Next</div>
+                              <div class="customPreviousBtn">Back</div>
+                          </div>
+                      </div>
 
-                <p>Liquor ipsum dolor sit amet bearded lady, grog murphy's bourbon lancer. Kamikaze vodka gimlet; old rip van winkle, lemon drop martell salty dog tom collins smoky martini ben nevis man o'war. Strathmill grand marnier sea breeze b & b mickey slim. Cactus jack aberlour seven and seven, beefeater early times beefeater kalimotxo royal arrival jack rose. Cutty sark scots whisky b & b harper's finlandia agent orange pink lady three wise men gin fizz murphy's. Chartreuse french 75 brandy daisy widow's cork 7 crown ketel one captain morgan fleischmann's, hayride, edradour godfather. Long island iced tea choking hazard black bison, greyhound harvey wallbanger, "gibbon kir royale salty dog tonic and tequila."</p>
+                      <div class="col-md-6 col-sm-6">
+                          <h2><strong>Product Name</strong></h2>
+                          <h4><span><strong>$49</strong></span></h4>
+                          
+                          <!--Accordion-->
+                          <div w3-include-html="template1.html"></div>
+                          <!--Accordion-->
 
-                <h2>2. Modal sub-title</h2>
-
-                <p>The last word drumguish irish flag, hurricane, brandy manhattan. Lemon drop, pulteney fleischmann's seven and seven irish flag pisco sour metaxas, hayride, bellini. French 75 wolfram christian brothers, calvert painkiller, horse's neck old bushmill's gin pahit. Monte alban glendullan, edradour redline cherry herring anisette godmother, irish flag polish martini glen spey. Abhainn dearg bloody mary amaretto sour, ti punch black cossack port charlotte tequila slammer? Rum swizzle glen keith j & b sake bomb harrogate nights 7 crown! Hairy virgin tomatin lord calvert godmother wolfschmitt brass monkey aberfeldy caribou lou. Macuá, french 75 three wise men.</p>
-
-                <h2>3. Modal sub-title</h2>
-
-                <p>Pisco sour daiquiri lejon bruichladdich mickey slim sea breeze wolfram kensington court special: pink lady white lady or delilah. Pisco sour glen spey, courvoisier j & b metaxas glenlivet tormore chupacabra, sambuca lorraine knockdhu gin and tonic margarita schenley's." Bumbo glen ord the macallan balvenie lemon split presbyterian old rip van winkle paradise gin sling. Myers black bison metaxa caridan linkwood three wise men blue hawaii wine cooler?" Talisker moonwalk cosmopolitan wolfram zurracapote glen garioch patron saketini brandy alexander, singapore sling polmos krakow golden dream. Glenglassaugh usher's wolfram mojito ramos gin fizz; cactus jack. Mai-tai leite de onça bengal; crown royal absolut allt-á-bhainne jungle juice bacardi benrinnes, bladnoch. Cointreau four horsemen aultmore, "the amarosa cocktail vodka gimlet ardbeg southern comfort salmiakki koskenkorva."</p>
-
+                      </div>
+                  </div>
               </div>
+           
 
               <!-- footer -->
               <div class="modal-footer">
@@ -262,14 +285,30 @@
             
        } 
        });
-       
     });
-    
+    function loadFunction(){     
+      window.setTimeout(function(){
+        w3IncludeHTML();
+      },200); 
+      $("#food-carousel").html('<div class="owl-carousel owl-theme"></div>');
+      $.get("../loadrecipeimgServlet", function(data){
+        $(".owl-carousel").append(data);
+      });
+      window.setTimeout(function(){
+          $(".owl-carousel").owlCarousel({
+            loop:true,
+            margin:10,
+            nav:false,
+            items: 1,
+            dots:false
+          },500); 
+      });
+    };
 </script>
 <script type="text/javascript">
     function loveFunction(x) {
       x.classList.toggle("heart-love");
-    }
+    };
     function menuFunction(x,s) {
       x.classList.toggle("fa-calendar-check-o");
       if (x.classList.toString()==="fa fa-calendar-plus-o") {
@@ -277,8 +316,18 @@
       }else{
           $("#"+s).addClass("selected");
       }  
-    }
+    };
+    //$("#img1").attr("src","../bower_components/css_js_toan/images/food6.jpg");
+      // Custom Button
+      $('.customNextBtn').click(function() {
+        $('.owl-carousel').trigger('next.owl.carousel');
+      });
+      $('.customPreviousBtn').click(function() {
+        $('.owl-carousel').trigger('prev.owl.carousel');
+      });
+      
 </script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js'></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

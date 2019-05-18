@@ -8,6 +8,10 @@
         <servlet-name>banuserServlet</servlet-name>
         <servlet-class>toan.banuserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadrecipeimgServlet</servlet-name>
+        <servlet-class>toan.loadrecipeimgServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>banuserServlet</servlet-name>
         <url-pattern>/banuserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadrecipeimgServlet</servlet-name>
+        <url-pattern>/loadrecipeimgServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
