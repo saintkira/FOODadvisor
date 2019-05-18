@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>    
 <head>
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="../bower_components/css_js_toan/animate-3.7.0.css">
     <link rel="stylesheet" href="../bower_components/css_js_toan/owl-carousel.min.css">
     <link rel="stylesheet" href="../bower_components/css_js_toan/style.css">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,7 +53,51 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    
+    <style>
+        .circle-icon {
+            background: rgba(0,0,0,0.2);
+            padding:7px;
+            border-radius: 50%;
+        }
+        .fa-heart{
+            font-size:36px;
+            color:rgba(238,249,252,0.5);
+        }
+        .fa-heart:hover {
+           cursor: pointer;
+           color:rgba(250,0,0,0.8);
+        }
+        .heart-love{
+            font-size:36px;
+            color:red;
+        }
+        .fa-calendar-plus-o{
+            font-size:24px;
+        }
+        .fa-calendar-plus-o:hover {
+           cursor: pointer;
+           color:#9af7ff;
+        }
+        .fa-calendar-check-o{
+            color:red;
+        }
+        .viewdetailbtn {
+            color: #fff !important;
+            text-transform: uppercase;
+            background: #00f72a;
+            padding: 5px;
+            border-radius: 50px;
+            display: inline-block;
+            border: none;
+            outline:0;
+        }
+        .viewdetailbtn:hover {
+            text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+            -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            transition: all 0.4s ease 0s;
+        }
+    </style>
 </head>
 
 <body class="hold-transition skin-green-light sidebar-mini">
@@ -78,16 +124,25 @@
                         
                         <div class="row" style="padding-bottom: 30px">
                             <div class="col-md-4 col-sm-6">
-                                <div class="single-food">
-                                    <div class="food-img">
-                                        <img src="../bower_components/css_js_toan/images/food1.jpg" class="img-fluid" alt="">
+                                <div class="single-food" id="food-content1">
+                                    <div class="container1" style="position: relative;">
+                                        <div class="food-img">
+                                            <img src="../bower_components/css_js_toan/images/food1.jpg" style="height:80%" class="img-fluid" alt="">     
+                                        </div>
+                                        <i style="position:absolute;top:2%;left:85%;" class="fa fa-heart circle-icon" onclick="loveFunction(this)"></i>
                                     </div>
                                     <div class="food-content">
                                         <div class="d-flex justify-content-between">
-                                            <h5>Mexican Eggrolls</h5>
+                                            <div class="container2" style="position: relative;">
+                                            <h5 style="color:#131230;font-family:'Playfair Display',serif;text-transform:capitalize;font-size:20px !important;font-weight:700">Mexican Eggrolls</h5>
+                                            <i style="position:absolute;top:0%;left:95%;" class="fa fa-calendar-plus-o" onclick="menuFunction(this,'food-content1')"></i>
+                                            </div>
                                             <span class="style-change">$14.50</span>
                                         </div>
                                         <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
+                                        <div class="button_cont" align="center">
+                                            <button class="viewdetailbtn" onclick="w3IncludeHTML();" data-toggle="modal" data-target="#fsModal">More Details</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +153,7 @@
                                     </div>
                                     <div class="food-content">
                                         <div class="d-flex justify-content-between">
-                                            <h5>chicken burger</h5>
+                                            <h5 style="color:#131230;font-family:'Playfair Display',serif;text-transform:capitalize;font-size:20px !important;font-weight:700">chicken burger</h5>
                                             <span class="style-change">$9.50</span>
                                         </div>
                                         <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
@@ -112,7 +167,7 @@
                                     </div>
                                     <div class="food-content">
                                         <div class="d-flex justify-content-between">
-                                            <h5>topu lasange</h5>
+                                            <h5 style="color:#131230;font-family:'Playfair Display',serif;text-transform:capitalize;font-size:20px !important;font-weight:700">topu lasange</h5>
                                             <span class="style-change">$12.50</span>
                                         </div>
                                         <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
@@ -121,50 +176,6 @@
                             </div>
                         </div>
                         
-                        <div class="row" style="padding-bottom: 30px">
-                           <div class="col-md-4 col-sm-6">
-                                <div class="single-food mt-5">
-                                    <div class="food-img">
-                                        <img src="../bower_components/css_js_toan/images/food4.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="food-content">
-                                        <div class="d-flex justify-content-between">
-                                            <h5>pepper potatoas</h5>
-                                            <span class="style-change">$14.50</span>
-                                        </div>
-                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="single-food mt-5">
-                                    <div class="food-img">
-                                        <img src="../bower_components/css_js_toan/images/food5.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="food-content">
-                                        <div class="d-flex justify-content-between">
-                                            <h5>bean salad</h5>
-                                            <span class="style-change">$8.50</span>
-                                        </div>
-                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="single-food mt-5">
-                                    <div class="food-img">
-                                        <img src="../bower_components/css_js_toan/images/food6.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="food-content">
-                                        <div class="d-flex justify-content-between">
-                                            <h5>beatball hoagie</h5>
-                                            <span class="style-change">$11.50</span>
-                                        </div>
-                                        <p class="pt-3">Face together given moveth divided form Of Seasons that fruitful.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row" style="visibility: hidden" id="loadingrow">
                         <div class="col-md-12 col-sm-12">
@@ -178,8 +189,57 @@
             </section>
         </div>
         <jsp:include page="partialpage/footer.jsp"/>
+        
+        
+        <!-- modal -->
+        <div id="fsModal" class="modal animated bounceIn">
+          <!-- dialog -->
+          <div class="modal-dialog">
+            <!-- content -->
+            <div class="modal-content">
+              <!-- header -->
+              <div class="modal-header">
+                <h1 id="myModalLabel" class="modal-title">Recipe Details</h1>
+              </div>
+              <!-- header -->
+               
+               
+              <div class="modal-body">
+                  <div w3-include-html="template.html"></div>  
+                <h2>1. Modal sub-title</h2>
+
+                <p>Liquor ipsum dolor sit amet bearded lady, grog murphy's bourbon lancer. Kamikaze vodka gimlet; old rip van winkle, lemon drop martell salty dog tom collins smoky martini ben nevis man o'war. Strathmill grand marnier sea breeze b & b mickey slim. Cactus jack aberlour seven and seven, beefeater early times beefeater kalimotxo royal arrival jack rose. Cutty sark scots whisky b & b harper's finlandia agent orange pink lady three wise men gin fizz murphy's. Chartreuse french 75 brandy daisy widow's cork 7 crown ketel one captain morgan fleischmann's, hayride, edradour godfather. Long island iced tea choking hazard black bison, greyhound harvey wallbanger, "gibbon kir royale salty dog tonic and tequila."</p>
+
+                <h2>2. Modal sub-title</h2>
+
+                <p>The last word drumguish irish flag, hurricane, brandy manhattan. Lemon drop, pulteney fleischmann's seven and seven irish flag pisco sour metaxas, hayride, bellini. French 75 wolfram christian brothers, calvert painkiller, horse's neck old bushmill's gin pahit. Monte alban glendullan, edradour redline cherry herring anisette godmother, irish flag polish martini glen spey. Abhainn dearg bloody mary amaretto sour, ti punch black cossack port charlotte tequila slammer? Rum swizzle glen keith j & b sake bomb harrogate nights 7 crown! Hairy virgin tomatin lord calvert godmother wolfschmitt brass monkey aberfeldy caribou lou. Macuá, french 75 three wise men.</p>
+
+                <h2>3. Modal sub-title</h2>
+
+                <p>Pisco sour daiquiri lejon bruichladdich mickey slim sea breeze wolfram kensington court special: pink lady white lady or delilah. Pisco sour glen spey, courvoisier j & b metaxas glenlivet tormore chupacabra, sambuca lorraine knockdhu gin and tonic margarita schenley's." Bumbo glen ord the macallan balvenie lemon split presbyterian old rip van winkle paradise gin sling. Myers black bison metaxa caridan linkwood three wise men blue hawaii wine cooler?" Talisker moonwalk cosmopolitan wolfram zurracapote glen garioch patron saketini brandy alexander, singapore sling polmos krakow golden dream. Glenglassaugh usher's wolfram mojito ramos gin fizz; cactus jack. Mai-tai leite de onça bengal; crown royal absolut allt-á-bhainne jungle juice bacardi benrinnes, bladnoch. Cointreau four horsemen aultmore, "the amarosa cocktail vodka gimlet ardbeg southern comfort salmiakki koskenkorva."</p>
+
+              </div>
+
+              <!-- footer -->
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-default">
+                  Default
+                </button>
+                <button class="btn btn-primary">
+                  Primary
+                </button>
+              </div>
+              <!-- footer -->
+            </div>
+            <!-- content -->
+          </div>
+          <!-- dialog -->
+        </div>
+        <!-- modal -->
 <!-- jQuery 3 -->
-<script src="../bower_components/css_js_toan/jquery.min.js"></script>     
+<script src="../bower_components/css_js_toan/jquery.min.js"></script>
+<script src="../bower_components/css_js_toan/w3data.js"></script> 
 <!-- Morris.js charts -->
 <script src="../bower_components/raphael/raphael.min.js"></script>
 <script src="../bower_components/morris.js/morris.min.js"></script>
@@ -205,6 +265,19 @@
        
     });
     
+</script>
+<script type="text/javascript">
+    function loveFunction(x) {
+      x.classList.toggle("heart-love");
+    }
+    function menuFunction(x,s) {
+      x.classList.toggle("fa-calendar-check-o");
+      if (x.classList.toString()==="fa fa-calendar-plus-o") {
+          $("#"+s).removeClass("selected");
+      }else{
+          $("#"+s).addClass("selected");
+      }  
+    }
 </script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>

@@ -24,10 +24,16 @@ public class NewServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-        } finally {
-            out.close();
+        
+        String userName = request.getParameter("userName");
+        if(userName == null || "".equals(userName)){
+                userName = "Guest";
         }
+
+        String greetings = "Hello " + userName;
+
+        response.setContentType("text/plain");
+        response.getWriter().write(greetings);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
