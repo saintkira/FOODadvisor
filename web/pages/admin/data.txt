@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Tiger Nixon",
+      "email": "System Architect",
+      "status": "$320,800",
+      "action": "2011/04/25"
+    },
+    {
+      "id": "2",
+      "name": "Garrett Winters",
+      "email": "Accountant",
+      "status": "$170,750",
+      "action": "2011/07/25"
+    },
+    {
+      "id": "3",
+      "name": "Ashton Cox",
+      "email": "Junior Technical Author",
+      "status": "$86,000",
+      "action": "2009/01/12"
+    }
+  ]
+}

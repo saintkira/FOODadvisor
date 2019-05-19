@@ -27,21 +27,13 @@
         <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-        <!-- Morris chart -->
-        <link rel="stylesheet" href="../../bower_components/morris.js/morris.css">
-        <!-- jvectormap -->
-        <link rel="stylesheet" href="../../bower_components/jvectormap/jquery-jvectormap.css">
-        <!-- Date Picker -->
-        <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-        <!-- Daterange picker -->
-        <link rel="stylesheet" href="../../bower_components/bootstrap-daterangepicker/daterangepicker.css">
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -90,7 +82,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <!--<tbody>
                                             <tr>
                                                 <td>
                                                     1
@@ -105,11 +97,16 @@
                                                     Active
                                                 </td>
                                                 <td>
+<<<<<<< HEAD
                                                     <a class="btn btn-social-icon btn-bitbucket"  onclick=""><i class="disable fa fa-check-circle"></i></a>
+=======
+                                                    <a class="btn btn-social-icon btn-bitbucket"  onclick="showToastr('success', 'Active User','Active Successfully')"><i class="disable fa fa-check-circle"></i></a>
+>>>>>>> toan_common
                                                     <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick="handleDelete();"><i class="fa fa-ban"></i></a>
 
                                                 </td>
                                             </tr>
+<<<<<<< HEAD
                                             <tr>
                                                 <td>
                                                     2
@@ -417,6 +414,9 @@
 
                                         </tbody>
 
+=======
+                                        </tbody>-->
+>>>>>>> toan_common
                                     </table>
                                 </div>
                                 <!-- /.box-body -->
@@ -444,35 +444,29 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-danger btn-ok" >OK</a>
+                            <button class="btn btn-danger btn-ok" id="btn123">OK</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- jQuery 3 -->
-            <script src="../../bower_components/jquery/dist/jquery.min.js"></script><
+            <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
             <!-- jQuery UI 1.11.4 -->
             <script src="../../bower_components/jquery-ui/jquery-ui.min.js"></script>
+            <!-- Bootstrap 3.3.7 -->
+            <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
             <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
             <script>
                                                         $.widget.bridge('uibutton', $.ui.button);
             </script>
-            <!-- Bootstrap 3.3.7 -->
-            <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+            <!-- DataTables -->
+            <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+            <!--DATA TABLE -->
             <!--Toatr-->
             <script src="../../dist/js/toastr.min.js"></script>
             <script src="../../dist/js/utils.js"></script>
-            <!-- jvectormap -->
-            <script src="../../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-            <script src="../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-            <!-- daterangepicker -->
-            <script src="../../bower_components/moment/min/moment.min.js"></script>
-            <script src="../../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-            <!-- Bootstrap WYSIHTML5 -->
-            <script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
             <!-- Slimscroll -->
             <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
             <!-- FastClick -->
@@ -483,11 +477,8 @@
             <script src="../../dist/js/pages/dashboard.js"></script>
             <!-- AdminLTE for demo purposes -->
             <script src="../../dist/js/demo.js"></script>
-            <!-- DataTables -->
-            <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-            <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-            <!--DATA TABLE -->
             <script>
+<<<<<<< HEAD
                                                         $(function() {
                                                             $('#example1').DataTable();
                                                             $('#example2').DataTable({
@@ -520,9 +511,72 @@
                                                                 });                                                               
                                                             });
                                                         };
+=======
+                var loadDatatable = function(){
+                    $('#example2').DataTable({
+                        'paging'      : true,
+                        'lengthChange': true,
+                        'pageLength' : 5,
+                        'info'        : true,
+                        'autoWidth'   : false,
+                        //GET DATA FROM SERVLET
+                        'ajax': {
+                            'url': "../../loaduserdataServlet",
+                            'dataSrc': "data",
+                            "type": "POST"
+                        },
+                        'columns': [
+                            { 'data': "Username" },
+                            { 'data': "Fullname" },
+                            { 'data': "EmailAddress" },
+                            { 'data': "Active_Status" },
+                            { 'data': 'Username',
+                              'render': function (data, type, row, meta) {
+                                if (type === 'display') {
+                                    data = '<a class="btn btn-social-icon btn-bitbucket" onclick="showToastr(\'success\', \'Active User\',\'Active Successfully\')">' + '<i class="disable fa fa-check-circle"></i>' + '</a>'+
+                                    '<a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick="handleDelete(\''+data+'\');"><i class="fa fa-ban"></i></a>';
+                                }
+                                return data;
+                               }
+                        }
+                        ]
+                    });
+                };
+                var handleDelete = function(Username) {
+
+                    $('#confirm-delete').find('.btn-ok').click(function() {                        
+                        $.ajax({
+                        url : '../../banuserServlet',
+                        data : {
+                                Username : Username
+                        },
+                        success: function(responseText) {
+                            if (responseText.toString()==='Success') {
+                                toastr.remove();
+                                showToastr('success', 'Status', "Successfully Banned");
+                                $('#confirm-delete').modal('hide');
+                                $('#example2').DataTable().destroy();
+                                loadDatatable();
+                            }else{
+                                toastr.remove();
+                                showToastr('error', 'Status', "Banning Failed");
+                                $('#confirm-delete').modal('hide')
+                            }
+                        },
+                        error: function(data) {
+                            toastr.remove();
+                            showToastr('error', 'Status', "Connection Error");
+                            $('#confirm-delete').modal('hide');
+                        }
+                        });
+                        
+                    });
+                };
+>>>>>>> toan_common
             </script>
             <script>
                 $(document).ready(function() {
+                    loadDatatable();
                     document.getElementById('sidebarheader').classList.add('active');
                 });
             </script>
