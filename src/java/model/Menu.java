@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Toan
+ * @author Jamin
  */
 @Entity
-@Table(name = "Menu", catalog = "FOODAdvisor", schema = "dbo")
+@Table(name = "Menu", catalog = "FOODadvisor", schema = "dbo")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m"),

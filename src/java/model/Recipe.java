@@ -9,17 +9,13 @@ package model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,10 +24,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Toan
+ * @author Jamin
  */
 @Entity
-@Table(name = "Recipe", catalog = "FOODAdvisor", schema = "dbo")
+@Table(name = "Recipe", catalog = "FOODadvisor", schema = "dbo")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Recipe.findAll", query = "SELECT r FROM Recipe r"),
@@ -64,15 +60,8 @@ public class Recipe implements Serializable {
     private Collection<Account> accountCollection;
     @ManyToMany(mappedBy = "recipeCollection")
     private Collection<Menu> menuCollection;
-    @JoinTable(name = "RecipeTag", joinColumns = {
-        @JoinColumn(name = "RecipeID", referencedColumnName = "RecipeID", nullable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "TagID", referencedColumnName = "TagID", nullable = false)})
-    @ManyToMany
-    private Collection<Tag> tagCollection;
-    @OneToMany(mappedBy = "recipeID")
-    private Collection<History> historyCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Collection<RecipeDetail> recipeDetailCollection;
+    @ManyToMany(mappedBy = "recipeCollection")
+    private Collection<Ingredient> ingredientCollection;
 
     public Recipe() {
     }
@@ -140,30 +129,12 @@ public class Recipe implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Tag> getTagCollection() {
-        return tagCollection;
+    public Collection<Ingredient> getIngredientCollection() {
+        return ingredientCollection;
     }
 
-    public void setTagCollection(Collection<Tag> tagCollection) {
-        this.tagCollection = tagCollection;
-    }
-
-    @XmlTransient
-    public Collection<History> getHistoryCollection() {
-        return historyCollection;
-    }
-
-    public void setHistoryCollection(Collection<History> historyCollection) {
-        this.historyCollection = historyCollection;
-    }
-
-    @XmlTransient
-    public Collection<RecipeDetail> getRecipeDetailCollection() {
-        return recipeDetailCollection;
-    }
-
-    public void setRecipeDetailCollection(Collection<RecipeDetail> recipeDetailCollection) {
-        this.recipeDetailCollection = recipeDetailCollection;
+    public void setIngredientCollection(Collection<Ingredient> ingredientCollection) {
+        this.ingredientCollection = ingredientCollection;
     }
 
     @Override

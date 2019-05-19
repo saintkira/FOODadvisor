@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
+<<<<<<< HEAD
         <servlet-name>loaduserdataServlet</servlet-name>
         <servlet-class>toan.loaduserdataServlet</servlet-class>
     </servlet>
@@ -23,6 +24,14 @@
     <servlet-mapping>
         <servlet-name>loadrecipeimgServlet</servlet-name>
         <url-pattern>/loadrecipeimgServlet</url-pattern>
+=======
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>controller.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+>>>>>>> 4454bfc675852f06d92d1bad532d5a504f965422
     </servlet-mapping>
     <session-config>
         <session-timeout>
