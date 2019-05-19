@@ -54,9 +54,9 @@ public class TestServlet extends HttpServlet {
 //                List<Ingredient> list = new ArrayList<>();
 //                list = JsonHelper.json2List(json);
 //                out.println(list):
-            Ingredient ingd = new Ingredient("31", "kjhgfd");
-            String json = JsonHelper.toJson(ingd);
-            ConnectionHelper.callSP("Ingredients_Insert_SP", json);
+            Ingredient ingd = new Ingredient("333", "test",);
+            String json = JsonHelper.toJson(ingd);            
+            out.print(ConnectionHelper.callSP("Ingredients_Insert_SP", json));
         }
     }
 

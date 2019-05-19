@@ -72,9 +72,11 @@ public class ConnectionHelper {
         connection = getCon();
         
         try {
-            cStmt = connection.prepareCall("call "+"Ingredients_Delete_SP"+"(?)");
+            cStmt = connection.prepareCall("{call "+spName+"(?)}");
             cStmt.setString(1, param);
-            boo_result = cStmt.execute();
+            cStmt.execute();
+            if(cStmt.getUpdateCount()>0)
+             boo_result = true;            
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionHelper.class.getName()).log(Level.SEVERE, null, ex);
         }

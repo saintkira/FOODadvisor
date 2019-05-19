@@ -60,35 +60,43 @@ public class Ingredient implements Serializable {
     @Column(name = "IngredientImage", length = 2147483647)
     private String ingredientImage;    
     
+    @JsonProperty("Calo")
     @Column(name = "Calo")
     private Integer calo;    
     
+    @JsonProperty("Unit")
     @Size(max = 10)
     @Column(name = "Unit", length = 10)
     private String unit;
     
+    @JsonProperty("Type")
     @Size(max = 20)
     @Column(name = "Type", length = 20)
     private String type;
     
+    @JsonProperty("Description")
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Description", length = 2147483647)
     private String description;
     
+    @JsonIgnore
     @JoinTable(name = "RecipeDetail", joinColumns = {
         @JoinColumn(name = "IngredientID", referencedColumnName = "IngredientID", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "RecipeID", referencedColumnName = "RecipeID", nullable = false)})
-    @ManyToMany
-    @JsonIgnore
+    @ManyToMany    
     private Collection<Recipe> recipeCollection;
 
     public Ingredient() {
     }
 
-    public Ingredient(String ingredientID, String ingredientName) {
+    public Ingredient(String ingredientID, String ingredientName, String ingredientImage, Integer calo, String unit, String type) {
         this.ingredientID = ingredientID;
         this.ingredientName = ingredientName;
+        this.ingredientImage = ingredientImage;
+        this.calo = calo;
+        this.unit = unit;
+        this.type = type;
     }
 
     public Ingredient(String ingredientID) {
