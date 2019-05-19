@@ -101,11 +101,15 @@
                                                     <a class="btn btn-social-icon btn-bitbucket"  onclick=""><i class="disable fa fa-check-circle"></i></a>
 =======
                                                     <a class="btn btn-social-icon btn-bitbucket"  onclick="showToastr('success', 'Active User','Active Successfully')"><i class="disable fa fa-check-circle"></i></a>
+<<<<<<< HEAD
+>>>>>>> toan_common
+=======
 >>>>>>> toan_common
                                                     <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick="handleDelete();"><i class="fa fa-ban"></i></a>
 
                                                 </td>
                                             </tr>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                             <tr>
                                                 <td>
@@ -417,6 +421,9 @@
 =======
                                         </tbody>-->
 >>>>>>> toan_common
+=======
+                                        </tbody>-->
+>>>>>>> toan_common
                                     </table>
                                 </div>
                                 <!-- /.box-body -->
@@ -479,6 +486,7 @@
             <script src="../../dist/js/demo.js"></script>
             <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         $(function() {
                                                             $('#example1').DataTable();
                                                             $('#example2').DataTable({
@@ -512,6 +520,8 @@
                                                             });
                                                         };
 =======
+=======
+>>>>>>> toan_common
                 var loadDatatable = function(){
                     $('#example2').DataTable({
                         'paging'      : true,
