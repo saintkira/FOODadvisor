@@ -21,8 +21,8 @@
         <link rel="stylesheet" href="../../dist/css/template.css">
         <link rel="stylesheet" href="../../dist/css/toastr.min.css">
         <link rel="stylesheet" href="../../dist/style.css">
-      
-     
+
+
         <!-- Font Awesome -->
         <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
@@ -105,8 +105,8 @@
                                                     Active
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-social-icon btn-bitbucket"  onclick="showToastr('success', 'Active User','Active Successfully')"><i class="disable fa fa-check-circle"></i></a>
-                                                    <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick=""><i class="fa fa-ban"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket"  onclick=""><i class="disable fa fa-check-circle"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick="handleDelete();"><i class="fa fa-ban"></i></a>
 
                                                 </td>
                                             </tr>
@@ -124,7 +124,7 @@
                                                     Disable
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-social-icon btn-bitbucket" onclick="showToastr('warning', 'Active User','Active Successfully')"><i class="fa fa-check-circle"></i></a>
+                                                    <a class="btn btn-social-icon btn-bitbucket" onclick="showToastr('warning', 'Active User', 'Active Successfully')"><i class="fa fa-check-circle"></i></a>
                                                     <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-ban"></i></a>
 
                                                 </td>
@@ -456,7 +456,7 @@
             <script src="../../bower_components/jquery-ui/jquery-ui.min.js"></script>
             <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
             <script>
-                $.widget.bridge('uibutton', $.ui.button);
+                                                        $.widget.bridge('uibutton', $.ui.button);
             </script>
             <!-- Bootstrap 3.3.7 -->
             <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -488,25 +488,38 @@
             <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
             <!--DATA TABLE -->
             <script>
-                $(function() {
-                    $('#example1').DataTable();
-                    $('#example2').DataTable({
-                        'paging': true,
-                        'lengthChange': true,
-                        'searching': true,
-                        'ordering': true,
-                        'info': true,
-                        'autoWidth': false,
-                        'orderable':true                        
-                    });
-                });
-                var handleDelete = function() {
+                                                        $(function() {
+                                                            $('#example1').DataTable();
+                                                            $('#example2').DataTable({
+                                                                'paging': true,
+                                                                'lengthChange': true,
+                                                                'searching': true,
+                                                                'ordering': true,
+                                                                'info': true,
+                                                                'autoWidth': false,
+                                                                'orderable': true
+                                                            });
+                                                        });
+                                                        var handleDelete = function() {
+                                                            $('#confirm-delete').find('.btn-ok').click(function() {
+                                                                $.ajax({
+                                                                    url: "../../NewServlet",
+                                                                    data: {id: "abc"},
+                                                                    type: "POST",
+                                                                    success: function() {
+                                                                        toastr.remove();
+                                                                        showToastr('success', 'ok', "ok");
+                                                                        $('#confirm-delete').modal('hide');
 
-                    $('#confirm-delete').find('.btn-default').click(function() {                        
-                        showToastr('success', 'ok delete', "ok");
-                        
-                    });
-                };
+                                                                    },
+                                                                    error: function(data) {
+                                                                        toastr.remove();
+                                                                        showToastr('error', 'abc', "abc");
+                                                                        $('#confirm-delete').modal('hide');
+                                                                    }
+                                                                });                                                               
+                                                            });
+                                                        };
             </script>
             <script>
                 $(document).ready(function() {
