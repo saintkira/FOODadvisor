@@ -5,9 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>FOOD advisor | User Profile</title>
@@ -80,148 +82,147 @@
                                         <input class="file-upload" type="file" accept="image/*"/>
                                     </div>
 
-                                    <h3 class="profile-username text-center">[USERNAME]</h3>
+                                    <h3 class="profile-username text-center"><c:if test="${not empty fullName}">${fullName}</c:if><c:if test="${empty fullName}">Guest</c:if></h3>
 
-                                    <ul class="list-group list-group-unbordered">
-                                        <li class="list-group-item">
-                                            <b>Favorites Item</b> <a class="pull-right">322</a>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Recipes</b> <a class="pull-right">43</a>
-                                        </li>
-                                    </ul>
+                                        <ul class="list-group list-group-unbordered">
+                                            <li class="list-group-item">
+                                                <b>Favorites Item</b> <a class="pull-right">322</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Recipes</b> <a class="pull-right">43</a>
+                                            </li>
+                                        </ul>
 
-                                    <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
+                                        <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
+                                    </div>
+                                    <!-- /.box-body -->
                                 </div>
-                                <!-- /.box-body -->
+                                <!-- /.box -->
+
+
                             </div>
-                            <!-- /.box -->
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                                <div class="nav-tabs-custom">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
+                                        <li><a href="#changepass" data-toggle="tab">Change Password</a></li>
 
+                                    </ul>
+                                    <div class="tab-content">                                
 
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-9">
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-                                    <li><a href="#changepass" data-toggle="tab">Change Password</a></li>
+                                        <!--SETTING-->
+                                        <div class="active tab-pane" id="settings">
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                                </ul>
-                                <div class="tab-content">                                
-
-                                    <!--SETTING-->
-                                    <div class="active tab-pane" id="settings">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputName" placeholder="Name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">DOB</label>
-
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                                    <div class="col-sm-10">
+                                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Gender</label>
-                                                <div class="col-sm-10">
-                                                    <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender"/> 
-                                                        <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender"/></p>
+                                                <div class="form-group">
+                                                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">DOB</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask id="inputDOB">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Gender</label>
+                                                    <div class="col-sm-10">
+                                                        <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender"/> 
+                                                            <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender"/></p>
+
+                                                    </div>
 
                                                 </div>
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Height</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                           data-inputmask="'mask': ['999']" data-mask placeholder="KG">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Height</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control"
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="KG">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Weight</label>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Weight</label>
 
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                           data-inputmask="'mask': ['999']" data-mask placeholder="CM">
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control"
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="CM">
+                                                    </div>
                                                 </div>
-                                            </div>
 
 
 
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button type="submit" class="btn btn-success">Submit</button>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
+                                        <!-- /.tab-pane -->
+
+
+                                        <!--CHANG PASSWORD-->
+                                        <div class="tab-pane" id="changepass">
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control" id="oldPassword" placeholder="Old Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="newPassword" class="col-sm-3 control-label">New Password</label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
+                                                    </div>
+                                                </div>                                          
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-3 col-sm-9">
+                                                        <button type="submit" class="btn btn-danger">Submit</button>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <!-- /.tab-pane -->
-
-
-                                    <!--CHANG PASSWORD-->
-                                    <div class="tab-pane" id="changepass">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="oldPassword" placeholder="Old Password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="newPassword" class="col-sm-3 control-label">New Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="newPassword" placeholder="New Password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
-                                                </div>
-                                            </div>                                          
-
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-3 col-sm-9">
-                                                    <button type="submit" class="btn btn-danger">Submit</button>
-
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <!-- /.tab-content -->
                                 </div>
-                                <!-- /.tab-content -->
+                                <!-- /.nav-tabs-custom -->
                             </div>
-                            <!-- /.nav-tabs-custom -->
+                            <!-- /.col -->
                         </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
+                        <!-- /.row -->
 
-                </section>
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+                <!-- /.content-wrapper -->
             <jsp:include page="partialpage/footer.jsp"/>
         </div>
         <!-- ./wrapper -->
@@ -237,8 +238,8 @@
         <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>    
         <!--Toatr-->
-            <script src="../dist/js/toastr.min.js"></script>
-            <script src="../dist/js/utils.js"></script>
+        <script src="../dist/js/toastr.min.js"></script>
+        <script src="../dist/js/utils.js"></script>
         <!-- FastClick -->
         <script src="../bower_components/fastclick/lib/fastclick.js"></script>
         <!-- iCheck 1.0.1 -->
@@ -267,10 +268,31 @@
                             checkboxClass: 'icheckbox_flat-green',
                             radioClass: 'iradio_flat-green'
                         });
+
+                        //ajaxGetData
+                        $.ajax({
+                            url: '../getProfileServlet',
+                            
+                            data: {
+                                username: "${username}"
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                var name = data;
+                                $('#inputName').val(name);
+
+                                alert(data);
+
+                            }
+                        });
+
                     });
         </script>
         <!--UPLOAD AVATAR-->
         <script src="../dist/js/profile.js"></script>
+        <!--GET PROFILE DATA-->
+
+
     </body>
 </html>
 

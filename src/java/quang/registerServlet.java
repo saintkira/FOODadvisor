@@ -12,14 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Account;
 import model.AccountFacadeLocal;
 
 /**
  *
  * @author Windows 10
  */
-public class loginServlet extends HttpServlet {
+public class registerServlet extends HttpServlet {
 
     @EJB
     private AccountFacadeLocal accountFacade;
@@ -40,19 +40,19 @@ public class loginServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            HttpSession session = request.getSession();
-            session.removeAttribute("error");
-            session.setAttribute("error", null);
-            if (accountFacade.checkLogIn(username, password)) {
-                session.removeAttribute("error");
-                session.setAttribute("username", username);
-                session.setAttribute("password", password);
-                session.setAttribute("fullName", accountFacade.find(username).getFullname());
-                response.sendRedirect("pages/profile.jsp");
+            String fullName = request.getParameter("fullName");
+            String email = request.getParameter("email");
+
+            if (accountFacade.find(username) != null) {
+                response.sendRedirect("pages/register.jsp");
             } else {
-                session.setAttribute("error", "error");
+                Account account = new Account();
+                account.setUsername(username);
+                account.setFullname(fullName);
+                account.setPassword(password);
+                account.setEmailAddress(email);
+               accountFacade.create(account);
                 response.sendRedirect("pages/login.jsp");
-                session.setAttribute("error", null);
             }
 
         }

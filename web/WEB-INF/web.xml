@@ -16,6 +16,18 @@
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>quang.loginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logOutServlet</servlet-name>
+        <servlet-class>quang.logOutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>registerServlet</servlet-name>
+        <servlet-class>quang.registerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getProfileServlet</servlet-name>
+        <servlet-class>quang.getProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logOutServlet</servlet-name>
+        <url-pattern>/logOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registerServlet</servlet-name>
+        <url-pattern>/registerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getProfileServlet</servlet-name>
+        <url-pattern>/getProfileServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
