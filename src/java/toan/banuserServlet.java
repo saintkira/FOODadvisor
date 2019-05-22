@@ -33,6 +33,7 @@ public class banuserServlet extends HttpServlet {
             response.setContentType("text/plain");
             response.getWriter().write("Failed");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -175,7 +175,7 @@
                         'ajax': {
                             'url': "../../loaduserdataServlet",
                             'dataSrc': "data",
-                            "type": "POST"
+                            'type': "POST"
                         },
                         'columns': [
                             { 'data': "Username" },
@@ -195,12 +195,12 @@
                     });
                 };
                 var handleDelete = function(Username) {
-
-                    $('#confirm-delete').find('.btn-ok').click(function() {                        
+                    x= Username;
+                    $('#confirm-delete').find('.btn-ok').click(function() { 
                         $.ajax({
                         url : '../../banuserServlet',
                         data : {
-                                Username : Username
+                            Username : x
                         },
                         success: function(responseText) {
                             if (responseText.toString()==='Success') {
@@ -209,18 +209,22 @@
                                 $('#confirm-delete').modal('hide');
                                 $('#example2').DataTable().destroy();
                                 loadDatatable();
+                                delete(x);
                             }else{
                                 toastr.remove();
                                 showToastr('error', 'Status', "Banning Failed");
-                                $('#confirm-delete').modal('hide')
+                                $('#confirm-delete').modal('hide');
+                                delete(x);
                             }
                         },
-                        error: function(data) {
+                        error: function() {
                             toastr.remove();
                             showToastr('error', 'Status', "Connection Error");
                             $('#confirm-delete').modal('hide');
+                            delete(x);
                         }
                         });
+                        delete(x);
                         
                     });
                 };

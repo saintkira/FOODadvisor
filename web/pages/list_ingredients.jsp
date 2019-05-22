@@ -40,11 +40,10 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="../bower_components/css_js_toan/animate-3.7.0.css">
     <link rel="stylesheet" href="../bower_components/css_js_toan/style.css">
-    
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.css'>
+    <!--3 css-->
+    <link rel="stylesheet" href="../bower_components/css_js_toan/w3.css">
+    <link rel="stylesheet" href="../bower_components/css_js_toan/owl.carousel.css">
+    <link rel="stylesheet" href="../bower_components/css_js_toan/owl.theme.default.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
