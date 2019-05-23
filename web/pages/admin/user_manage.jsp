@@ -155,14 +155,13 @@
                         'ajax': {
                             'url': "../../loaduserdataServlet",
                             'dataSrc': "data",
-                            'type': "POST"
                         },
                         'columns': [
                             { 'data': "Username" },
                             { 'data': "Fullname" },
                             { 'data': "EmailAddress" },
                             { 'data': "Active_Status" },
-                            { 'data': 'Username',
+                            { 'data': "Username",
                               'render': function (data, type, row, meta) {
                                 if (type === 'display') {
                                     data = '<a class="btn btn-social-icon btn-bitbucket" onclick="showToastr(\'success\', \'Active User\',\'Active Successfully\')">' + '<i class="disable fa fa-check-circle"></i>' + '</a>'+
@@ -175,7 +174,7 @@
                     });
                 };
                 var handleDelete = function(Username) {
-                    x= Username;
+                    x= Username.toString();
                     $('#confirm-delete').find('.btn-ok').click(function() { 
                         $.ajax({
                         url : '../../banuserServlet',

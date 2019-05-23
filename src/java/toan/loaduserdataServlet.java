@@ -22,6 +22,8 @@ public class loaduserdataServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String json = accountFacade.getAllusertoJSON();
+        out.print(json);
 
     }
 
@@ -44,9 +46,7 @@ public class loaduserdataServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        PrintWriter out = response.getWriter();
-        String json = accountFacade.getAllusertoJSON();
-        out.println(json);
+        
     }
 
     @Override

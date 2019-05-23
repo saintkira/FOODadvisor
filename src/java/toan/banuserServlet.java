@@ -26,7 +26,7 @@ public class banuserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*
+        
         if (accountFacade.deleteUser(request.getParameter("Username").toString())==1) {
             response.setContentType("text/plain");
             response.getWriter().write("Success");
@@ -34,7 +34,7 @@ public class banuserServlet extends HttpServlet {
             response.setContentType("text/plain");
             response.getWriter().write("Failed");
         }
-        */
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
