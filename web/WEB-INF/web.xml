@@ -13,10 +13,10 @@
         <servlet-class>toan.loadrecipeimgServlet</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>loadrecipeServlet</servlet-name>
         <servlet-class>toan.loadrecipeServlet</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>quang.loginServlet</servlet-class>
     </servlet>
@@ -43,7 +43,6 @@
     <servlet>
         <servlet-name>getOldPassword</servlet-name>
         <servlet-class>quang.getOldPassword</servlet-class>
->>>>>>> quang_common
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
@@ -58,10 +57,10 @@
         <url-pattern>/loadrecipeimgServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>loadrecipeServlet</servlet-name>
         <url-pattern>/loadrecipeServlet</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
@@ -88,7 +87,6 @@
     <servlet-mapping>
         <servlet-name>getOldPassword</servlet-name>
         <url-pattern>/getOldPassword</url-pattern>
->>>>>>> quang_common
     </servlet-mapping>
     <session-config>
         <session-timeout>

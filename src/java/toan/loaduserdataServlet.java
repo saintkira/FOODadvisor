@@ -22,10 +22,7 @@ public class loaduserdataServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-<<<<<<< HEAD
-=======
 
->>>>>>> quang_common
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -48,10 +45,8 @@ public class loaduserdataServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         PrintWriter out = response.getWriter();
-        /*
         String json = accountFacade.getAllusertoJSON();
         out.println(json);
-                */
     }
 
     @Override

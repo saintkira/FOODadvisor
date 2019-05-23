@@ -8,6 +8,7 @@ package model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,8 +28,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     public AccountFacade() {
         super(Account.class);
     }
-<<<<<<< HEAD
-=======
+
 
     @Override
     public String getAllusertoJSON() {
@@ -94,7 +94,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
 
     
->>>>>>> quang_common
+
     
     
 

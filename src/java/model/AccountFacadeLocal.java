@@ -29,8 +29,6 @@ public interface AccountFacadeLocal {
     List<Account> findRange(int[] range);
 
     int count();
-<<<<<<< HEAD
-=======
 
     String getAllusertoJSON();
 
@@ -46,7 +44,6 @@ public interface AccountFacadeLocal {
 
     boolean changePassword(String username, String password);
 
-   
->>>>>>> quang_common
+
     
 }
