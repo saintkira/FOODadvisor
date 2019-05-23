@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package quang;
 
 import java.io.IOException;
@@ -19,8 +20,7 @@ import model.AccountFacadeLocal;
  *
  * @author Windows 10
  */
-public class getProfileServlet extends HttpServlet {
-
+public class updateProfileServlet extends HttpServlet {
     @EJB
     private AccountFacadeLocal accountFacade;
 
@@ -35,13 +35,36 @@ public class getProfileServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String username = request.getParameter("username");
-        String json = accountFacade.getProfileDataIntoJson(username);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String userName = request.getParameter("username");
+            String fullName = request.getParameter("fullName");
+            String email = request.getParameter("email");
+            
+            String dob = request.getParameter("dob");
+            int height = Integer.parseInt(request.getParameter("height"));
+            int weight = Integer.parseInt(request.getParameter("weight").replace("_",""));
+            String  gender = request.getParameter("gender");
+            boolean gen = true;
+            Account account = new Account();
+           account.setUsername(userName);
+           account.setFullname(fullName);
+           account.setDob(dob);
+           account.setHeight(height);
+           account.setWeight(weight);
+           account.setEmailAddress(email);
+           account.setGender(gen);
+            if (accountFacade.updateAccount(account)) {
+                response.sendRedirect("pages/profile.jsp");
+            }
+            response.sendRedirect("pages/login.jsp");
 
+//           
+           
+            
+                
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,7 +94,6 @@ public class getProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**

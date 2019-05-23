@@ -64,10 +64,36 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
 
     @Override
-    public String getProfileDataIntoJson(String username) {
-        Query query = em.createQuery("SELECT a FROM Account a WHERE a.username = :username FOR JSON AUTO,Root('data')");
-        query.setParameter("username", username);
-        return query.getSingleResult().toString().replace("true", "\"Active\"").replace("false", "\"Banned\"");
+    public String getProfileDataIntoJson(String user) {
+        Query q = em.createNativeQuery("SELECT * FROM Account WHERE Username='" + user + "'"
+                + " FOR JSON AUTO,Root('data')");
+        return q.getSingleResult().toString().replace("true", "\"Active\"").replace("false", "\"Banned\"");
     }
+
+    @Override
+    public boolean updateAccount(Account account) {
+        Query q = em.createNativeQuery("UPDATE Account SET Fullname = '" + account.getFullname() + "', EmailAddress = '" + account.getEmailAddress() + "', "
+                + "DOB = '" + account.getDob() + "',"
+                + " Height = '" + account.getHeight()+ "',"
+                + "Weight = '"+account.getWeight()+"',"
+                + "Gender = '"+account.getGender()+"'    ");
+        if (q.executeUpdate()>1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean changePassword(String username, String password) {
+        Query q = em.createNativeQuery("UPDATE Account SET Password = '"+password+"' WHERE Username = '"+username+"' ");
+        if (q.executeUpdate()>1) {
+            return true;
+        }
+        return false;
+    }
+
+    
+    
+    
 
 }

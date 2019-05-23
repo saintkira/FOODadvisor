@@ -36,6 +36,10 @@
         <!-- iCheck -->        
         <link rel="stylesheet" href="../plugins/iCheck/all.css">
 
+        <!--CUSTOMER CSS ToastR and modal-->
+        <link rel="stylesheet" href="../dist/css/template.css">
+        <link rel="stylesheet" href="../dist/css/toastr.min.css">
+        <link rel="stylesheet" href="../dist/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -113,19 +117,19 @@
 
                                         <!--SETTING-->
                                         <div class="active tab-pane" id="settings">
-                                            <form class="form-horizontal">
+                                            <form class="form-horizontal" action="../updateProfileServlet" method="POST">
                                                 <div class="form-group">
                                                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
                                                     <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="fullName">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                                                     <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -135,15 +139,15 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask id="inputDOB">
+                                                            <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask id="inputDob" name="dob" >
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Gender</label>
                                                     <div class="col-sm-10">
-                                                        <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender"/> 
-                                                            <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender"/></p>
+                                                        <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender" id="genderMale" name="gender"/> 
+                                                            <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender" id="genderFemale"/></p>
 
                                                     </div>
 
@@ -152,7 +156,7 @@
                                                     <label class="col-sm-2 control-label">Height</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control"
-                                                               data-inputmask="'mask': ['999']" data-mask placeholder="KG">
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="KG" id="inputHeight" name="height">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -160,7 +164,7 @@
 
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control"
-                                                               data-inputmask="'mask': ['999']" data-mask placeholder="CM">
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="CM" id="inputWeight" name="weight">
                                                     </div>
                                                 </div>
 
@@ -168,7 +172,7 @@
 
                                                 <div class="form-group">
                                                     <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-success">Submit</button>
+                                                        <button type="submit" class="btn btn-success" id="btnSubmit">Submit</button>
 
                                                     </div>
                                                 </div>
@@ -179,26 +183,26 @@
 
                                         <!--CHANG PASSWORD-->
                                         <div class="tab-pane" id="changepass">
-                                            <form class="form-horizontal">
+                                            <form class="form-horizontal" action="../changePasswordServlet">
                                                 <div class="form-group">
                                                     <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
 
-                                                    <div class="col-sm-9">
-                                                        <input type="password" class="form-control" id="oldPassword" placeholder="Old Password">
+                                                    <div class="col-sm-9" id="formOldPass">
+                                                        <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="newPassword" class="col-sm-3 control-label">New Password</label>
 
-                                                    <div class="col-sm-9">
-                                                        <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                                                    <div class="col-sm-9" id="formNewPass">
+                                                        <input type="password" class="form-control" id="newPassword" placeholder="New Password" name="newPassword">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
 
-                                                    <div class="col-sm-9">
-                                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
+                                                    <div class="col-sm-9" id="formConfirmPass">
+                                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" name="confirmPassword">
                                                     </div>
                                                 </div>                                          
 
@@ -228,13 +232,12 @@
         <!-- ./wrapper -->
 
         <!-- jQuery 3 -->
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
-            $.widget.bridge('uibutton', $.ui.button);
-        </script>
+            $.widget.bridge('uibutton', $.ui.button);</script>
         <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>    
         <!--Toatr-->
@@ -263,7 +266,6 @@
                         //Datemask dd/mm/yyyy
                         $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
                         $('[data-mask]').inputmask();
-
                         $('input[type="radio"].flat-red').iCheck({
                             checkboxClass: 'icheckbox_flat-green',
                             radioClass: 'iradio_flat-green'
@@ -272,26 +274,146 @@
                         //ajaxGetData
                         $.ajax({
                             url: '../getProfileServlet',
-                            
                             data: {
                                 username: "${username}"
                             },
                             success: function(data) {
-                                console.log(data);
-                                var name = data;
-                                $('#inputName').val(name);
-
-                                alert(data);
-
+                                $('#inputName').val(data.data[0].Fullname);
+                                $('#inputEmail').val(data.data[0].EmailAddress);
+                                $('#datemask').val(formatDate(data.data[0].DOB));
+                                $('#inputHeight').val(data.data[0].Height);
+                                $('#inputWeight').val(data.data[0].Weight);
+                                if (data.data[0].Gender === "Active") {
+                                    $('#genderMale').iCheck('check');
+                                } else {
+                                    $('#genderFemale').iCheck('check');
+                                }
                             }
                         });
+
+                        //checkConfirmPasswrod
+                        $("#oldPassword").focusout(function() {
+                            var oldPass = $(this).val().toString();
+                            
+                            $.ajax({
+                                url: '../getOldPassword',
+                                data: {
+                                    username: "${username}"
+                                },
+                                success: function(data) {
+                                    m = data.toString();
+                                    console.log(m);
+                                    console.log(oldPass);
+                                    if (oldPass !=m) {
+                                        toastr.remove();
+                                        showToastr('error', 'Status', "Wrong Old Password");
+                                        $('#confirm-delete').modal('hide');
+                                        $('#formOldPass').addClass("has-error");
+                                    } else if (oldPass === data) {
+                                        if ($("#formOldPass").hasClass("has-error")) {
+                                            $("#formOldPass").removeClass("has-error");
+                                            return true;
+                                        }
+                                    }
+                                }
+                            });
+                            if ($("#formOldPass").hasClass("has-error")) {
+                                $("#formOldPass").removeClass("has-error");
+                                return true;
+                            }
+                        });
+
+                        $("#confirmPassword").focusout(function() {
+                            var a = $("#newPassword").val();
+                            var b = $(this).val();
+                            console.log(a);
+                            console.log(b);
+                            if (a !== b) {
+                                $("#formPass").addClass("has-error");
+                                return false;
+                            }
+                            if ($("#formPass").hasClass("has-error")) {
+                                $("#formPass").removeClass("has-error");
+                                return true;
+                            }
+                        });
+
+
+
+
+                        //click update
+//                        $('#btnSubmit').click(function() {
+//                            if ($('#genderMale').parent('[class*="icheckbox"]').hasClass("checked")) {
+//                                var gender = "true";
+//                            } else {
+//                                var gender = "false";
+//                            };
+//                            
+//                            
+//                            $.ajax({
+//                                url: '../updateProfileServlet',
+//                                data: {
+//                                    userName: "${username}",
+//                                    fullName: $('#inputName').val(),
+//                                    email: $('#inputEmail').val(),
+//                                    dob: formatDate2($('#datemask').val()),
+//                                    height: $('#inputHeight').val(),
+//                                    weight: $('#inputWeight').val(),
+//                                    gender: gender
+//                                },
+//                                success: function(responseText) {
+//                                    if (responseText.toString() === 'Success') {
+//                                        toastr.remove();
+//                                        showToastr('success', 'Status', "Successfully Updated");
+//                                        $('#confirm-delete').modal('hide');
+//                                        $('#example2').DataTable().destroy();
+//                                        loadDatatable();
+//                                    } else {
+//                                        toastr.remove();
+//                                        showToastr('error', 'Status', "Updating Failed");
+//                                        $('#confirm-delete').modal('hide');
+//                                    }
+//                                },
+//                                error: function(data) {
+//                                    toastr.remove();
+//                                    showToastr('error', 'Status', "Connection Error");
+//                                    $('#confirm-delete').modal('hide');
+//                                }                            
+//                            });
+//                            //het ajax
+//                        });
+                        //het function
 
                     });
         </script>
         <!--UPLOAD AVATAR-->
         <script src="../dist/js/profile.js"></script>
         <!--GET PROFILE DATA-->
+        <script>
+            function formatDate(date) {
+                var d = new Date(date),
+                        month = '' + (d.getMonth() + 1),
+                        day = '' + d.getDate(),
+                        year = d.getFullYear();
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                return [day, month, year].join("/");
+            }
 
+            function formatDate2(date) {
+                var d = new Date(date),
+                        month = '' + (d.getMonth() + 1),
+                        day = '' + d.getDate(),
+                        year = d.getFullYear();
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                return [year, month, day].join("-");
+            }
+        </script>
 
     </body>
 </html>

@@ -28,6 +28,18 @@
         <servlet-name>getProfileServlet</servlet-name>
         <servlet-class>quang.getProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateProfileServlet</servlet-name>
+        <servlet-class>quang.updateProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changePasswordServlet</servlet-name>
+        <servlet-class>quang.changePasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getOldPassword</servlet-name>
+        <servlet-class>quang.getOldPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -55,6 +67,18 @@
     <servlet-mapping>
         <servlet-name>getProfileServlet</servlet-name>
         <url-pattern>/getProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateProfileServlet</servlet-name>
+        <url-pattern>/updateProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changePasswordServlet</servlet-name>
+        <url-pattern>/changePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getOldPassword</servlet-name>
+        <url-pattern>/getOldPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
