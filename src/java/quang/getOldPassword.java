@@ -40,7 +40,7 @@ public class getOldPassword extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String username = request.getParameter("username");
             Account account = accountFacade.find(username);
-            out.println(account.getPassword());
+            out.print(account.getPassword());
         }
     }
 

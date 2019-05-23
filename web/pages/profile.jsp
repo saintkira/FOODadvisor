@@ -304,12 +304,12 @@
                                     m = data.toString();
                                     console.log(m);
                                     console.log(oldPass);
-                                    if (oldPass !=m) {
+                                    if (oldPass !==m) {
                                         toastr.remove();
                                         showToastr('error', 'Status', "Wrong Old Password");
                                         $('#confirm-delete').modal('hide');
                                         $('#formOldPass').addClass("has-error");
-                                    } else if (oldPass === data) {
+                                    } else if (oldPass === m) {
                                         if ($("#formOldPass").hasClass("has-error")) {
                                             $("#formOldPass").removeClass("has-error");
                                             return true;
