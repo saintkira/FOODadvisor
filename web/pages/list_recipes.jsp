@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>    
 <head>
@@ -36,6 +36,14 @@
     <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../bower_components/css_js_toan/animate-3.7.0.css">
+    <link rel="stylesheet" href="../bower_components/css_js_toan/style.css">
+    <!--3 css-->
+    <link rel="stylesheet" href="../bower_components/css_js_toan/w3.css">
+    <link rel="stylesheet" href="../bower_components/css_js_toan/owl.carousel.css">
+    <link rel="stylesheet" href="../bower_components/css_js_toan/owl.theme.default.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +54,56 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    
+    <style>
+        .circle-icon {
+            background: rgba(0,0,0,0.2);
+            padding:7px;
+            border-radius: 50%;
+        }
+        .fa-heart{
+            font-size:36px;
+            color:rgba(238,249,252,0.5);
+        }
+        .fa-heart:hover {
+           cursor: pointer;
+           color:rgba(250,0,0,0.8);
+        }
+        .heart-love{
+            font-size:36px;
+            color:red;
+        }
+        .fa-calendar-plus-o{
+            font-size:24px;
+        }
+        .fa-calendar-plus-o:hover {
+           cursor: pointer;
+           color:#9af7ff;
+        }
+        .fa-calendar-check-o{
+            color:red;
+        }
+        .viewdetailbtn {
+            color: #fff !important;
+            text-transform: uppercase;
+            background: #00f72a;
+            padding: 5px;
+            border-radius: 50px;
+            display: inline-block;
+            border: none;
+            outline:0;
+        }
+        .viewdetailbtn:hover {
+            text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+            -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            transition: all 0.4s ease 0s;
+        }
+        #owl-demo img{
+                display: block;
+                width: 100%;
+                height: auto;
+        }
+    </style>
 </head>
 
 <body class="hold-transition skin-green-light sidebar-mini">
@@ -63,15 +120,167 @@
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Dashboard</li>
                     </ol>
-                </section>
+            </section>
             <section class="content">
                 <!--MAIN CONTENT START HERE-->
+                <!-- Food Area starts -->
+                <section class="food-area section-padding">
+                    
+                    <div class="container" id="maincontainer">
+                        
+                    </div>
+                    
+                    <div class="row" style="visibility: hidden" id="loadingrow">
+                        <div class="col-md-12 col-sm-12">
+                            <center>
+                                <image src="../bower_components/css_js_toan/images/loading2.gif"/>
+                            </center>
+                        </div>
+                    </div>
+                </section>
+                <!-- Food Area End -->
             </section>
         </div>
         <jsp:include page="partialpage/footer.jsp"/>
         
+        
+        <!-- modal -->
+        <div id="fsModal" class="modal animated fadeIn">
+          <!-- dialog -->
+          <div class="modal-dialog">
+            <!-- content -->
+            <div class="modal-content">
+              <!-- header -->
+              <div class="modal-header">
+                <h1 id="myModalLabel" class="modal-title">Recipe Details</h1>
+              </div>
+              <!-- 
+                <div w3-include-html="template1.html"></div>
+               <img class="item" src="../bower_components/css_js_toan/images/food1.jpg" alt="Food"/>
+              header -->
+               
+               
+              <div class="modal-body">
+                  <div class="row" style="width:100%;height:100%">
+                      <div class="col-md-6 col-sm-6">
+                          <div id="food-carousel">
+                              <div class="owl-carousel owl-theme">
+                                  <img class="item" src="../bower_components/css_js_toan/images/food1.jpg" alt="Food"/>
+                                  <img class="item" src="../bower_components/css_js_toan/images/food2.jpg" alt="Food"/>
+                                  <img class="item" src="../bower_components/css_js_toan/images/food3.jpg" alt="Food"/>
+                              </div>
+                          </div>
+                          <div class="btns">
+                              <div class="customNextBtn">Next</div>
+                              <div class="customPreviousBtn">Back</div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6 col-sm-6">
+                          
+                          <!--Accordion-->
+                          <div w3-include-html="../recipes_document/R002/R002.html"></div>
+                          <!--Accordion-->
+
+                      </div>
+                  </div>
+              </div>
+           
+
+              <!-- footer -->
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-default">
+                  Default
+                </button>
+                <button class="btn btn-primary">
+                  Primary
+                </button>
+              </div>
+              <!-- footer -->
+            </div>
+            <!-- content -->
+          </div>
+          <!-- dialog -->
+        </div>
+        <!-- modal -->
 <!-- jQuery 3 -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script><
+<script src="../bower_components/css_js_toan/jquery.min.js"></script>
+<script src="../bower_components/css_js_toan/w3data.js"></script> 
+<!-- Morris.js charts -->
+<script src="../bower_components/raphael/raphael.min.js"></script>
+<script src="../bower_components/morris.js/morris.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){ 
+       window.setTimeout(function(){
+                $.get("../loadrecipeServlet?status=start", function(data){
+                    $("#maincontainer").append(data);
+                });
+                loading.style.visibility="hidden";
+       },200); 
+        
+       $contentLoadTriggered = false;
+       var loading = document.querySelector('#loadingrow');
+       
+       $(window).scroll(function(){
+       if($(window).scrollTop()>= $(document).height()-$(window).height() && $contentLoadTriggered == false){
+            $contentLoadTriggered = true;
+            loading.style.visibility="";
+            window.setTimeout(function(){
+                $.get("../loadrecipeServlet?status=scroll", function(data){
+                    $("#maincontainer").append(data);
+                    $contentLoadTriggered = false;
+                });
+                loading.style.visibility="hidden";
+            },1000);
+            
+       } 
+       });
+    });
+    function loadimageFunction(x){     
+      window.setTimeout(function(){
+        w3IncludeHTML();
+      },200); 
+      $("#food-carousel").html('<div class="owl-carousel owl-theme"></div>');
+      $.get("../loadrecipeimgServlet", function(data){
+        $(".owl-carousel").append(data);
+      });
+      window.setTimeout(function(){
+          $(".owl-carousel").owlCarousel({
+            loop:true,
+            margin:10,
+            nav:false,
+            items: 1,
+            dots:false
+          },500); 
+      });
+    };
+</script>
+<script type="text/javascript">
+    function loveFunction(x,s) {
+      alert(s);
+      x.classList.toggle("heart-love");
+    };
+    function menuFunction(x,s) {
+      x.classList.toggle("fa-calendar-check-o");
+      alert(s);
+      if (x.classList.toString()==="fa fa-calendar-plus-o") {
+          $("#"+s).removeClass("selected");
+      }else{
+          $("#"+s).addClass("selected");
+      }  
+    };
+    //$("#img1").attr("src","../bower_components/css_js_toan/images/food6.jpg");
+      // Custom Button
+      $('.customNextBtn').click(function() {
+        $('.owl-carousel').trigger('next.owl.carousel');
+      });
+      $('.customPreviousBtn').click(function() {
+        $('.owl-carousel').trigger('prev.owl.carousel');
+      });
+      
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js'></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -80,9 +289,6 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="../bower_components/raphael/raphael.min.js"></script>
-<script src="../bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="../bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->

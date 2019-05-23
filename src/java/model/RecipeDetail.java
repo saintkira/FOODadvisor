@@ -7,13 +7,16 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -31,6 +34,10 @@ public class RecipeDetail implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected RecipeDetailPK recipeDetailPK;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "IngredientName", length = 2147483647)
+    private String ingredientName;
     @JoinColumn(name = "RecipeID", referencedColumnName = "RecipeID", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Recipe recipe;
@@ -52,6 +59,14 @@ public class RecipeDetail implements Serializable {
 
     public void setRecipeDetailPK(RecipeDetailPK recipeDetailPK) {
         this.recipeDetailPK = recipeDetailPK;
+    }
+
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
     public Recipe getRecipe() {

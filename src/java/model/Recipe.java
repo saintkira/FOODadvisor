@@ -51,6 +51,10 @@ public class Recipe implements Serializable {
     private String recipeName;
     @Lob
     @Size(max = 2147483647)
+    @Column(name = "Price", length = 2147483647)
+    private String price;
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "RecipeImage", length = 2147483647)
     private String recipeImage;
     @Lob
@@ -95,6 +99,14 @@ public class Recipe implements Serializable {
 
     public void setRecipeName(String recipeName) {
         this.recipeName = recipeName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getRecipeImage() {

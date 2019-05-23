@@ -42,8 +42,10 @@ public class loaduserdataServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         PrintWriter out = response.getWriter();
+        /*
         String json = accountFacade.getAllusertoJSON();
         out.println(json);
+                */
     }
 
     @Override

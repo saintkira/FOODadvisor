@@ -29,9 +29,5 @@ public interface AccountFacadeLocal {
     List<Account> findRange(int[] range);
 
     int count();
-
-    String getAllusertoJSON();
-
-    int deleteUser(String username);
     
 }

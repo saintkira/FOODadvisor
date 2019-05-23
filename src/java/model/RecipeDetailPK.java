@@ -26,8 +26,8 @@ public class RecipeDetailPK implements Serializable {
     private String recipeID;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 4)
-    @Column(name = "IngredientID", nullable = false, length = 4)
+    @Size(min = 1, max = 7)
+    @Column(name = "IngredientID", nullable = false, length = 7)
     private String ingredientID;
 
     public RecipeDetailPK() {

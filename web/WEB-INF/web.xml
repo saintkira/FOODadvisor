@@ -12,6 +12,10 @@
         <servlet-name>loadrecipeimgServlet</servlet-name>
         <servlet-class>toan.loadrecipeimgServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadrecipeServlet</servlet-name>
+        <servlet-class>toan.loadrecipeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>loadrecipeimgServlet</servlet-name>
         <url-pattern>/loadrecipeimgServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadrecipeServlet</servlet-name>
+        <url-pattern>/loadrecipeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
