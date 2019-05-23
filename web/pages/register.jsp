@@ -43,29 +43,36 @@
 
             <div class="register-box-body">
                 <p class="login-box-msg">Register a new membership</p>
-
-                <form action="login.jsp" method="post">
+                <form name="registerForm" action="../registerServlet" method="post">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="Full name">
+                        <input type="text" class="form-control" placeholder="Username" name="username" id="username">
+                        <span class="glyphicon glyphicon-cloud form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Full name" name="fullName" id="fullName">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="email">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Password">
+                    </div>                    
+                    <div class="form-group has-feedback" id="formPass">
+                        <input type="password" class="form-control" placeholder="Password" name="password" id="password">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Retype password">
+                        <input type="password" class="form-control" placeholder="Retype password" name="rePassword" id="rePassword"/>
                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                     </div>
-                    <div class="row">
-                        
+                    <div class="row">                        
                         <!-- /.col -->
+                        <div class="col-xs-4 hidden" id="notication">
+                            <p>Password and Repassword is not the same</p>
+                        </div>
+
                         <div class="col-xs-4 col-xs-offset-8">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+
+                            <button type="submit" class="btn btn-success btn-block btn-flat">Register</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -99,7 +106,29 @@
                     increaseArea: '20%' /* optional */
                 });
             });
+
+
+
+        </script>   
+        <script>
+            $(document).ready(function() {
+                $("#rePassword").focusout(function() {
+                    var a = $("#password").val();
+                    var b = $(this).val();
+                    console.log(a);
+                    console.log(b);
+                    if (a !== b) {
+                        $("#formPass").addClass("has-error");
+                        return false;
+                    }
+                    if ($("#formPass").hasClass("has-error")) {
+                        $("#formPass").removeClass("has-error");
+                        return true;
+                    }
+                });
+            });
         </script>
+
     </body>
 </html>
 

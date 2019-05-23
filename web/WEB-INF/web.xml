@@ -13,8 +13,37 @@
         <servlet-class>toan.loadrecipeimgServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>loadrecipeServlet</servlet-name>
         <servlet-class>toan.loadrecipeServlet</servlet-class>
+=======
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>quang.loginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logOutServlet</servlet-name>
+        <servlet-class>quang.logOutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>registerServlet</servlet-name>
+        <servlet-class>quang.registerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getProfileServlet</servlet-name>
+        <servlet-class>quang.getProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateProfileServlet</servlet-name>
+        <servlet-class>quang.updateProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changePasswordServlet</servlet-name>
+        <servlet-class>quang.changePasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getOldPassword</servlet-name>
+        <servlet-class>quang.getOldPassword</servlet-class>
+>>>>>>> quang_common
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
@@ -29,8 +58,37 @@
         <url-pattern>/loadrecipeimgServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>loadrecipeServlet</servlet-name>
         <url-pattern>/loadrecipeServlet</url-pattern>
+=======
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logOutServlet</servlet-name>
+        <url-pattern>/logOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registerServlet</servlet-name>
+        <url-pattern>/registerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getProfileServlet</servlet-name>
+        <url-pattern>/getProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateProfileServlet</servlet-name>
+        <url-pattern>/updateProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changePasswordServlet</servlet-name>
+        <url-pattern>/changePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getOldPassword</servlet-name>
+        <url-pattern>/getOldPassword</url-pattern>
+>>>>>>> quang_common
     </servlet-mapping>
     <session-config>
         <session-timeout>
