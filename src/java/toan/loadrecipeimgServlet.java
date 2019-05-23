@@ -1,42 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package toan;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Toan
- */
 public class loadrecipeimgServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String img="<img class=\"item\" src=\"../bower_components/css_js_toan/images/food1.jpg\" alt=\"Food\"/>";
-        String img2="<img class=\"item\" src=\"../bower_components/css_js_toan/images/food2.jpg\" alt=\"Food\"/>";
-        String img3="<img class=\"item\" src=\"../bower_components/css_js_toan/images/food3.jpg\" alt=\"Food\"/>";
+        String id = request.getParameter("id");
+        String img="<img class=\"item\" src=\"$src\" alt=\"Food\"/>";
+        String src="../recipes_document/"+id+"/";
+        String resp="";
+        
+        String path=request.getServletContext().getRealPath("//")+"\\recipes_document\\"+id+"\\";
+        try (Stream<Path> walk = Files.walk(Paths.get(path))) {
+		List<String> result = walk.filter(x->x.getFileName().toString().endsWith(".jpg") || x.getFileName().toString().endsWith(".bmp"))
+				.map(x -> x.getFileName().toString()).collect(Collectors.toList());
+                for(String filename: result){
+                    resp=resp+img.replace("$src", src+filename);
+                }
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+        
         try{
-            out.write(img+img2);
+            out.write(resp);
         }
         finally{
             out.close();

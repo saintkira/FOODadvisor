@@ -179,7 +179,7 @@
                       <div class="col-md-6 col-sm-6">
                           
                           <!--Accordion-->
-                          <div w3-include-html="../recipes_document/R002/R002.html"></div>
+                          <div id="include" w3-include-html="../recipes_document/R003/R003.html"></div>
                           <!--Accordion-->
 
                       </div>
@@ -190,12 +190,14 @@
               <!-- footer -->
               <div class="modal-footer">
                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!--
                 <button class="btn btn-default">
                   Default
                 </button>
                 <button class="btn btn-primary">
                   Primary
                 </button>
+                -->
               </div>
               <!-- footer -->
             </div>
@@ -237,12 +239,18 @@
        } 
        });
     });
-    function loadimageFunction(x){     
+    function loadmodalFunction(x){
+      temp=x.toString();
+      include_temp='../recipes_document/'+temp+'/'+temp+'.html';
+      $("#include").attr("w3-include-html",include_temp);
       window.setTimeout(function(){
         w3IncludeHTML();
-      },200); 
+      },200);
+      delete(include_temp);
+      temp='../loadrecipeimgServlet?id='+temp;
+      
       $("#food-carousel").html('<div class="owl-carousel owl-theme"></div>');
-      $.get("../loadrecipeimgServlet", function(data){
+      $.get(temp, function(data){
         $(".owl-carousel").append(data);
       });
       window.setTimeout(function(){
