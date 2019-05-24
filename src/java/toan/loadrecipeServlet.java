@@ -42,7 +42,7 @@ public class loadrecipeServlet extends HttpServlet {
             recipes = recipeFacade.findAll();
             String resp1 = "<div class=\"row\" style=\"padding-bottom: 30px\">\n"
                     + "                            <div class=\"col-md-4 col-sm-6\">\n"
-                    + "                                <div class=\"single-food\">\n"
+                    + "                                <div class=\"single-food\" id=\"$ID\">\n"
                     + "                                    <div class=\"container1\" style=\"position: relative;\">\n"
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
@@ -65,7 +65,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                </div>\n"
                     + "                            </div>";
             String resp2 = " <div class=\"col-md-4 col-sm-6\">\n"
-                    + "                                <div class=\"single-food\">\n"
+                    + "                                <div class=\"single-food\" id=\"$ID\">\n"
                     + "                                    <div class=\"container1\" style=\"position: relative;\">\n"
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
@@ -88,7 +88,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                </div>\n"
                     + "                            </div>";
             String resp3 = "                       <div class=\"col-md-4 col-sm-6\">\n"
-                    + "                                <div class=\"single-food\">\n"
+                    + "                                <div class=\"single-food\" id=\"$ID\">\n"
                     + "                                    <div class=\"container1\" style=\"position: relative;\">\n"
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
@@ -147,7 +147,7 @@ public class loadrecipeServlet extends HttpServlet {
         else{
             String resp1 = "<div class=\"row\" style=\"padding-bottom: 30px\">\n"
                     + "                            <div class=\"col-md-4 col-sm-6\">\n"
-                    + "                                <div class=\"single-food\">\n"
+                    + "                                <div class=\"single-food\" id=\"$ID\">\n"
                     + "                                    <div class=\"container1\" style=\"position: relative;\">\n"
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
@@ -170,7 +170,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                </div>\n"
                     + "                            </div>";
             String resp2 = " <div class=\"col-md-4 col-sm-6\">\n"
-                    + "                                <div class=\"single-food\">\n"
+                    + "                                <div class=\"single-food\" id=\"$ID\">\n"
                     + "                                    <div class=\"container1\" style=\"position: relative;\">\n"
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
@@ -193,7 +193,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                </div>\n"
                     + "                            </div>";
             String resp3 ="                        <div class=\"col-md-4 col-sm-6\">\n"
-                    + "                                <div class=\"single-food\">\n"
+                    + "                                <div class=\"single-food\" id=\"$ID\">\n"
                     + "                                    <div class=\"container1\" style=\"position: relative;\">\n"
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"

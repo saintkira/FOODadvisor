@@ -194,10 +194,11 @@
                 <button class="btn btn-default">
                   Default
                 </button>
-                <button class="btn btn-primary">
-                  Primary
-                </button>
                 -->
+                <button class="btn btn-primary">
+                  Print Report
+                </button>
+                
               </div>
               <!-- footer -->
             </div>
