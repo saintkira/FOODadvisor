@@ -5,9 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>FOOD advisor | User Profile</title>
@@ -34,6 +36,10 @@
         <!-- iCheck -->        
         <link rel="stylesheet" href="../plugins/iCheck/all.css">
 
+        <!--CUSTOMER CSS ToastR and modal-->
+        <link rel="stylesheet" href="../dist/css/template.css">
+        <link rel="stylesheet" href="../dist/css/toastr.min.css">
+        <link rel="stylesheet" href="../dist/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,165 +86,163 @@
                                         <input class="file-upload" type="file" accept="image/*"/>
                                     </div>
 
-                                    <h3 class="profile-username text-center">[USERNAME]</h3>
+                                    <h3 class="profile-username text-center"><c:if test="${not empty fullName}">${fullName}</c:if><c:if test="${empty fullName}">Guest</c:if></h3>
 
-                                    <ul class="list-group list-group-unbordered">
-                                        <li class="list-group-item">
-                                            <b>Favorites Item</b> <a class="pull-right">322</a>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Recipes</b> <a class="pull-right">43</a>
-                                        </li>
-                                    </ul>
+                                        <ul class="list-group list-group-unbordered">
+                                            <li class="list-group-item">
+                                                <b>Favorites Item</b> <a class="pull-right">322</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Recipes</b> <a class="pull-right">43</a>
+                                            </li>
+                                        </ul>
 
-                                    <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
+                                        <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
+                                    </div>
+                                    <!-- /.box-body -->
                                 </div>
-                                <!-- /.box-body -->
+                                <!-- /.box -->
+
+
                             </div>
-                            <!-- /.box -->
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                                <div class="nav-tabs-custom">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
+                                        <li><a href="#changepass" data-toggle="tab">Change Password</a></li>
 
+                                    </ul>
+                                    <div class="tab-content">                                
 
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-9">
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-                                    <li><a href="#changepass" data-toggle="tab">Change Password</a></li>
+                                        <!--SETTING-->
+                                        <div class="active tab-pane" id="settings">
+                                            <form class="form-horizontal" action="../updateProfileServlet" method="POST">
+                                                <div class="form-group">
+                                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                                </ul>
-                                <div class="tab-content">                                
-
-                                    <!--SETTING-->
-                                    <div class="active tab-pane" id="settings">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputName" placeholder="Name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">DOB</label>
-
-                                                <div class="col-sm-10">
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="fullName">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Gender</label>
-                                                <div class="col-sm-10">
-                                                    <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender"/> 
-                                                        <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender"/></p>
+                                                <div class="form-group">
+                                                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">DOB</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="datemask" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask id="inputDob" name="dob" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Gender</label>
+                                                    <div class="col-sm-10">
+                                                        <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender" id="genderMale" name="gender"/> 
+                                                            <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender" id="genderFemale"/></p>
+
+                                                    </div>
 
                                                 </div>
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Height</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                           data-inputmask="'mask': ['999']" data-mask placeholder="KG">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Height</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control"
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="KG" id="inputHeight" name="height">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Weight</label>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Weight</label>
 
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                           data-inputmask="'mask': ['999']" data-mask placeholder="CM">
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control"
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="CM" id="inputWeight" name="weight">
+                                                    </div>
                                                 </div>
-                                            </div>
 
 
 
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-sm-10">
+                                                        <button type="submit" class="btn btn-success" id="btnSubmit">Submit</button>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
+                                        <!-- /.tab-pane -->
+
+
+                                        <!--CHANG PASSWORD-->
+                                        <div class="tab-pane" id="changepass">
+                                            <form class="form-horizontal" action="../changePasswordServlet">
+                                                <div class="form-group">
+                                                    <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
+
+                                                    <div class="col-sm-9" id="formOldPass">
+                                                        <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword" >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="newPassword" class="col-sm-3 control-label">New Password</label>
+
+                                                    <div class="col-sm-9" id="formNewPass">
+                                                        <input type="password" class="form-control" id="newPassword" placeholder="New Password" name="newPassword">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
+
+                                                    <div class="col-sm-9" id="formConfirmPass">
+                                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" name="confirmPassword">
+                                                    </div>
+                                                </div>                                          
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-3 col-sm-9">
+                                                        <button type="submit" class="btn btn-success" id="btnChangePass">Submit</button>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <!-- /.tab-pane -->
-
-
-                                    <!--CHANG PASSWORD-->
-                                    <div class="tab-pane" id="changepass">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="oldPassword" placeholder="Old Password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="newPassword" class="col-sm-3 control-label">New Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="newPassword" placeholder="New Password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
-                                                </div>
-                                            </div>                                          
-
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-3 col-sm-9">
-                                                    <button type="submit" class="btn btn-danger">Submit</button>
-
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <!-- /.tab-content -->
                                 </div>
-                                <!-- /.tab-content -->
+                                <!-- /.nav-tabs-custom -->
                             </div>
-                            <!-- /.nav-tabs-custom -->
+                            <!-- /.col -->
                         </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
+                        <!-- /.row -->
 
-                </section>
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+                <!-- /.content-wrapper -->
             <jsp:include page="partialpage/footer.jsp"/>
         </div>
         <!-- ./wrapper -->
 
         <!-- jQuery 3 -->
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
-            $.widget.bridge('uibutton', $.ui.button);
-        </script>
+            $.widget.bridge('uibutton', $.ui.button);</script>
         <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>    
         <!--Toatr-->
-            <script src="../dist/js/toastr.min.js"></script>
-            <script src="../dist/js/utils.js"></script>
+        <script src="../dist/js/toastr.min.js"></script>
+        <script src="../dist/js/utils.js"></script>
         <!-- FastClick -->
         <script src="../bower_components/fastclick/lib/fastclick.js"></script>
         <!-- iCheck 1.0.1 -->
@@ -262,15 +266,175 @@
                         //Datemask dd/mm/yyyy
                         $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
                         $('[data-mask]').inputmask();
-
                         $('input[type="radio"].flat-red').iCheck({
                             checkboxClass: 'icheckbox_flat-green',
                             radioClass: 'iradio_flat-green'
                         });
+
+                        //ajaxGetData
+                        $.ajax({
+                            url: '../getProfileServlet',
+                            data: {
+                                username: "${username}"
+                            },
+                            success: function(data) {
+                                $('#inputName').val(data.data[0].Fullname);
+                                $('#inputEmail').val(data.data[0].EmailAddress);
+                                $('#datemask').val(data.data[0].DOB);
+                                $('#inputHeight').val(data.data[0].Height);
+                                $('#inputWeight').val(data.data[0].Weight);
+                                if (data.data[0].Gender === "Active") {
+                                    $('#genderMale').iCheck('check');
+                                } else {
+                                    $('#genderFemale').iCheck('check');
+                                }
+                            }
+                        });
+
+                        //checkConfirmPasswrod
+                        $("#oldPassword").focusout(function() {
+                            var oldPass = $(this).val().toString();
+                            
+                            console.log(oldPass);
+                                    m = ${password}
+                                    console.log(m);
+                                    console.log(m!= oldPass);
+                                    if (${password} != oldPass) {
+                                        toastr.remove();
+                                        showToastr('error', 'Status', "Wrong Old Password");
+                                        $('#formOldPass').addClass("has-error");
+                                        $('#btnChangePass').attr("disabled", "disabled");
+                                    } else if (${password} == oldPass) {
+                                        if ($("#formOldPass").hasClass("has-error")) {
+                                            $("#formOldPass").removeClass("has-error");
+                                            return true;
+                                        }
+                                        if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                            $('#btnChangePass').removeAttr("disabled");
+                                        }
+                                    }
+//                            $.ajax({
+//                                url: '../getOldPassword',
+//                                data: {
+//                                    username: "${username}"
+//                                },
+//                                success: function(data) {                                    
+//                                    
+//                                }
+//                            });
+
+                            if ($("#formOldPass").hasClass("has-error")) {
+                                $("#formOldPass").removeClass("has-error");
+                                return true;
+                            }
+                        });
+
+                        //check both password is the same
+                        $("#confirmPassword").focusout(function() {
+                            var a = $("#newPassword").val();
+                            var b = $(this).val();
+                            console.log(a);
+                            console.log(b);
+                            if (a !== b) {
+                                $("#formNewPass").addClass("has-error");
+                                toastr.remove();
+                                showToastr('error', 'Status', "New Password and Confirm Password is not the same");
+                                $('#btnChangePass').attr("disabled", "disabled");
+                                return false;
+                            } else if (a === b) {
+                                if ($("#formNewPass").hasClass("has-error")) {
+                                    $("#formNewPass").removeClass("has-error");
+                                    return true;
+                                }
+                                if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                            $('#btnChangePass').removeAttr("disabled");
+                                        }
+                            }
+
+
+
+                        });
+
+
+                        //open the submit button
+
+
+
+
+                        //click update
+//                        $('#btnSubmit').click(function() {
+//                            if ($('#genderMale').parent('[class*="icheckbox"]').hasClass("checked")) {
+//                                var gender = "true";
+//                            } else {
+//                                var gender = "false";
+//                            };
+//                            
+//                            
+//                            $.ajax({
+//                                url: '../updateProfileServlet',
+//                                data: {
+//                                    userName: "${username}",
+//                                    fullName: $('#inputName').val(),
+//                                    email: $('#inputEmail').val(),
+//                                    dob: formatDate2($('#datemask').val()),
+//                                    height: $('#inputHeight').val(),
+//                                    weight: $('#inputWeight').val(),
+//                                    gender: gender
+//                                },
+//                                success: function(responseText) {
+//                                    if (responseText.toString() === 'Success') {
+//                                        toastr.remove();
+//                                        showToastr('success', 'Status', "Successfully Updated");
+//                                        $('#confirm-delete').modal('hide');
+//                                        $('#example2').DataTable().destroy();
+//                                        loadDatatable();
+//                                    } else {
+//                                        toastr.remove();
+//                                        showToastr('error', 'Status', "Updating Failed");
+//                                        $('#confirm-delete').modal('hide');
+//                                    }
+//                                },
+//                                error: function(data) {
+//                                    toastr.remove();
+//                                    showToastr('error', 'Status', "Connection Error");
+//                                    $('#confirm-delete').modal('hide');
+//                                }                            
+//                            });
+//                            //het ajax
+//                        });
+                        //het function
+
                     });
         </script>
         <!--UPLOAD AVATAR-->
         <script src="../dist/js/profile.js"></script>
+        <!--GET PROFILE DATA-->
+        <script>
+            function formatDate(date) {
+                var d = new Date(date),
+                        month = '' + (d.getMonth() + 1),
+                        day = '' + d.getDate(),
+                        year = d.getFullYear();
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                return [day, month, year].join("/");
+            }
+
+            function formatDate2(date) {
+                var d = new Date(date),
+                        month = '' + (d.getMonth() + 1),
+                        day = '' + d.getDate(),
+                        year = d.getFullYear();
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                return [year, month, day].join("-");
+            }
+        </script>
+
     </body>
 </html>
 

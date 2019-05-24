@@ -33,5 +33,17 @@ public interface AccountFacadeLocal {
     String getAllusertoJSON();
 
     int deleteUser(String username);
+
+    boolean checkLogIn(String username, String password);
+
+    boolean insertAccount(String username, String password, String fullName);
+
+    String getProfileDataIntoJson(String username);
+
+    boolean updateAccount(Account account);
+
+    boolean changePassword(String username, String password);
+
+   
     
 }

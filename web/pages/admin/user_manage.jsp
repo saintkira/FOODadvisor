@@ -81,28 +81,7 @@
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
-                                        </thead>
-                                        <!--<tbody>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Khuc Kim Quang
-                                                </td>
-                                                <td>
-                                                    khuckimquang94@gmail.com
-                                                </td>
-                                                <td>
-                                                    Active
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-social-icon btn-bitbucket"  onclick="showToastr('success', 'Active User','Active Successfully')"><i class="disable fa fa-check-circle"></i></a>
-                                                    <a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick="handleDelete();"><i class="fa fa-ban"></i></a>
-
-                                                </td>
-                                            </tr>
-                                        </tbody>-->
+                                        </thead>                                        
                                     </table>
                                 </div>
                                 <!-- /.box-body -->
@@ -171,6 +150,7 @@
                         'pageLength' : 5,
                         'info'        : true,
                         'autoWidth'   : false,
+                        
                         //GET DATA FROM SERVLET
                         'ajax': {
                             'url': "../../loaduserdataServlet",

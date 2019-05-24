@@ -93,26 +93,34 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../dist/img/avatar_2x.png" class="user-image" alt="User Image">
-                        <span class="">[USERNAME]!</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
-                        <li class="user-header">
-                            <img src="../dist/img/avatar.png" class="img-circle" alt="User Image">
-                            <p>
-                                [USERNAME] 
-                            </p>
-                        </li>
-                        <!-- Menu Body -->
+                        <c:if test="${not empty fullName}"> <img src="../dist/img/avatar_2x.png" class="user-image" alt="User Image"></c:if>
+                        <c:if test="${empty fullName}"> </c:if>
 
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="profile.jsp" class="btn btn-default btn-flat">Profile</a>
-                            </div>
-                            <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            <span class=""> Welcome  <c:if test="${not empty fullName}">${fullName}</c:if><c:if test="${empty fullName}">Guest</c:if></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                            <c:if test="${not empty fullName}"><img src="../dist/img/avatar.png" class="img-circle" alt="User Image"></c:if>
+                            <c:if test="${empty fullName}"> </c:if>
+
+                                <p>
+                                <c:if test="${not empty fullName}">${fullName}</c:if><c:if test="${empty fullName}">Guest</c:if>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer ">
+                                <div class="pull-left">
+                                <c:if test="${not empty fullName}"><a href="profile.jsp" class="btn btn-default btn-flat">Profile</a></c:if>
+                                <c:if test="${empty fullName}"><a href="register.jsp" class="btn btn-default btn-flat">Register</a></c:if>
+
+                                </div>
+                                <div class="pull-right">
+                                <c:if test="${not empty fullName}"><a href="../logOutServlet" class="btn btn-default btn-flat">Sign out</a></c:if>
+                                <c:if test="${empty fullName}"><a href="login.jsp" class="btn btn-default btn-flat">Sign in</a></c:if>
+
                             </div>
                         </li>
                     </ul>
@@ -147,10 +155,10 @@
                     <i class="fa fa-calendar"></i>
                     <span>FULL COURSE MEAL</span>
                     <span class="pull-right-container">
-                        
+
                     </span>
                 </a>
-                
+
             </li>
 
             <!--CHUC NANG THU 3-->
