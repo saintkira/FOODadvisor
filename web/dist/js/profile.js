@@ -11,7 +11,22 @@ $(document).ready(function() {
             reader.readAsDataURL(input.files[0]);
         }
     };
-   
+    $("#saveBtn").click(function(){
+        var fd = new FormData();
+        var ext = document.getElementById("file").value;//GET Filename for extension
+        console.log(ext);
+        fd.append('file', document.getElementById("file").files[0]);
+        fd.append('ext',ext);
+        var req;
+        if (window.ActiveXObject) {
+            req = new ActiveXObject();
+        } else {
+            req = new XMLHttpRequest();
+        }
+        req.open("post", "../saveAvatarServlet", true);
+        req.send(fd); 
+    });
+    
     $(".file-upload").on('change', function(){
         readURL(this);
     });

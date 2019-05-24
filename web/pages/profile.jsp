@@ -83,7 +83,7 @@
                                         <div class="upload-button">
                                             <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                         </div>
-                                        <input class="file-upload" type="file" accept="image/*"/>
+                                        <input class="file-upload" id="file" type="file" accept="image/*"/>
                                     </div>
 
                                     <h3 class="profile-username text-center"><c:if test="${not empty fullName}">${fullName}</c:if><c:if test="${empty fullName}">Guest</c:if></h3>
