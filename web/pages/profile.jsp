@@ -97,7 +97,7 @@
                                             </li>
                                         </ul>
 
-                                        <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
+                                        <a id="saveBtn" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
