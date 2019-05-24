@@ -30,4 +30,8 @@ public interface AccountFacadeLocal {
 
     int count();
     
+    String getAllusertoJSON();
+
+    int deleteUser(String username);
+    
 }

@@ -55,11 +55,11 @@
                     <!--BREADCRUMB-->
                     <h1>
                         Admin
-                        <small>Manage user</small>
+                        <small>Recipe Management</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">User Management</li>
+                        <li class="active">Recipe Management</li>
                     </ol>
                 </section>
                 <section class="content">
@@ -77,8 +77,8 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Status</th>
+                                                <th>Price</th>
+                                                <th>Type</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -122,10 +122,10 @@
                             <div class="icon-box bg-red-active">
                                 <i class="fa fa-ban"></i>
                             </div>
-                            <h3 class="modal-title" style="text-align: center;font-weight: 600;margin: 10px;">BAN</h3>
+                            <h3 class="modal-title" style="text-align: center;font-weight: 600;margin: 10px;">Remove</h3>
                         </div>
                         <div class="modal-body">
-                            <h4>Do you want to ban</h4>
+                            <h4>Are you sure to remove this Recipe??</h4>
                             <span style="font-weight: 600;" id="setting-name"></span>
                         </div>
                         <div class="modal-footer">
@@ -168,21 +168,26 @@
                     $('#example2').DataTable({
                         'paging'      : true,
                         'lengthChange': true,
-                        'pageLength' : 5,
                         'info'        : true,
                         'autoWidth'   : false,
                         //GET DATA FROM SERVLET
                         'ajax': {
-                            'url': "../../loaduserdataServlet",
+                            'url': "../../loadrecipedataServlet",
                             'dataSrc': "data",
-                            'type': "POST"
                         },
                         'columns': [
-                            { 'data': "Username" },
-                            { 'data': "Fullname" },
-                            { 'data': "EmailAddress" },
-                            { 'data': "Active_Status" },
-                            { 'data': 'Username',
+                            { 'data': "RecipeID" },
+                            { 'data': "RecipeName" },
+                            { 'data': "Price",
+                              'render': function (data, type, row, meta) {
+                                if (type === 'display') {
+                                    data = '$'+data;
+                                }
+                                return data;
+                               }
+                            },
+                            { 'data': "Type" },
+                            { 'data': "RecipeID",
                               'render': function (data, type, row, meta) {
                                 if (type === 'display') {
                                     data = '<a class="btn btn-social-icon btn-bitbucket" onclick="showToastr(\'success\', \'Active User\',\'Active Successfully\')">' + '<i class="disable fa fa-check-circle"></i>' + '</a>'+
@@ -190,7 +195,7 @@
                                 }
                                 return data;
                                }
-                        }
+                            }
                         ]
                     });
                 };

@@ -89,7 +89,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="detail_recipes.jsp">
+                        <a href="recipes_manage.jsp">
                             <i class="fa fa-circle-o"></i>
                             Edit  Recipes
                         </a>

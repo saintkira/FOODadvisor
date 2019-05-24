@@ -6,9 +6,11 @@
 
 package model;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +29,22 @@ public class RecipeFacade extends AbstractFacade<Recipe> implements RecipeFacade
     public RecipeFacade() {
         super(Recipe.class);
     }
-    
+    @Override
+    public String getAllrecipestoJSON() {
+        Query q = em.createNativeQuery("SELECT RecipeID,RecipeName,Price,Type FROM Recipe"+
+                " FOR JSON AUTO,Root('data')");
+        List<String> results = q.getResultList();
+        String json="";
+        for (String s:results) {
+            json=json+s;
+        }
+        return json;
+    }
+
+    @Override
+    public int deleteRecipe(String recipeID) {
+        Query q = em.createQuery("DELETE FROM Account a WHERE a.username = :username");
+        q.setParameter("username", recipeID);
+        return q.executeUpdate();
+    }
 }

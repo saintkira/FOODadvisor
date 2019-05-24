@@ -174,8 +174,7 @@
                         //GET DATA FROM SERVLET
                         'ajax': {
                             'url': "../../loaduserdataServlet",
-                            'dataSrc': "data",
-                            'type': "POST"
+                            'dataSrc': "data"
                         },
                         'columns': [
                             { 'data': "Username" },

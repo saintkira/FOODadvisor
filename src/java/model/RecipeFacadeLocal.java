@@ -30,4 +30,7 @@ public interface RecipeFacadeLocal {
 
     int count();
     
+    String getAllrecipestoJSON();
+
+    int deleteRecipe(String recipeID);
 }
