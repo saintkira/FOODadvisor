@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -67,8 +68,8 @@ public class Account implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "EmailAddress", nullable = false, length = 30)
     private String emailAddress;
-    @Size(max = 10)
-    @Column(name = "DOB", length = 10)
+    @Size(max = 20)
+    @Column(name = "DOB", length = 20)
     private String dob;
     @Column(name = "Height")
     private Integer height;
@@ -82,6 +83,10 @@ public class Account implements Serializable {
     @NotNull
     @Column(name = "Active_Status", nullable = false)
     private boolean activeStatus;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "Image", length = 2147483647)
+    private String image;
     @JoinTable(name = "Favorite", joinColumns = {
         @JoinColumn(name = "Username", referencedColumnName = "Username", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "RecipeID", referencedColumnName = "RecipeID", nullable = false)})
@@ -178,6 +183,14 @@ public class Account implements Serializable {
 
     public void setActiveStatus(boolean activeStatus) {
         this.activeStatus = activeStatus;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @XmlTransient

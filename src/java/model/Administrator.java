@@ -42,8 +42,9 @@ public class Administrator implements Serializable {
     @Column(name = "Password", length = 30)
     private String password;
     @Lob
-    @Column(name = "Image")
-    private byte[] image;
+    @Size(max = 2147483647)
+    @Column(name = "Image", length = 2147483647)
+    private String image;
 
     public Administrator() {
     }
@@ -68,11 +69,11 @@ public class Administrator implements Serializable {
         this.password = password;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

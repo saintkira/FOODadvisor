@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
 
 import javax.ejb.Stateless;
@@ -33,13 +34,13 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         Query q = em.createNativeQuery("SELECT Username,Fullname,EmailAddress,Active_Status FROM Account FOR JSON AUTO,Root('data')");
         return q.getSingleResult().toString().replace("true", "\"Active\"").replace("false", "\"Banned\"");
     }
-
+    
     @Override
     public int deleteUser(String username) {
         Query q = em.createQuery("DELETE FROM Account a WHERE a.username = :username");
         q.setParameter("username", username);
         return q.executeUpdate();
-    }
+}
 
     @Override
     public boolean checkLogIn(String username, String password) {

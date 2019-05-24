@@ -40,7 +40,7 @@ public class RecipeFacade extends AbstractFacade<Recipe> implements RecipeFacade
         }
         return json;
     }
-
+    
     @Override
     public int deleteRecipe(String recipeID) {
         Query q = em.createQuery("DELETE FROM Account a WHERE a.username = :username");
