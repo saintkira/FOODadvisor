@@ -52,6 +52,10 @@
         <servlet-name>saveAvatarServlet</servlet-name>
         <servlet-class>quang.saveAvatarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getAvatarServlet</servlet-name>
+        <servlet-class>quang.getAvatarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>saveAvatarServlet</servlet-name>
         <url-pattern>/saveAvatarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getAvatarServlet</servlet-name>
+        <url-pattern>/getAvatarServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
