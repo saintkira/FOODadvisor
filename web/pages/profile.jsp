@@ -296,7 +296,7 @@
                             var oldPass = $(this).val().toString();
                             
                             console.log(oldPass);
-                                    m = ${password}
+                                    m = '${password}';
                                     console.log(m);
                                     console.log(m!= oldPass);
                                     if (${password} != oldPass) {
