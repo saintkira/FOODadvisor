@@ -8,16 +8,21 @@ package quang;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.AccountFacadeLocal;
 
 /**
  *
  * @author Windows 10
  */
 public class changePasswordServlet extends HttpServlet {
+    @EJB
+    private AccountFacadeLocal accountFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +38,20 @@ public class changePasswordServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet changePasswordServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet changePasswordServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+                String password = request.getParameter("newPassword");
+                String username = request.getSession(false).getAttribute("username").toString();
+                HttpSession session = request.getSession();
+                if (accountFacade.changePassword(username, password)) {
+                response.sendRedirect("pages/profile.jsp");
+                session.removeAttribute("password");
+                session.setAttribute("password", password);
+            }else{
+                    out.println("<script type=\\\"text/javascript\\>");
+                    out.println("alert('User or password incorrect');");
+                    out.println("</script>");
+                    response.sendRedirect("pages/login.jsp");
+                }
+                
         }
     }
 

@@ -188,7 +188,7 @@
                                                     <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
 
                                                     <div class="col-sm-9" id="formOldPass">
-                                                        <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword">
+                                                        <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -208,7 +208,7 @@
 
                                                 <div class="form-group">
                                                     <div class="col-sm-offset-3 col-sm-9">
-                                                        <button type="submit" class="btn btn-danger">Submit</button>
+                                                        <button type="submit" class="btn btn-success" id="btnChangePass">Submit</button>
 
                                                     </div>
                                                 </div>
@@ -280,7 +280,7 @@
                             success: function(data) {
                                 $('#inputName').val(data.data[0].Fullname);
                                 $('#inputEmail').val(data.data[0].EmailAddress);
-                                $('#datemask').val(formatDate(data.data[0].DOB));
+                                $('#datemask').val(data.data[0].DOB);
                                 $('#inputHeight').val(data.data[0].Height);
                                 $('#inputWeight').val(data.data[0].Weight);
                                 if (data.data[0].Gender === "Active") {
@@ -295,48 +295,68 @@
                         $("#oldPassword").focusout(function() {
                             var oldPass = $(this).val().toString();
                             
-                            $.ajax({
-                                url: '../getOldPassword',
-                                data: {
-                                    username: "${username}"
-                                },
-                                success: function(data) {
-                                    m = data.toString();
+                            console.log(oldPass);
+                                    m = ${password}
                                     console.log(m);
-                                    console.log(oldPass);
-                                    if (oldPass !==m) {
+                                    console.log(m!= oldPass);
+                                    if (${password} != oldPass) {
                                         toastr.remove();
                                         showToastr('error', 'Status', "Wrong Old Password");
-                                        $('#confirm-delete').modal('hide');
                                         $('#formOldPass').addClass("has-error");
-                                    } else if (oldPass === m) {
+                                        $('#btnChangePass').attr("disabled", "disabled");
+                                    } else if (${password} == oldPass) {
                                         if ($("#formOldPass").hasClass("has-error")) {
                                             $("#formOldPass").removeClass("has-error");
                                             return true;
                                         }
+                                        if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                            $('#btnChangePass').removeAttr("disabled");
+                                        }
                                     }
-                                }
-                            });
+//                            $.ajax({
+//                                url: '../getOldPassword',
+//                                data: {
+//                                    username: "${username}"
+//                                },
+//                                success: function(data) {                                    
+//                                    
+//                                }
+//                            });
+
                             if ($("#formOldPass").hasClass("has-error")) {
                                 $("#formOldPass").removeClass("has-error");
                                 return true;
                             }
                         });
 
+                        //check both password is the same
                         $("#confirmPassword").focusout(function() {
                             var a = $("#newPassword").val();
                             var b = $(this).val();
                             console.log(a);
                             console.log(b);
                             if (a !== b) {
-                                $("#formPass").addClass("has-error");
+                                $("#formNewPass").addClass("has-error");
+                                toastr.remove();
+                                showToastr('error', 'Status', "New Password and Confirm Password is not the same");
+                                $('#btnChangePass').attr("disabled", "disabled");
                                 return false;
+                            } else if (a === b) {
+                                if ($("#formNewPass").hasClass("has-error")) {
+                                    $("#formNewPass").removeClass("has-error");
+                                    return true;
+                                }
+                                if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                            $('#btnChangePass').removeAttr("disabled");
+                                        }
                             }
-                            if ($("#formPass").hasClass("has-error")) {
-                                $("#formPass").removeClass("has-error");
-                                return true;
-                            }
+
+
+
                         });
+
+
+                        //open the submit button
 
 
 

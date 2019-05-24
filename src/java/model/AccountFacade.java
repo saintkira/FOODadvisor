@@ -86,7 +86,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     @Override
     public boolean changePassword(String username, String password) {
         Query q = em.createNativeQuery("UPDATE Account SET Password = '"+password+"' WHERE Username = '"+username+"' ");
-        if (q.executeUpdate()>1) {
+        if (q.executeUpdate()>=1) {
             return true;
         }
         return false;

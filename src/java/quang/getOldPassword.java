@@ -38,7 +38,7 @@ public class getOldPassword extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String username = request.getParameter("username");
+           String username = request.getSession(false).getAttribute("username").toString();
             Account account = accountFacade.find(username);
             out.print(account.getPassword());
         }
