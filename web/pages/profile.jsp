@@ -117,7 +117,7 @@
 
                                         <!--SETTING-->
                                         <div class="active tab-pane" id="settings">
-                                            <form class="form-horizontal" action="../updateProfileServlet" method="POST">
+                                            <form class="form-horizontal" action="../updateProfileServlet" method="POST" id="formProfile">
                                                 <div class="form-group">
                                                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
@@ -168,22 +168,20 @@
                                                     </div>
                                                 </div>
 
+                                        </div>
+                                        </form>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 ">
+                                                <button class="btn btn-success" id="btnSubmit" onclick="checkSubmitForm()">Submit</button>
 
-
-                                                <div class="form-group">
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-success" id="btnSubmit">Submit</button>
-
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            </div>
                                         </div>
                                         <!-- /.tab-pane -->
 
 
                                         <!--CHANG PASSWORD-->
                                         <div class="tab-pane" id="changepass">
-                                            <form class="form-horizontal" action="../changePasswordServlet">
+                                            <form class="form-horizontal" action="../changePasswordServlet" >
                                                 <div class="form-group">
                                                     <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
 
@@ -204,15 +202,14 @@
                                                     <div class="col-sm-9" id="formConfirmPass">
                                                         <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" name="confirmPassword">
                                                     </div>
-                                                </div>                                          
-
-                                                <div class="form-group">
-                                                    <div class="col-sm-offset-3 col-sm-9">
-                                                        <button type="submit" class="btn btn-success" id="btnChangePass">Submit</button>
-
-                                                    </div>
-                                                </div>
+                                                </div>       
                                             </form>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3">
+                                                    <button onclick="checkSubmitForm()" class="btn btn-success" id="btnChangePass">Submit</button>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- /.tab-content -->
@@ -231,13 +228,34 @@
         </div>
         <!-- ./wrapper -->
 
+        <!--modal confirm change profile-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Confirm chang profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to save changes?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="submitForm()">OK</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- jQuery 3 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
-            $.widget.bridge('uibutton', $.ui.button);</script>
+                            $.widget.bridge('uibutton', $.ui.button);</script>
         <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>    
         <!--Toatr-->
@@ -261,58 +279,60 @@
         <script src="../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="../plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <script>
-            $(document).ready(
-                    function() {
-                        //Datemask dd/mm/yyyy
-                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-                        $('[data-mask]').inputmask();
-                        $('input[type="radio"].flat-red').iCheck({
-                            checkboxClass: 'icheckbox_flat-green',
-                            radioClass: 'iradio_flat-green'
-                        });
+                            $(document).ready(
+                                    function() {
+                                        //Datemask dd/mm/yyyy
+                                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
+                                        $('[data-mask]').inputmask();
+                                        $('input[type="radio"].flat-red').iCheck({
+                                            checkboxClass: 'icheckbox_flat-green',
+                                            radioClass: 'iradio_flat-green'
+                                        });
 
-                        //ajaxGetData
-                        $.ajax({
-                            url: '../getProfileServlet',
-                            data: {
-                                username: "${username}"
-                            },
-                            success: function(data) {
-                                $('#inputName').val(data.data[0].Fullname);
-                                $('#inputEmail').val(data.data[0].EmailAddress);
-                                $('#datemask').val(data.data[0].DOB);
-                                $('#inputHeight').val(data.data[0].Height);
-                                $('#inputWeight').val(data.data[0].Weight);
-                                if (data.data[0].Gender === "Active") {
-                                    $('#genderMale').iCheck('check');
-                                } else {
-                                    $('#genderFemale').iCheck('check');
-                                }
-                            }
-                        });
+                                        //ajaxGetData
+                                        $.ajax({
+                                            url: '../getProfileServlet',
+                                            data: {
+                                                username: "${username}"
+                                            },
+                                            success: function(data) {
+                                                $('#inputName').val(data.data[0].Fullname);
+                                                $('#inputEmail').val(data.data[0].EmailAddress);
+                                                $('#datemask').val(data.data[0].DOB);
+                                                $('#inputHeight').val(data.data[0].Height);
+                                                $('#inputWeight').val(data.data[0].Weight);
+                                                if (data.data[0].Gender === "Active") {
+                                                    $('#genderMale').iCheck('check');
+                                                } else {
+                                                    $('#genderFemale').iCheck('check');
+                                                }
+                                            }
+                                        });
 
-                        //checkConfirmPasswrod
-                        $("#oldPassword").focusout(function() {
-                            var oldPass = $(this).val().toString();
-                            
-                            console.log(oldPass);
-                                    m = '${password}';
-                                    console.log(m);
-                                    console.log(m!= oldPass);
-                                    if (${password} != oldPass) {
-                                        toastr.remove();
-                                        showToastr('error', 'Status', "Wrong Old Password");
-                                        $('#formOldPass').addClass("has-error");
-                                        $('#btnChangePass').attr("disabled", "disabled");
-                                    } else if (${password} == oldPass) {
-                                        if ($("#formOldPass").hasClass("has-error")) {
-                                            $("#formOldPass").removeClass("has-error");
-                                            return true;
-                                        }
-                                        if ($('#btnChangePass').attr("disabled") !== undefined) {
-                                            $('#btnChangePass').removeAttr("disabled");
-                                        }
-                                    }
+
+
+                                        //checkConfirmPasswrod
+                                        $("#oldPassword").focusout(function() {
+                                            var oldPass = $(this).val().toString();
+
+                                            console.log(oldPass);
+                                            m = '${password}';
+                                            console.log(m);
+                                            console.log(m != oldPass);
+                                            if ('${password}' != oldPass) {
+                                                toastr.remove();
+                                                showToastr('error', 'Status', "Wrong Old Password");
+                                                $('#formOldPass').addClass("has-error");
+                                                $('#btnChangePass').attr("disabled", "disabled");
+                                            } else if ('${password}' == oldPass) {
+                                                if ($("#formOldPass").hasClass("has-error")) {
+                                                    $("#formOldPass").removeClass("has-error");
+                                                    return true;
+                                                }
+                                                if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                                    $('#btnChangePass').removeAttr("disabled");
+                                                }
+                                            }
 //                            $.ajax({
 //                                url: '../getOldPassword',
 //                                data: {
@@ -323,116 +343,74 @@
 //                                }
 //                            });
 
-                            if ($("#formOldPass").hasClass("has-error")) {
-                                $("#formOldPass").removeClass("has-error");
-                                return true;
+                                            if ($("#formOldPass").hasClass("has-error")) {
+                                                $("#formOldPass").removeClass("has-error");
+                                                return true;
+                                            }
+                                        });
+
+                                        //check both password is the same
+                                        $("#confirmPassword").focusout(function() {
+                                            var a = $("#newPassword").val();
+                                            var b = $(this).val();
+                                            console.log(a);
+                                            console.log(b);
+                                            if (a !== b) {
+                                                $("#formNewPass").addClass("has-error");
+                                                toastr.remove();
+                                                showToastr('error', 'Status', "New Password and Confirm Password is not the same");
+                                                $('#btnChangePass').attr("disabled", "disabled");
+                                                return false;
+                                            } else if (a === b) {
+                                                if ($("#formNewPass").hasClass("has-error")) {
+                                                    $("#formNewPass").removeClass("has-error");
+                                                    return true;
+                                                }
+                                                if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                                    $('#btnChangePass').removeAttr("disabled");
+                                                }
+                                            }
+                                        });
+
+                                    });
+
+                            function checkSubmitForm() {
+                                $('#confirmModal').modal("show");
+                                
+                                
                             }
-                        });
 
-                        //check both password is the same
-                        $("#confirmPassword").focusout(function() {
-                            var a = $("#newPassword").val();
-                            var b = $(this).val();
-                            console.log(a);
-                            console.log(b);
-                            if (a !== b) {
-                                $("#formNewPass").addClass("has-error");
-                                toastr.remove();
-                                showToastr('error', 'Status', "New Password and Confirm Password is not the same");
-                                $('#btnChangePass').attr("disabled", "disabled");
-                                return false;
-                            } else if (a === b) {
-                                if ($("#formNewPass").hasClass("has-error")) {
-                                    $("#formNewPass").removeClass("has-error");
-                                    return true;
-                                }
-                                if ($('#btnChangePass').attr("disabled") !== undefined) {
-                                            $('#btnChangePass').removeAttr("disabled");
-                                        }
+                            function submitForm() {
+                                 $('#formProfile').submit();   
                             }
-
-
-
-                        });
-
-
-                        //open the submit button
-
-
-
-
-                        //click update
-//                        $('#btnSubmit').click(function() {
-//                            if ($('#genderMale').parent('[class*="icheckbox"]').hasClass("checked")) {
-//                                var gender = "true";
-//                            } else {
-//                                var gender = "false";
-//                            };
-//                            
-//                            
-//                            $.ajax({
-//                                url: '../updateProfileServlet',
-//                                data: {
-//                                    userName: "${username}",
-//                                    fullName: $('#inputName').val(),
-//                                    email: $('#inputEmail').val(),
-//                                    dob: formatDate2($('#datemask').val()),
-//                                    height: $('#inputHeight').val(),
-//                                    weight: $('#inputWeight').val(),
-//                                    gender: gender
-//                                },
-//                                success: function(responseText) {
-//                                    if (responseText.toString() === 'Success') {
-//                                        toastr.remove();
-//                                        showToastr('success', 'Status', "Successfully Updated");
-//                                        $('#confirm-delete').modal('hide');
-//                                        $('#example2').DataTable().destroy();
-//                                        loadDatatable();
-//                                    } else {
-//                                        toastr.remove();
-//                                        showToastr('error', 'Status', "Updating Failed");
-//                                        $('#confirm-delete').modal('hide');
-//                                    }
-//                                },
-//                                error: function(data) {
-//                                    toastr.remove();
-//                                    showToastr('error', 'Status', "Connection Error");
-//                                    $('#confirm-delete').modal('hide');
-//                                }                            
-//                            });
-//                            //het ajax
-//                        });
-                        //het function
-
-                    });
         </script>
         <!--UPLOAD AVATAR-->
         <script src="../dist/js/profile.js"></script>
         <!--GET PROFILE DATA-->
         <script>
-            function formatDate(date) {
-                var d = new Date(date),
-                        month = '' + (d.getMonth() + 1),
-                        day = '' + d.getDate(),
-                        year = d.getFullYear();
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-                return [day, month, year].join("/");
-            }
+                            function formatDate(date) {
+                                var d = new Date(date),
+                                        month = '' + (d.getMonth() + 1),
+                                        day = '' + d.getDate(),
+                                        year = d.getFullYear();
+                                if (month.length < 2)
+                                    month = '0' + month;
+                                if (day.length < 2)
+                                    day = '0' + day;
+                                return [day, month, year].join("/");
+                            }
 
-            function formatDate2(date) {
-                var d = new Date(date),
-                        month = '' + (d.getMonth() + 1),
-                        day = '' + d.getDate(),
-                        year = d.getFullYear();
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-                return [year, month, day].join("-");
-            }
+                            function formatDate2(date) {
+                                var d = new Date(date),
+                                        month = '' + (d.getMonth() + 1),
+                                        day = '' + d.getDate(),
+                                        year = d.getFullYear();
+                                if (month.length < 2)
+                                    month = '0' + month;
+                                if (day.length < 2)
+                                    day = '0' + day;
+                                return [year, month, day].join("-");
+                            }
         </script>
 
     </body>
