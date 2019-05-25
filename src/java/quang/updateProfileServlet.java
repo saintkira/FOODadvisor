@@ -58,7 +58,7 @@ public class updateProfileServlet extends HttpServlet {
             if (accountFacade.updateAccount(account)) {
                 response.sendRedirect("pages/profile.jsp");
             }else{
-            response.sendRedirect("pages/login.jsp");
+            response.sendRedirect("pages/profile.jsp");
             }
 //           
            

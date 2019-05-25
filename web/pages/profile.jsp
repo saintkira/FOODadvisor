@@ -167,21 +167,27 @@
                                                                data-inputmask="'mask': ['999']" data-mask placeholder="CM" id="inputWeight" name="weight">
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-xs-offset-1">
+                                                        <p style="color: red;" id="errorMsg"></p>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 ">
+                                                    <button class="btn btn-success" id="btnSubmit" onclick="checkSubmitForm()">Submit</button>
 
-                                        </div>
-                                        </form>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 ">
-                                                <button class="btn btn-success" id="btnSubmit" onclick="checkSubmitForm()">Submit</button>
-
+                                                </div>
                                             </div>
+
+
                                         </div>
                                         <!-- /.tab-pane -->
 
 
                                         <!--CHANG PASSWORD-->
                                         <div class="tab-pane" id="changepass">
-                                            <form class="form-horizontal" action="../changePasswordServlet" >
+                                            <form class="form-horizontal" action="../changePasswordServlet"  id="formChangePassword">
                                                 <div class="form-group">
                                                     <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
 
@@ -202,11 +208,16 @@
                                                     <div class="col-sm-9" id="formConfirmPass">
                                                         <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" name="confirmPassword">
                                                     </div>
-                                                </div>       
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-2 col-xs-offset-1">
+                                                        <p style="color: red;" id="errorPassMsg"></p>
+                                                    </div>
+                                                </div>
                                             </form>
                                             <div class="form-group">
                                                 <div class="col-sm-offset-3">
-                                                    <button onclick="checkSubmitForm()" class="btn btn-success" id="btnChangePass">Submit</button>
+                                                    <button onclick="checkChangePasswordForm()" class="btn btn-success" id="btnChangePass">Submit</button>
 
                                                 </div>
                                             </div>
@@ -235,13 +246,35 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">Confirm chang profile</h4>
+                        <h4 class="modal-title">Confirm change profile</h4>
                     </div>
                     <div class="modal-body">
                         <p>Do you want to save changes?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="submitForm()">OK</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--modal confirm change profile-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmChangePassword">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Confirm change password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to save changes password?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="submitFormChangePassword()">OK</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Cancel</button>
                     </div>
@@ -269,6 +302,7 @@
         <script src="../dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="../dist/js/demo.js"></script>
+        <script src="../dist/js/validation.js"></script>
         <!-- Select2 -->
         <script src="../bower_components/select2/dist/js/select2.full.min.js"></script>
         <!--DATE PICKER-->
@@ -333,15 +367,6 @@
                                                     $('#btnChangePass').removeAttr("disabled");
                                                 }
                                             }
-//                            $.ajax({
-//                                url: '../getOldPassword',
-//                                data: {
-//                                    username: "${username}"
-//                                },
-//                                success: function(data) {                                    
-//                                    
-//                                }
-//                            });
 
                                             if ($("#formOldPass").hasClass("has-error")) {
                                                 $("#formOldPass").removeClass("has-error");
@@ -371,17 +396,54 @@
                                                 }
                                             }
                                         });
-
                                     });
 
-                            function checkSubmitForm() {
-                                $('#confirmModal').modal("show");
-                                
-                                
+                            function checkChangePasswordForm() {
+                                $('#confirmChangePassword').modal("show");
                             }
 
+
+                            //validatioon profile input
+                            function checkSubmitForm() {
+                                if ($("*").hasClass("has-error")) {
+                                    $("*").removeClass("has-error");
+                                }
+                                $('#errorMsg').empty();
+                                var nameValue = $('#inputName').val();
+                                var dateValue = $('#datemask').val();
+                                var emailValue = $('#inputEmail').val();
+
+
+                                var checkEmailResult = checkEmailValid();
+                                var checkDateResult = checkDate(dateValue);
+                                var checkNameResult = checkNameLength(nameValue);
+                                if (checkNameResult != "") {
+                                    console.log(checkNameResult);
+                                    $('#errorMsg').append(checkNameResult);
+                                    $('#inputName').parent().addClass("has-error");
+                                    $('#inputName').focus();
+                                } else if (checkEmailResult != "") {
+                                    $('#errorMsg').append(checkEmailResult);
+                                    $('#inputEmail').parent().addClass("has-error");
+                                    $('#inputEmail').focus();
+                                }
+                                else if (checkDateResult != "") {
+                                    $('#errorMsg').append(checkDateResult);
+                                    $('#datemask').parent().addClass("has-error");
+                                    $('#datemask').focus();
+                                }
+                                else {
+                                    $('#confirmModal').modal("show");
+                                }
+
+
+
+                            }
+                            function submitFormChangePassword() {
+                                $('#formChangePassword').submit();
+                            }
                             function submitForm() {
-                                 $('#formProfile').submit();   
+                                $('#formProfile').submit();
                             }
         </script>
         <!--UPLOAD AVATAR-->
