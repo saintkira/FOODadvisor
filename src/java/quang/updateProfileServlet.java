@@ -38,13 +38,13 @@ public class updateProfileServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String userName = request.getParameter("username");
+            String userName = request.getSession(false).getAttribute("username").toString();
             String fullName = request.getParameter("fullName");
             String email = request.getParameter("email");
             
             String dob = request.getParameter("dob");
-            int height = Integer.parseInt(request.getParameter("height"));
-            int weight = Integer.parseInt(request.getParameter("weight").replace("_",""));
+            int height = Integer.parseInt(request.getParameter("height").replace("_","0"));
+            int weight = Integer.parseInt(request.getParameter("weight").replace("_","0"));
             String  gender = request.getParameter("gender");
             boolean gen = true;
             Account account = new Account();
@@ -57,9 +57,9 @@ public class updateProfileServlet extends HttpServlet {
            account.setGender(gen);
             if (accountFacade.updateAccount(account)) {
                 response.sendRedirect("pages/profile.jsp");
+            }else{
+            response.sendRedirect("pages/profile.jsp");
             }
-            response.sendRedirect("pages/login.jsp");
-
 //           
            
             

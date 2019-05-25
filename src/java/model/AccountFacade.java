@@ -76,11 +76,13 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
                 + "DOB = '" + account.getDob() + "',"
                 + " Height = '" + account.getHeight()+ "',"
                 + "Weight = '"+account.getWeight()+"',"
-                + "Gender = '"+account.getGender()+"'    ");
-        if (q.executeUpdate()>1) {
+                + "Gender = '"+account.getGender()+"'  "
+                + "WHERE Username ='"+account.getUsername()+"'  ");
+        if (q.executeUpdate()>=1) {
             return true;
-        }
+        }else{  
         return false;
+        }
     }
 
     @Override
