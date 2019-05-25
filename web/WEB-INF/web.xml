@@ -60,6 +60,10 @@
         <servlet-name>startupServlet</servlet-name>
         <servlet-class>toan.startupServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>insertRecipeServlet</servlet-name>
+        <servlet-class>toan.insertRecipeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>startupServlet</servlet-name>
         <url-pattern>/startupServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insertRecipeServlet</servlet-name>
+        <url-pattern>/insertRecipeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
