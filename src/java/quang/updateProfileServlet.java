@@ -56,10 +56,10 @@ public class updateProfileServlet extends HttpServlet {
            account.setEmailAddress(email);
            account.setGender(gen);
             if (accountFacade.updateAccount(account)) {
-                out.println("loi cmnr");
-            }
+                response.sendRedirect("pages/profile.jsp");
+            }else{
             response.sendRedirect("pages/login.jsp");
-
+            }
 //           
            
             
