@@ -313,213 +313,144 @@
         <script src="../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="../plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <script>
-<<<<<<< HEAD
-            $(document).ready(                    
-                    function() {
-                        getAvatar();
-                        //Datemask dd/mm/yyyy
-                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-                        $('[data-mask]').inputmask();
-                        $('input[type="radio"].flat-red').iCheck({
-                            checkboxClass: 'icheckbox_flat-green',
-                            radioClass: 'iradio_flat-green'
-                        });
+        $(document).ready(
+                function() {
+                    getAvatar();
+                    //Datemask dd/mm/yyyy
+                    $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
+                    $('[data-mask]').inputmask();
+                    $('input[type="radio"].flat-red').iCheck({
+                        checkboxClass: 'icheckbox_flat-green',
+                        radioClass: 'iradio_flat-green'
+                    });
 
-                        //ajaxGetData
-                        $.ajax({
-                            url: '../getProfileServlet',
-                            data: {
-                                username: "${username}"
-                            },
-                            success: function(data) {
-                                $('#inputName').val(data.data[0].Fullname);
-                                $('#inputEmail').val(data.data[0].EmailAddress);
-                                $('#datemask').val(data.data[0].DOB);
-                                $('#inputHeight').val(data.data[0].Height);
-                                $('#inputWeight').val(data.data[0].Weight);
-                                if (data.data[0].Gender === "Active") {
-                                    $('#genderMale').iCheck('check');
-                                } else {
-                                    $('#genderFemale').iCheck('check');
-                                }
+                    //ajaxGetData
+                    $.ajax({
+                        url: '../getProfileServlet',
+                        data: {
+                            username: "${username}"
+                        },
+                        success: function(data) {
+                            $('#inputName').val(data.data[0].Fullname);
+                            $('#inputEmail').val(data.data[0].EmailAddress);
+                            $('#datemask').val(data.data[0].DOB);
+                            $('#inputHeight').val(data.data[0].Height);
+                            $('#inputWeight').val(data.data[0].Weight);
+                            if (data.data[0].Gender === "Active") {
+                                $('#genderMale').iCheck('check');
+                            } else {
+                                $('#genderFemale').iCheck('check');
                             }
-                        });
+                        }
+                    });
 
-                        //checkConfirmPasswrod
-                        $("#oldPassword").focusout(function() {
-                            var oldPass = $(this).val().toString();
-                            
-                            console.log(oldPass);
-                                    m = '${password}';
-                                    console.log(m);
-                                    console.log(m!= oldPass);
-                                    if (${password} != oldPass) {
-                                        toastr.remove();
-                                        showToastr('error', 'Status', "Wrong Old Password");
-                                        $('#formOldPass').addClass("has-error");
-                                        $('#btnChangePass').attr("disabled", "disabled");
-                                    } else if (${password} == oldPass) {
-                                        if ($("#formOldPass").hasClass("has-error")) {
-                                            $("#formOldPass").removeClass("has-error");
-                                            return true;
-                                        }
-                                        if ($('#btnChangePass').attr("disabled") !== undefined) {
-                                            $('#btnChangePass').removeAttr("disabled");
-                                        }
-                                    }
-//                            $.ajax({
-//                                url: '../getOldPassword',
-//                                data: {
-//                                    username: "${username}"
-//                                },
-//                                success: function(data) {                                    
-//                                    
-//                                }
-//                            });
 
+
+                    //checkConfirmPasswrod
+                    $("#oldPassword").focusout(function() {
+                        var oldPass = $(this).val().toString();
+
+                        console.log(oldPass);
+                        m = '${password}';
+                        console.log(m);
+                        console.log(m != oldPass);
+                        if ('${password}' != oldPass) {
+                            toastr.remove();
+                            showToastr('error', 'Status', "Wrong Old Password");
+                            $('#formOldPass').addClass("has-error");
+                            $('#btnChangePass').attr("disabled", "disabled");
+                        } else if ('${password}' == oldPass) {
                             if ($("#formOldPass").hasClass("has-error")) {
                                 $("#formOldPass").removeClass("has-error");
                                 return true;
-=======
-                            $(document).ready(
-                                    function() {
-                                        //Datemask dd/mm/yyyy
-                                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-                                        $('[data-mask]').inputmask();
-                                        $('input[type="radio"].flat-red').iCheck({
-                                            checkboxClass: 'icheckbox_flat-green',
-                                            radioClass: 'iradio_flat-green'
-                                        });
-
-                                        //ajaxGetData
-                                        $.ajax({
-                                            url: '../getProfileServlet',
-                                            data: {
-                                                username: "${username}"
-                                            },
-                                            success: function(data) {
-                                                $('#inputName').val(data.data[0].Fullname);
-                                                $('#inputEmail').val(data.data[0].EmailAddress);
-                                                $('#datemask').val(data.data[0].DOB);
-                                                $('#inputHeight').val(data.data[0].Height);
-                                                $('#inputWeight').val(data.data[0].Weight);
-                                                if (data.data[0].Gender === "Active") {
-                                                    $('#genderMale').iCheck('check');
-                                                } else {
-                                                    $('#genderFemale').iCheck('check');
-                                                }
-                                            }
-                                        });
-
-
-
-                                        //checkConfirmPasswrod
-                                        $("#oldPassword").focusout(function() {
-                                            var oldPass = $(this).val().toString();
-
-                                            console.log(oldPass);
-                                            m = '${password}';
-                                            console.log(m);
-                                            console.log(m != oldPass);
-                                            if ('${password}' != oldPass) {
-                                                toastr.remove();
-                                                showToastr('error', 'Status', "Wrong Old Password");
-                                                $('#formOldPass').addClass("has-error");
-                                                $('#btnChangePass').attr("disabled", "disabled");
-                                            } else if ('${password}' == oldPass) {
-                                                if ($("#formOldPass").hasClass("has-error")) {
-                                                    $("#formOldPass").removeClass("has-error");
-                                                    return true;
-                                                }
-                                                if ($('#btnChangePass').attr("disabled") !== undefined) {
-                                                    $('#btnChangePass').removeAttr("disabled");
-                                                }
-                                            }
-
-                                            if ($("#formOldPass").hasClass("has-error")) {
-                                                $("#formOldPass").removeClass("has-error");
-                                                return true;
-                                            }
-                                        });
-
-                                        //check both password is the same
-                                        $("#confirmPassword").focusout(function() {
-                                            var a = $("#newPassword").val();
-                                            var b = $(this).val();
-                                            console.log(a);
-                                            console.log(b);
-                                            if (a !== b) {
-                                                $("#formNewPass").addClass("has-error");
-                                                toastr.remove();
-                                                showToastr('error', 'Status', "New Password and Confirm Password is not the same");
-                                                $('#btnChangePass').attr("disabled", "disabled");
-                                                return false;
-                                            } else if (a === b) {
-                                                if ($("#formNewPass").hasClass("has-error")) {
-                                                    $("#formNewPass").removeClass("has-error");
-                                                    return true;
-                                                }
-                                                if ($('#btnChangePass').attr("disabled") !== undefined) {
-                                                    $('#btnChangePass').removeAttr("disabled");
-                                                }
-                                            }
-                                        });
-                                    });
-
-                            function checkChangePasswordForm() {
-                                $('#confirmChangePassword').modal("show");
->>>>>>> quang_common3
                             }
-
-
-                            //validatioon profile input
-                            function checkSubmitForm() {
-                                if ($("*").hasClass("has-error")) {
-                                    $("*").removeClass("has-error");
-                                }
-                                $('#errorMsg').empty();
-                                var nameValue = $('#inputName').val();
-                                var dateValue = $('#datemask').val();
-                                var emailValue = $('#inputEmail').val();
-
-
-                                var checkEmailResult = checkEmailValid();
-                                var checkDateResult = checkDate(dateValue);
-                                var checkNameResult = checkNameLength(nameValue);
-                                if (checkNameResult != "") {
-                                    console.log(checkNameResult);
-                                    $('#errorMsg').append(checkNameResult);
-                                    $('#inputName').parent().addClass("has-error");
-                                    $('#inputName').focus();
-                                } else if (checkEmailResult != "") {
-                                    $('#errorMsg').append(checkEmailResult);
-                                    $('#inputEmail').parent().addClass("has-error");
-                                    $('#inputEmail').focus();
-                                }
-                                else if (checkDateResult != "") {
-                                    $('#errorMsg').append(checkDateResult);
-                                    $('#datemask').parent().addClass("has-error");
-                                    $('#datemask').focus();
-                                }
-                                else {
-                                    $('#confirmModal').modal("show");
-                                }
-
-
-
+                            if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                $('#btnChangePass').removeAttr("disabled");
                             }
-                            function submitFormChangePassword() {
-                                $('#formChangePassword').submit();
+                        }
+
+                        if ($("#formOldPass").hasClass("has-error")) {
+                            $("#formOldPass").removeClass("has-error");
+                            return true;
+                        }
+                    });
+
+                    //check both password is the same
+                    $("#confirmPassword").focusout(function() {
+                        var a = $("#newPassword").val();
+                        var b = $(this).val();
+                        console.log(a);
+                        console.log(b);
+                        if (a !== b) {
+                            $("#formNewPass").addClass("has-error");
+                            toastr.remove();
+                            showToastr('error', 'Status', "New Password and Confirm Password is not the same");
+                            $('#btnChangePass').attr("disabled", "disabled");
+                            return false;
+                        } else if (a === b) {
+                            if ($("#formNewPass").hasClass("has-error")) {
+                                $("#formNewPass").removeClass("has-error");
+                                return true;
                             }
-                            function submitForm() {
-                                $('#formProfile').submit();
+                            if ($('#btnChangePass').attr("disabled") !== undefined) {
+                                $('#btnChangePass').removeAttr("disabled");
                             }
+                        }
+                    });
+                });
+
+        function checkChangePasswordForm() {
+            $('#confirmChangePassword').modal("show");
+        }
+
+
+        //validatioon profile input
+        function checkSubmitForm() {
+            if ($("*").hasClass("has-error")) {
+                $("*").removeClass("has-error");
+            }
+            $('#errorMsg').empty();
+            var nameValue = $('#inputName').val();
+            var dateValue = $('#datemask').val();
+            var emailValue = $('#inputEmail').val();
+
+
+            var checkEmailResult = checkEmailValid();
+            var checkDateResult = checkDate(dateValue);
+            var checkNameResult = checkNameLength(nameValue);
+            if (checkNameResult != "") {
+                console.log(checkNameResult);
+                $('#errorMsg').append(checkNameResult);
+                $('#inputName').parent().addClass("has-error");
+                $('#inputName').focus();
+            } else if (checkEmailResult != "") {
+                $('#errorMsg').append(checkEmailResult);
+                $('#inputEmail').parent().addClass("has-error");
+                $('#inputEmail').focus();
+            }
+            else if (checkDateResult != "") {
+                $('#errorMsg').append(checkDateResult);
+                $('#datemask').parent().addClass("has-error");
+                $('#datemask').focus();
+            }
+            else {
+                $('#confirmModal').modal("show");
+            }
+
+
+
+        }
+        function submitFormChangePassword() {
+            $('#formChangePassword').submit();
+        }
+        function submitForm() {
+            $('#formProfile').submit();
+        }
         </script>
         <!--UPLOAD AVATAR-->
         <script src="../dist/js/profile.js"></script>
         <!--GET PROFILE DATA-->
         <script>
-<<<<<<< HEAD
             function formatDate(date) {
                 var d = new Date(date),
                         month = '' + (d.getMonth() + 1),
@@ -561,31 +492,6 @@
                     });
                     }
                 };
-=======
-                            function formatDate(date) {
-                                var d = new Date(date),
-                                        month = '' + (d.getMonth() + 1),
-                                        day = '' + d.getDate(),
-                                        year = d.getFullYear();
-                                if (month.length < 2)
-                                    month = '0' + month;
-                                if (day.length < 2)
-                                    day = '0' + day;
-                                return [day, month, year].join("/");
-                            }
-
-                            function formatDate2(date) {
-                                var d = new Date(date),
-                                        month = '' + (d.getMonth() + 1),
-                                        day = '' + d.getDate(),
-                                        year = d.getFullYear();
-                                if (month.length < 2)
-                                    month = '0' + month;
-                                if (day.length < 2)
-                                    day = '0' + day;
-                                return [year, month, day].join("-");
-                            }
->>>>>>> quang_common3
         </script>
 
     </body>

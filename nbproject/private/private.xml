@@ -3,20 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/list_recipes.jsp</file>
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/admin/insert_recipe.jsp</file>
+            <file>file:/D:/Project%204/FOODadvisor/src/java/toan/startupServlet.java</file>
             <file>file:/D:/Project%204/FOODadvisor/web/pages/profile.jsp</file>
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/partialpage/header.jsp</file>
-            <file>file:/D:/Project%204/FOODadvisor/src/java/quang/saveAvatarServlet.java</file>
             <file>file:/D:/Project%204/FOODadvisor/web/WEB-INF/web.xml</file>
-=======
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/partialpage/header.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/profile.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/dist/js/validation.js</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/updateProfileServlet.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/dist/js/profile.js</file>
->>>>>>> quang_common3
         </group>
     </open-files>
 </project-private>
