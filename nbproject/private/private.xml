@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/admin/insert_recipe.jsp</file>
+            <file>file:/D:/Project%204/FOODadvisor/src/java/toan/loadrecipedataServlet.java</file>
+            <file>file:/D:/Project%204/FOODadvisor/web/pages/admin/recipes_manage.jsp</file>
+            <file>file:/D:/Project%204/FOODadvisor/src/java/model/RecipeFacade.java</file>
+            <file>file:/D:/Project%204/FOODadvisor/src/java/model/Recipe.java</file>
         </group>
     </open-files>
 </project-private>

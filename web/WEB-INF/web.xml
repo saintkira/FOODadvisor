@@ -64,6 +64,10 @@
         <servlet-name>insertRecipeServlet</servlet-name>
         <servlet-class>toan.insertRecipeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getTagforinsServlet</servlet-name>
+        <servlet-class>toan.getTagforinsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>insertRecipeServlet</servlet-name>
         <url-pattern>/insertRecipeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getTagforinsServlet</servlet-name>
+        <url-pattern>/getTagforinsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

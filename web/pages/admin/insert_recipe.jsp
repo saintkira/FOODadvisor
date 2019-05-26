@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="../../bower_components/css_js_toan/sol.css"
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,21 +76,67 @@
                                     
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <label>Recipe Name</label>
-                                        <input type="text" class="form-control" placeholder="Recipe Name" name="recipename">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Generated ID</label>
+                                                <input type="text" class="form-control" readonly="true">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label>Recipe Name</label>
+                                                <input type="text" class="form-control" placeholder="Recipe Name" name="recipename">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Generated ID</label>
-                                        <input type="text" class="form-control" readonly="true">
+                                    <div class="form-group" style="margin-bottom:0px;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Description</label>
+                                                <input type="text" class="form-control" placeholder="Describe your recipe simply!" style="margin-bottom: 10px">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            Maincourse
+                                                        </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            Appetizer
+                                                        </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox">
+                                                                Salad
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox">
+                                                                Desert
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Ingredients</label>
+                                                <textarea class="form-control" rows="3" placeholder="Ingredients List"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <input type="text" class="form-control" placeholder="Describe your recipe simply!">
-                                    </div>
-                                    <!-- textarea -->
-                                    <div class="form-group">
-                                        <label>Ingredients</label>
-                                        <textarea class="form-control" rows="3" placeholder="Ingredients List"></textarea>
+                                    <div class="form-group" style="margin-top:0px">
+                                        <label>Tag</label>
+                                        <select id="my-select" name="character" multiple="multiple">
+                                        </select>
                                     </div>
 
                                     <!-- input states 
@@ -145,27 +192,7 @@
 
                             </div>
                             <!-- /.box -->
-                            <div class="box collapsed-box">
-                                <div class="box-header">
-                                    <label>Image</label>
-                                    <small>Please upload at least 1 image</small>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                                title="Collapse">
-                                            <i class="fa fa-minus"></i></button>
-                                    </div>
-                                    <!-- /. tools -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div id="coba"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="box collapsed-box">
                                 <div class="box-header">
                                     <label>Direction</label>
@@ -184,6 +211,29 @@
                                         <textarea id="editor1" name="editor1" rows="10" cols="80">
                                         </textarea>
                                     </form>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="box">
+                                <div class="box-header">
+                                    <label>Image</label>
+                                    <small>Please upload at least 1 image</small>
+                                    <!-- tools box -->
+                                    <div class="pull-right box-tools">
+                                        <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                                title="Collapse">
+                                            <i class="fa fa-minus"></i></button>
+                                    </div>
+                                    <!-- /. tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body pad">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div id="coba"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -263,8 +313,30 @@
                 });
         });
 	</script>
-        
-        
+        <script src="../../bower_components/css_js_toan/sol.js"></script>
+        <script type="text/javascript">
+            function loadTaglist(){
+                $('#my-select').searchableOptionList({
+                    maxHeight: '200px',
+                    showSelectAll: false,
+                    allowNullSelection: true,
+                    texts:{
+                       noItemsAvailable: 'Go on, no tag was selected',
+                       selectNone: 'Deselect all',
+                       searchplaceholder: 'Tag List'
+                    }
+                });
+            };
+            $(document).ready(function(){
+                $.ajax({
+                url : '../../getTagforinsServlet',
+                success : function(responseText) {
+                    $("#my-select").html(responseText);
+                    loadTaglist();
+                }
+                });
+            });
+        </script>
         
         <!--
         <script>
