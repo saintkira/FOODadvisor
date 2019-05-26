@@ -39,60 +39,6 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <style>
-      .img-upload-btn { 
-          position: relative; 
-          overflow: hidden; 
-          padding-top: 95%;
-      } 
-
-      .img-upload-btn input[type=file] { 
-          position: absolute; 
-          top: 0; 
-          right: 0; 
-          min-width: 100%; 
-          min-height: 100%; 
-          font-size: 100px; 
-          text-align: right; 
-          filter: alpha(opacity=0); 
-          opacity: 0; 
-          outline: none; 
-          background: white; 
-          cursor: inherit; 
-          display: block; 
-      } 
-
-      .img-upload-btn i { 
-          position: absolute;
-          height: 16px;
-          width: 16px;
-          top: 50%;
-          left: 50%;
-          margin-top: -8px;
-          margin-left: -8px;
-      }
-
-      .btn-radio {
-          position: relative; 
-          overflow: hidden; 
-      }
-
-      .btn-radio input[type=radio] { 
-          position: absolute; 
-          top: 0; 
-          right: 0; 
-          min-width: 100%; 
-          min-height: 100%; 
-          font-size: 100px; 
-          text-align: right; 
-          filter: alpha(opacity=0); 
-          opacity: 0; 
-          outline: none; 
-          background: white; 
-          cursor: inherit; 
-          display: block; 
-      }
-  </style>
 </head>
 
 
@@ -126,26 +72,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <div class="form-group">
-                                        <legend>Add Images</legend> 
-                                        <div class="row">
-                                            <div class="form-group col-sm-2"> 
-                                                <div class="img-picker"></div>
-                                            </div> 
-                                            <div class="form-group col-sm-2"> 
-                                                <div class="img-picker"></div>
-                                            </div> 
-                                            <div class="form-group col-sm-2"> 
-                                                <div class="img-picker"></div>
-                                            </div> 
-                                            <div class="form-group col-sm-2"> 
-                                                <div class="img-picker"></div>
-                                            </div> 
-                                            <div class="form-group col-sm-2"> 
-                                                <div class="img-picker"></div>
-                                            </div> 
-                                        </div>
-                                    </div>
+                                    
                                     <!-- text input -->
                                     <div class="form-group">
                                         <label>Recipe Name</label>
@@ -220,6 +147,27 @@
                             <!-- /.box -->
                             <div class="box collapsed-box">
                                 <div class="box-header">
+                                    <label>Image</label>
+                                    <small>Please upload at least 1 image</small>
+                                    <!-- tools box -->
+                                    <div class="pull-right box-tools">
+                                        <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                                title="Collapse">
+                                            <i class="fa fa-minus"></i></button>
+                                    </div>
+                                    <!-- /. tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body pad">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div id="coba"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box collapsed-box">
+                                <div class="box-header">
                                     <label>Direction</label>
                                     <small>Please describe direction carefully</small>
                                     <!-- tools box -->
@@ -274,90 +222,50 @@
             CKEDITOR.replace('editor1');
           })
         </script>
-        <script>
-            (function ( $ ) {
-            $.fn.imagePicker = function( options ) {
+        
+        
+        <script type="text/javascript" src="../../bower_components/css_js_toan/spartan-multi-image-picker.js"></script>
 
-                // Define plugin options
-                var settings = $.extend({
-                    // Input name attribute
-                    name: "",
-                    // Classes for styling the input
-                    class: "form-control btn btn-default btn-block",
-                    // Icon which displays in center of input
-                    icon: "glyphicon glyphicon-plus"
-                }, options );
+        <script type="text/javascript">
+        $(function(){
 
-                // Create an input inside each matched element
-                return this.each(function() {
-                    $(this).html(create_btn(this, settings));
+                $("#coba").spartanMultiImagePicker({
+                        fieldName:        'fileUpload[]',
+                        maxCount:         6,
+                        allowedExt:       'png|jpg|jpeg',
+                        rowHeight:        '200px',
+                        groupClassName:   'col-md-3 col-sm-4 col-xs-6',
+                        maxFileSize:      '400000',
+                        placeholderImage: {
+                            image: '../../bower_components/css_js_toan/placeholder.png',
+                            width : '100%'
+                        },
+                        dropFileLabel : "Drop Here",
+                        onAddRow:       function(index){
+                                console.log(index);
+                                console.log('add new row');
+                        },
+                        onRenderedPreview : function(index){
+                                console.log(index);
+                                console.log('preview rendered');
+                        },
+                        onRemoveRow : function(index){
+                                console.log(index);
+                        },
+                        onExtensionErr : function(index, file){
+                                console.log(index, file,  'extension err');
+                                alert('Please only input png or jpg type file')
+                        },
+                        onSizeErr : function(index, file){
+                                console.log(index, file,  'file size too big');
+                                alert('File size too big');
+                        }
                 });
-
-            };
-
-            // Private function for creating the input element
-            function create_btn(that, settings) {
-                // The input icon element
-                var picker_btn_icon = $('<i class="'+settings.icon+'"></i>');
-
-                // The actual file input which stays hidden
-                var picker_btn_input = $('<input type="file" name="'+settings.name+'" />');
-
-                // The actual element displayed
-                var picker_btn = $('<div class="'+settings.class+' img-upload-btn"></div>')
-                    .append(picker_btn_icon)
-                    .append(picker_btn_input);
-
-                // File load listener
-                picker_btn_input.change(function() {
-                    if ($(this).prop('files')[0]) {
-                        // Use FileReader to get file
-                        var reader = new FileReader();
-
-                        // Create a preview once image has loaded
-                        reader.onload = function(e) {
-                            var preview = create_preview(that, e.target.result, settings);
-                            $(that).html(preview);
-                        };
-
-                        // Load image
-                        reader.readAsDataURL(picker_btn_input.prop('files')[0]);
-                    }                
-                });
-
-                return picker_btn;
-            };
-
-            // Private function for creating a preview element
-            function create_preview(that, src, settings) {
-
-                    // The preview image
-                    var picker_preview_image = $('<img src="'+src+'" class="img-responsive img-rounded" />');
-
-                    // The remove image button
-                    var picker_preview_remove = $('<button class="btn btn-link"><small>Remove</small></button>');
-
-                    // The preview element
-                    var picker_preview = $('<div class="text-center"></div>')
-                        .append(picker_preview_image)
-                        .append(picker_preview_remove);
-
-                    // Remove image listener
-                    picker_preview_remove.click(function() {
-                        var btn = create_btn(that, settings);
-                        $(that).html(btn);
-                    });
-
-                    return picker_preview;
-            };
-
-        }( jQuery ));
-
-        $(document).ready(function() {
-            $('.img-picker').imagePicker({name: 'images'});
-            $('img').attr("src","../../avatar/kimquang.jpg");
         });
-        </script>
+	</script>
+        
+        
+        
         <!--
         <script>
             $("#btn1").click(function(){
