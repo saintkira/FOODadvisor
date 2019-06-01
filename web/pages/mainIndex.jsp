@@ -376,9 +376,9 @@
                             <h4 class="modal-title">Default Modal</h4>
                         </div>
                         <div class="modal-body">
-                            
-                            
-                         
+
+
+
                             <p>One fine body&hellip;</p>
                         </div>
                         <div class="modal-footer">
@@ -436,6 +436,29 @@
             <script src="../dist/js/pages/dashboard.js"></script>
             <!-- AdminLTE for demo purposes -->
             <script src="../dist/js/demo.js"></script>
+            <script>
+                $(document).ready(
+                        function getAvatar() {
+                            var username = '${username}';
+                            username = username.toString();
+                            if (username != '') {
+                                $.ajax({
+                                    url: '../getAvatarServlet',
+                                    data: {
+                                        username: "${username}"
+                                    },
+                                    success: function(data) {
+                                        $('.profile-pic').attr("src", data);
+                                        $('.img-circle').attr("src", data);
+                                        $('.user-image').attr("src", data);
+                                    }
+                                });
+
+                            }
+                            ;
+                        });
+
+            </script>
         </div>
     </body>
 </html>

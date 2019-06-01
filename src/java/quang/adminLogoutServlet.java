@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quang;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Windows 10
  */
-public class logOutServlet extends HttpServlet {
+public class adminLogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,13 +33,10 @@ public class logOutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            session.removeAttribute("username");
-            session.removeAttribute("fullName");
-            session.removeAttribute("password");
+            session.removeAttribute("adminPassword");
             session.removeAttribute("error");
             session.invalidate();
-            response.sendRedirect("pages/login.jsp");
-            
+            response.sendRedirect("pages/admin/admin_login.jsp");
         }
     }
 

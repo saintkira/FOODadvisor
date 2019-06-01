@@ -43,17 +43,15 @@ public class registerServlet extends HttpServlet {
             String fullName = request.getParameter("fullName");
             String email = request.getParameter("email");
 
-            if (accountFacade.find(username) != null) {
-                response.sendRedirect("pages/register.jsp");
-            } else {
-                Account account = new Account();
-                account.setUsername(username);
-                account.setFullname(fullName);
-                account.setPassword(password);
-                account.setEmailAddress(email);
-               accountFacade.create(account);
-                response.sendRedirect("pages/login.jsp");
-            }
+            Account account = new Account();
+            account.setUsername(username);
+            account.setFullname(fullName);
+            account.setPassword(password);
+            account.setEmailAddress(email);
+            account.setActiveStatus(true);
+            account.setGender(true);
+            accountFacade.create(account);
+            response.sendRedirect("pages/login.jsp");
 
         }
     }

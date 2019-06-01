@@ -8,17 +8,20 @@ package quang;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.AdministratorFacadeLocal;
 
 /**
  *
  * @author Windows 10
  */
-public class logOutServlet extends HttpServlet {
+public class checkAdminLoginServlet extends HttpServlet {
+    @EJB
+    private AdministratorFacadeLocal administratorFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,14 +36,15 @@ public class logOutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            session.removeAttribute("username");
-            session.removeAttribute("fullName");
-            session.removeAttribute("password");
-            session.removeAttribute("error");
-            session.invalidate();
-            response.sendRedirect("pages/login.jsp");
-            
+          String user = request.getParameter("user");
+          String pass = request.getParameter("pass");
+          if (administratorFacade.checkLogin(user, pass)) {
+                response.setContentType("text/html");
+                response.getWriter().write("true");
+            } else {
+                response.setContentType("text/html");
+                response.getWriter().write("false");
+            }
         }
     }
 

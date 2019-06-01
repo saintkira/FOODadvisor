@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quang;
 
 import java.io.IOException;
@@ -21,6 +20,7 @@ import model.AccountFacadeLocal;
  * @author Windows 10
  */
 public class changePasswordServlet extends HttpServlet {
+
     @EJB
     private AccountFacadeLocal accountFacade;
 
@@ -38,20 +38,15 @@ public class changePasswordServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-                String password = request.getParameter("newPassword");
-                String username = request.getSession(false).getAttribute("username").toString();
-                HttpSession session = request.getSession();
-                if (accountFacade.changePassword(username, password)) {
+            String password = request.getParameter("newPassword");
+            String username = request.getSession(false).getAttribute("username").toString();
+            HttpSession session = request.getSession();
+            if (accountFacade.changePassword(username, password)) {
+                response.sendRedirect("logOutServlet");
+            } else { 
                 response.sendRedirect("pages/profile.jsp");
-                session.removeAttribute("password");
-                session.setAttribute("password", password);
-            }else{
-                    out.println("<script type=\\\"text/javascript\\>");
-                    out.println("alert('User or password incorrect');");
-                    out.println("</script>");
-                    response.sendRedirect("pages/login.jsp");
-                }
-                
+            }
+
         }
     }
 

@@ -48,11 +48,15 @@ public class loginServlet extends HttpServlet {
                 session.setAttribute("username", username);
                 session.setAttribute("password", password);
                 session.setAttribute("fullName", accountFacade.find(username).getFullname());
-                response.sendRedirect("pages/profile.jsp");
-            } else {
-                session.setAttribute("error", "error");
-                response.sendRedirect("pages/login.jsp");
                 session.setAttribute("error", null);
+                response.sendRedirect("pages/profile.jsp");
+            } else {    
+                session.setAttribute("error","error");
+                out.println("<script>");
+                out.println("$('#errorMsg').append('Wrong Username or Password');");
+                out.println("</script>");
+                response.sendRedirect("pages/login.jsp");
+               
             }
 
         }

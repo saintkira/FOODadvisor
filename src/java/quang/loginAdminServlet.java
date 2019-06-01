@@ -3,22 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quang;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AccountFacade;
+import model.AdministratorFacadeLocal;
 
 /**
  *
  * @author Windows 10
  */
-public class logOutServlet extends HttpServlet {
+public class loginAdminServlet extends HttpServlet {
+
+    @EJB
+    private AdministratorFacadeLocal administratorFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,14 +38,22 @@ public class logOutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
             HttpSession session = request.getSession();
-            session.removeAttribute("username");
-            session.removeAttribute("fullName");
-            session.removeAttribute("password");
-            session.removeAttribute("error");
-            session.invalidate();
-            response.sendRedirect("pages/login.jsp");
-            
+            if (administratorFacade.checkLogin(username, password)) {
+                session.removeAttribute("error");
+                session.setAttribute("adminPassword", password);
+                session.setAttribute("error", null);
+                response.sendRedirect("pages/admin/admin_profile.jsp");
+            } else {
+                session.setAttribute("error", "error");
+                out.println("<script>");
+                out.println("$('#errorMsg').append('Wrong Username or Password');");
+                out.println("</script>");
+                response.sendRedirect("pages/admin/admin_login.jsp");
+
+            }
         }
     }
 

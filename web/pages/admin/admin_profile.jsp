@@ -34,6 +34,10 @@
         <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
         <!-- iCheck -->        
         <link rel="stylesheet" href="../../plugins/iCheck/all.css">
+        <!--CUSTOMER CSS ToastR and modal-->
+        <link rel="stylesheet" href="../../dist/css/template.css">
+        <link rel="stylesheet" href="../../dist/css/toastr.min.css">
+        <link rel="stylesheet" href="../../dist/style.css">
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,102 +71,45 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="row">
-                        <div class="col-md-3">
-                            <!-- Profile Image -->
-                            <div class="box box-success">
-                                <div class="box-body box-profile">
-                                    <div class="avatar-wrapper">
-                                        <img class="profile-pic" src="" />
-                                        <div class="upload-button">
-                                            <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Change Password</h3>
+                                </div>
+                                <div class=" box-body" >
+                                    <form class="form-horizontal" action="../../changeAdminPasswordServlet"  id="formChangePassword">
+                                        <div class="form-group">
+                                            <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
+                                            <div class="col-sm-9" id="formOldPass">
+                                                <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword" >
+                                            </div>
                                         </div>
-                                        <input class="file-upload" type="file" accept="image/*"/>
-                                    </div>
-                                    <h3 style="text-align:center;">[Admin]</h3> 
-                                    
-                                    <a href="#" class="btn btn-success btn-block"><b>Save Change Avatar</b></a>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-9">
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs tab-success">
-                                    <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-                                    <li><a href="#changepass" data-toggle="tab">Change Password</a></li>
-
-                                </ul>
-                                <div class="tab-content">                                
-
-                                    <!--SETTING-->
-                                    <div class="active tab-pane" id="settings">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputName" placeholder="Name">
-                                                </div>
+                                        <div class="form-group">
+                                            <label for="newPassword" class="col-sm-3 control-label">New Password</label>
+                                            <div class="col-sm-9" id="formNewPass">
+                                                <input type="password" class="form-control" id="newPassword" placeholder="New Password" name="newPassword">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
+                                            <div class="col-sm-9" id="formConfirmPass">
+                                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" name="confirmPassword">
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-success">Submit</button>
-
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-xs-offset-1">
+                                                <p style="color: red;" id="errorPassMsg"></p>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <!-- /.tab-pane -->
-
-
-                                    <!--CHANG PASSWORD-->
-                                    <div class="tab-pane" id="changepass">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="oldPassword" placeholder="Old Password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="newPassword" class="col-sm-3 control-label">New Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="newPassword" placeholder="New Password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
-
-                                                <div class="col-sm-9">
-                                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
-                                                </div>
-                                            </div>                                          
-
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-3 col-sm-9">
-                                                    <button type="submit" class="btn btn-danger">Submit</button>
-
-                                                </div>
-                                            </div>
-                                        </form>
+                                        </div>
+                                    </form>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3">
+                                            <button onclick="checkChangePasswordForm()" class="btn btn-success" id="btnChangePass">Submit</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- /.tab-content -->
                             </div>
-                            <!-- /.nav-tabs-custom -->
                         </div>
-                        <!-- /.col -->
                     </div>
                     <!-- /.row -->
 
@@ -173,9 +120,31 @@
             <jsp:include page="footer.jsp"/>
         </div>
         <!-- ./wrapper -->
-
+        <!--modal confirm change password-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmChangePassword">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Confirm change password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to save changes password?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="submitFormChangePassword()">OK</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- jQuery 3 -->
         <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+        <!--Toatr-->
+        <script src="../../dist/js/toastr.min.js"></script>
+        <script src="../../dist/js/utils.js"></script>
         <!-- Bootstrap 3.3.7 -->
         <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- FastClick -->
@@ -196,19 +165,109 @@
         <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <script>
-            $(document).ready(
-                    function() {
-                        //Datemask dd/mm/yyyy
-                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-                        $('[data-mask]').inputmask();
 
-                        $('input[type="radio"].flat-red').iCheck({
-                            checkboxClass: 'icheckbox_flat-green',
-                            radioClass: 'iradio_flat-green'
-                        });
+                            function checkChangePasswordForm() {
+                                if ($("*").hasClass("has-error")) {
+                                    $("*").removeClass("has-error");
+                                }
+                                $('#errorPassMsg').empty();
+                                var oldPassValue = '${adminPassword}';
+                                console.log(oldPassValue);
+                                var oldPassInput = $('#oldPassword').val();
+                                var newPassInput = $('#newPassword').val();
+                                var confirmPassInput = $('#confirmPassword').val();
 
-                    });
+                                var checkOldPassResult = checkOldPass(oldPassValue, oldPassInput);
+                                var checkOldNewPassResult = checkOldNewPass(oldPassInput, newPassInput);
+                                var checkNewConfirmPassResult = checkNewConfirmPass(newPassInput, confirmPassInput);
+                                var checkOldPassBlankResult = checkOldPassBlank(oldPassInput);
+                                var checkNewPassBlankResult = checkNewPassBlank(newPassInput);
+                                var checkConfirmPassBlankResult = checkConfirmPassBlank(confirmPassInput);
+                                var checkPassStrengthResult = checkPassStrength(newPassInput);
+                                if (checkOldPassBlankResult != "") {
+                                    $('#errorPassMsg').append(checkOldPassBlankResult);
+                                    $('#oldPassword').parent().addClass("has-error");
+                                    $('#oldPassword').focus();
+                                } else if (checkNewPassBlankResult != "") {
+                                    $('#errorPassMsg').append(checkNewPassBlankResult);
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#newPassword').focus();
+                                } else if (checkPassStrengthResult != "") {
+                                    $('#errorPassMsg').append(checkPassStrengthResult);
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#newPassword').focus();
+                                    return true;
+                                }
+                                else if (checkConfirmPassBlankResult != "") {
+                                    $('#errorPassMsg').append(checkConfirmPassBlankResult);
+                                    $('#confirmPassword').parent().addClass("has-error");
+                                    $('#confirmPassword').focus();
+                                } else if (checkOldNewPassResult != "") {
+                                    $('#errorPassMsg').append(checkOldNewPassResult);
+                                    $('#oldPassword').parent().addClass("has-error");
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#oldPassword').focus();
+                                } else if (checkNewConfirmPassResult != "") {
+                                    $('#errorPassMsg').append(checkNewConfirmPassResult);
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#confirmPassword').parent().addClass("has-error");
+                                    $('#newPassword').focus();
+                                } else if (checkOldPassResult != "") {
+                                    $('#errorPassMsg').append(checkOldPassResult);
+                                    $('#oldPassword').parent().addClass("has-error");
+                                    $('#oldPassword').focus();
+                                }
+                                else {
+                                    $('#confirmChangePassword').modal("show");
+                                }
+                            }
 
+                            function checkOldPassBlank(oldPassInput) {
+                                if (oldPassInput == "") {
+                                    return "Old Password cannot be blank!! Please input old password!!";
+                                }
+                                return "";
+                            }
+                            function checkOldPass(oldPassValue, oldPassInput) {
+                                if (oldPassValue != oldPassInput) {
+                                    return "Old Password do not match!! Please try again!";
+                                }
+                                return "";
+                            }
+                            function checkOldNewPass(oldPass, newPass) {
+                                if (oldPass === newPass) {
+                                    return "Old Password and New Password must be different!!";
+                                }
+                                return "";
+                            }
+                            function checkNewConfirmPass(newPass, confirmPass) {
+                                if (newPass != confirmPass) {
+                                    return "New Password and Confirm Password do not match!!";
+                                }
+                                return "";
+                            }
+                            function checkNewPassBlank(newPass) {
+                                if (newPass == "") {
+                                    return "New Password cannot be blank!! Please input old password!!";
+                                }
+                                return "";
+                            }
+                            function checkConfirmPassBlank(confirmPass) {
+                                if (confirmPass == "") {
+                                    return "Confirm Password cannot be blank!! Please input old password!!";
+                                }
+                                return "";
+                            }
+                            function checkPassStrength(passValue) {
+
+                                if (!passValue.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
+                                    return "Password need to contain at least 1 number, 1 lowercase character, 1 uppercase character and at least 8 characters";
+                                }
+                                return "";
+                            }
+                            function submitFormChangePassword() {
+                                $('#formChangePassword').submit();
+                            }
 
 
         </script>

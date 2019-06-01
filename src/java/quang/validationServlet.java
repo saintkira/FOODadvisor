@@ -3,48 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quang;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Account;
+import model.AccountFacadeLocal;
 
 /**
  *
  * @author Windows 10
  */
-public class logOutServlet extends HttpServlet {
+public class validationServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    @EJB
+    private AccountFacadeLocal accountFacade;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            session.removeAttribute("username");
-            session.removeAttribute("fullName");
-            session.removeAttribute("password");
-            session.removeAttribute("error");
-            session.invalidate();
-            response.sendRedirect("pages/login.jsp");
-            
+            String user = request.getParameter("checkUser");
+            String email = request.getParameter("checkEmail");
+            Account account = accountFacade.find(user);
+            if (account != null) {
+                response.setContentType("text/html");
+                response.getWriter().write("User existed");
+            } else {
+                if (accountFacade.findEmail(email)) {
+                    response.setContentType("text/html");
+                    response.getWriter().write("Email existed");
+                } else {
+                    response.setContentType("text/html");
+                    response.getWriter().write("ok");
+                }
+            }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

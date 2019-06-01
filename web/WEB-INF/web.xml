@@ -68,6 +68,34 @@
         <servlet-name>getTagforinsServlet</servlet-name>
         <servlet-class>toan.getTagforinsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>validationServlet</servlet-name>
+        <servlet-class>quang.validationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>googleLoginServlet</servlet-name>
+        <servlet-class>quang.googleLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkLoginServlet</servlet-name>
+        <servlet-class>quang.checkLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkAdminLoginServlet</servlet-name>
+        <servlet-class>quang.checkAdminLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginAdminServlet</servlet-name>
+        <servlet-class>quang.loginAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changeAdminPasswordServlet</servlet-name>
+        <servlet-class>quang.changeAdminPasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminLogoutServlet</servlet-name>
+        <servlet-class>quang.adminLogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -135,6 +163,34 @@
     <servlet-mapping>
         <servlet-name>getTagforinsServlet</servlet-name>
         <url-pattern>/getTagforinsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validationServlet</servlet-name>
+        <url-pattern>/validationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>googleLoginServlet</servlet-name>
+        <url-pattern>/googleLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkLoginServlet</servlet-name>
+        <url-pattern>/checkLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkAdminLoginServlet</servlet-name>
+        <url-pattern>/checkAdminLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginAdminServlet</servlet-name>
+        <url-pattern>/loginAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeAdminPasswordServlet</servlet-name>
+        <url-pattern>/changeAdminPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminLogoutServlet</servlet-name>
+        <url-pattern>/adminLogoutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
