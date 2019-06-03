@@ -177,13 +177,19 @@
 </aside>
 <script>
     function signOut() {
+
 //        var auth2 = gapi.auth2.getAuthInstance();
 //        auth2.signOut().then(function() {
 //            console.log('User signed out.');
 //
 //        });
+//         var revokeAllScopes = function() {
+//            auth2.disconnect();
+//        };
 //        window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
-        window.location.href = '../logOutServlet';
+        document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost/application-name/logoutUser";
+//        window.location.href = '../logOutServlet';
     }
+
 </script>
 

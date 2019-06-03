@@ -29,8 +29,9 @@
         <!-- iCheck -->
         <link rel="stylesheet" href="../plugins/iCheck/square/blue.css">
         <link rel="stylesheet" href="../plugins/iCheck/all.css">
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="303545973941-s9tl1n04o5n2fr028fq0ec006b5hsv1j.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="google-signin-client_id" content="736432206058-qmih7ve92a1egll1j7i2rfu7bqonthol.apps.googleusercontent.com">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -98,23 +99,20 @@
         <!-- iCheck -->
         <script src="../plugins/iCheck/icheck.min.js"></script>
         <script>
-                       
-
-
                         function checkLoginForm() {
                             if ($("*").hasClass("has-error")) {
                                 $("*").removeClass("has-error");
                             }
                             $('#errorMsg').empty();
                             var userValue = $('#username').val();
-                            var passValue = $('#password').val();                          
+                            var passValue = $('#password').val();
                             var checkBlankResult = checkBlank(userValue, passValue);
                             if (checkBlankResult != "") {
                                 $('#errorMsg').append(checkBlankResult);
                                 return true;
                             }
                             else {
-                                var checkLoginValue = checkLogin(userValue,passValue);
+                                var checkLoginValue = checkLogin(userValue, passValue);
                             }
                         }
 
@@ -151,14 +149,18 @@
 
         <script type="text/javascript">
             function onSignIn(googleUser) {
+
                 var profile = googleUser.getBasicProfile();
                 console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
                 console.log('Name: ' + profile.getName());
                 console.log('Image URL: ' + profile.getImageUrl());
                 console.log('Email: ' + profile.get); // This is null if the 'email' scope is not present.
-                
-//                   window.location.href = '../googleLoginServlet?name='+profile.getName()+"&image="+profile.getImageUrl();
+// The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+                window.location.href = '../googleLoginServlet?token=' +id_token;
             }
+            
         </script>
     </body>
 </html>

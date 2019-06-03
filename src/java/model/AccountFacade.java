@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -102,6 +103,15 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Account findByEmail(String email) {
+        Query q = em.createQuery("SELECT a FROM Account a WHERE a.emailAddress = :emailAddress");
+        q.setParameter("emailAddress", email);
+        List<Account> resultList = q.getResultList();
+        Account resultAccount  = resultList.get(0);
+        return resultAccount;
     }
     
     
