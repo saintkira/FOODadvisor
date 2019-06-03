@@ -95,7 +95,7 @@
                         <c:if test="${not empty fullName}"> <img src="../dist/img/avatar_2x.png" class="user-image" alt="User Image"></c:if>
                         <c:if test="${empty fullName}"> </c:if>
 
-                            <span class=""> Welcome  <c:if test="${not empty fullName}">${fullName}</c:if><c:if test="${empty fullName}">Guest</c:if></span>
+                            <span class=""> Welcome  <c:if test="${not empty name}">${name}</c:if><c:if test="${empty fullName}">Guest</c:if></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
