@@ -39,7 +39,7 @@ public class menu7daysServlet extends HttpServlet {
                 String root = request.getServletContext().getRealPath("//")+"\\recipes_document\\";
                 System.out.println(root);
 
-                List<Recipe> list = recipeFacade.findAll().subList(0, 20);
+                List<Recipe> list = recipeFacade.findAll().subList(0, 100);
                 for (Recipe recipe : list) {
                     //get directory contains image
                     String fname = recipe.getRecipeID();
