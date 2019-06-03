@@ -29,8 +29,9 @@
         <!-- iCheck -->
         <link rel="stylesheet" href="../plugins/iCheck/square/blue.css">
         <link rel="stylesheet" href="../plugins/iCheck/all.css">
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="303545973941-s9tl1n04o5n2fr028fq0ec006b5hsv1j.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="google-signin-client_id" content="736432206058-qmih7ve92a1egll1j7i2rfu7bqonthol.apps.googleusercontent.com">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -47,32 +48,29 @@
                 <a href="list_ingredients.jsp"><b style="color: #00a65a;">FOOD</b>advisor</a>
             </div>
             <!-- /.login-logo -->
-
             <div class="login-box-body">
+
                 <p class="login-box-msg" style="color: #00a65a;">SIGN IN TO START YOUR SESSION</p>
                 <form name="loginForm" action="../loginServlet" method="POST" >
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="User name" name="username" id="username" required>
+                        <input type="text" class="form-control" placeholder="User name" name="username" id="username">
                         <span class="fa fa-leaf form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Password" name="password" required>
+                        <input type="password" class="form-control" placeholder="Password" name="password"  id="password">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
-                        <div class="col-xs-8">                            
-                            <label id="error">
-
-                            </label>                           
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-xs-4">
-                            <button type="submit" class="btn btn-success btn-block btn-lg" id="validate" >Sign In</button>
-                        </div>
-                        <!-- /.col -->
+                        <div class="col-xs-8">
+                            <p style="color: red;" id="errorMsg"></p>            
+                        </div>                     
                     </div>
                 </form>
+                <div class="">
+                    <button onclick="checkLoginForm()" class="btn btn-success btn-block btn-lg" >Sign In</button>
+                </div>
 
+                <br/>
                 <div class="social-auth-links text-center">
                     <p>- OR -</p>
                     <a href="#" class="btn btn-block btn-social btn-facebook btn-flat "><i class="fa fa-facebook"></i> Sign in using
@@ -101,22 +99,68 @@
         <!-- iCheck -->
         <script src="../plugins/iCheck/icheck.min.js"></script>
         <script>
-            $(document).ready(function() {
+                        function checkLoginForm() {
+                            if ($("*").hasClass("has-error")) {
+                                $("*").removeClass("has-error");
+                            }
+                            $('#errorMsg').empty();
+                            var userValue = $('#username').val();
+                            var passValue = $('#password').val();
+                            var checkBlankResult = checkBlank(userValue, passValue);
+                            if (checkBlankResult != "") {
+                                $('#errorMsg').append(checkBlankResult);
+                                return true;
+                            }
+                            else {
+                                var checkLoginValue = checkLogin(userValue, passValue);
+                            }
+                        }
 
-                if ("${error}" === 'error') {
-                    $("#error").append('SAI PASS');
-                }
-            });
+                        function checkBlank(userValue, passValue) {
+                            if (userValue == "") {
+                                return "Please input Username!";
+                            } else if (passValue == "") {
+                                return "Please input Password!!";
+                            } else {
+                                return "";
+                            }
+                        }
+                        function checkLogin(userValue, passValue) {
+                            $.ajax({
+                                url: "../checkLoginServlet",
+                                data: {
+                                    user: userValue,
+                                    pass: passValue
+                                },
+                                success: function(data) {
+                                    if (data == "false") {
+                                        $('#errorMsg').append("Wrong username or email");
+                                    } else if (data == "true") {
+                                        $('form[name=loginForm]').submit();
+                                    }
+                                }
+                            });
+                        }
+
+
+
+
         </script>
 
         <script type="text/javascript">
             function onSignIn(googleUser) {
+
                 var profile = googleUser.getBasicProfile();
                 console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
                 console.log('Name: ' + profile.getName());
                 console.log('Image URL: ' + profile.getImageUrl());
                 console.log('Email: ' + profile.get); // This is null if the 'email' scope is not present.
+// The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+                window.location.href = '../googleLoginServlet?token=' +id_token;
             }
+            
         </script>
     </body>
 </html>

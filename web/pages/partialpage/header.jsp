@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <header class="main-header">
     <!-- Logo -->
     <a href="mainIndex.jsp" class="logo">
@@ -118,7 +117,7 @@
 
                                 </div>
                                 <div class="pull-right">
-                                <c:if test="${not empty fullName}"><a href="../logOutServlet" class="btn btn-default btn-flat">Sign out</a></c:if>
+                                <c:if test="${not empty fullName}"><a onclick="signOut()" class="btn btn-default btn-flat">Sign out</a></c:if>
                                 <c:if test="${empty fullName}"><a href="login.jsp" class="btn btn-default btn-flat">Sign in</a></c:if>
 
                             </div>
@@ -176,5 +175,21 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+<script>
+    function signOut() {
 
+//        var auth2 = gapi.auth2.getAuthInstance();
+//        auth2.signOut().then(function() {
+//            console.log('User signed out.');
+//
+//        });
+//         var revokeAllScopes = function() {
+//            auth2.disconnect();
+//        };
+//        window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
+        document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost/application-name/logoutUser";
+//        window.location.href = '../logOutServlet';
+    }
+
+</script>
 

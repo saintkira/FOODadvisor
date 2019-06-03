@@ -44,6 +44,10 @@ public interface AccountFacadeLocal {
 
     boolean changePassword(String username, String password);
 
+    boolean findEmail(String email);
+
+    Account findByEmail(String email);
+
    
     
 }

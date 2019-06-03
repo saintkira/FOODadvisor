@@ -41,12 +41,9 @@
         <link rel="stylesheet" href="../dist/css/toastr.min.css">
         <link rel="stylesheet" href="../dist/style.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="736432206058-qmih7ve92a1egll1j7i2rfu7bqonthol.apps.googleusercontent.com">
 
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -117,7 +114,7 @@
 
                                         <!--SETTING-->
                                         <div class="active tab-pane" id="settings">
-                                            <form class="form-horizontal" action="../updateProfileServlet" method="POST">
+                                            <form class="form-horizontal" action="../updateProfileServlet" method="POST" id="formProfile">
                                                 <div class="form-group">
                                                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
@@ -148,9 +145,7 @@
                                                     <div class="col-sm-10">
                                                         <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender" id="genderMale" name="gender"/> 
                                                             <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender" id="genderFemale"/></p>
-
                                                     </div>
-
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Height</label>
@@ -161,58 +156,58 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Weight</label>
-
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control"
                                                                data-inputmask="'mask': ['999']" data-mask placeholder="CM" id="inputWeight" name="weight">
                                                     </div>
                                                 </div>
-
-
-
                                                 <div class="form-group">
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-success" id="btnSubmit">Submit</button>
-
+                                                    <div class="col-sm-offset-2 col-xs-offset-1">
+                                                        <p style="color: red;" id="errorMsg"></p>
                                                     </div>
                                                 </div>
                                             </form>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 ">
+                                                    <button class="btn btn-success" id="btnSubmit" onclick="checkSubmitForm()">Submit</button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- /.tab-pane -->
 
 
                                         <!--CHANG PASSWORD-->
                                         <div class="tab-pane" id="changepass">
-                                            <form class="form-horizontal" action="../changePasswordServlet">
+                                            <form class="form-horizontal" action="../changePasswordServlet"  id="formChangePassword">
                                                 <div class="form-group">
                                                     <label for="oldPassword" class="col-sm-3 control-label">Old Password</label>
-
                                                     <div class="col-sm-9" id="formOldPass">
                                                         <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" name="oldPassword" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="newPassword" class="col-sm-3 control-label">New Password</label>
-
                                                     <div class="col-sm-9" id="formNewPass">
                                                         <input type="password" class="form-control" id="newPassword" placeholder="New Password" name="newPassword">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="confirmPassword" class="col-sm-3 control-label">Confirm New Password</label>
-
                                                     <div class="col-sm-9" id="formConfirmPass">
                                                         <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" name="confirmPassword">
                                                     </div>
-                                                </div>                                          
-
+                                                </div>
                                                 <div class="form-group">
-                                                    <div class="col-sm-offset-3 col-sm-9">
-                                                        <button type="submit" class="btn btn-success" id="btnChangePass">Submit</button>
-
+                                                    <div class="col-sm-offset-2 col-xs-offset-1">
+                                                        <p style="color: red;" id="errorPassMsg"></p>
                                                     </div>
                                                 </div>
                                             </form>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3">
+                                                    <button onclick="checkChangePasswordForm()" class="btn btn-success" id="btnChangePass">Submit</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- /.tab-content -->
@@ -231,13 +226,56 @@
         </div>
         <!-- ./wrapper -->
 
+        <!--modal confirm change profile-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Confirm change profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to save changes?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="submitForm()">OK</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--modal confirm change password-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmChangePassword">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Confirm change password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to save changes password?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="submitFormChangePassword()">OK</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- jQuery 3 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
-            $.widget.bridge('uibutton', $.ui.button);</script>
+                            $.widget.bridge('uibutton', $.ui.button);</script>
         <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>    
         <!--Toatr-->
@@ -251,6 +289,7 @@
         <script src="../dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="../dist/js/demo.js"></script>
+        <script src="../dist/js/validation.js"></script>
         <!-- Select2 -->
         <script src="../bower_components/select2/dist/js/select2.full.min.js"></script>
         <!--DATE PICKER-->
@@ -261,197 +300,250 @@
         <script src="../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
         <script src="../plugins/input-mask/jquery.inputmask.extensions.js"></script>
         <script>
-            $(document).ready(                    
-                    function() {
-                        getAvatar();
-                        //Datemask dd/mm/yyyy
-                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
-                        $('[data-mask]').inputmask();
-                        $('input[type="radio"].flat-red').iCheck({
-                            checkboxClass: 'icheckbox_flat-green',
-                            radioClass: 'iradio_flat-green'
-                        });
-
-                        //ajaxGetData
-                        $.ajax({
-                            url: '../getProfileServlet',
-                            data: {
-                                username: "${username}"
-                            },
-                            success: function(data) {
-                                $('#inputName').val(data.data[0].Fullname);
-                                $('#inputEmail').val(data.data[0].EmailAddress);
-                                $('#datemask').val(data.data[0].DOB);
-                                $('#inputHeight').val(data.data[0].Height);
-                                $('#inputWeight').val(data.data[0].Weight);
-                                if (data.data[0].Gender === "Active") {
-                                    $('#genderMale').iCheck('check');
-                                } else {
-                                    $('#genderFemale').iCheck('check');
+                            $(document).ready(
+                                    function() {
+                                        getAvatar();
+                                        //Datemask dd/mm/yyyy
+                                        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
+                                        $('[data-mask]').inputmask();
+                                        $('input[type="radio"].flat-red').iCheck({
+                                            checkboxClass: 'icheckbox_flat-green',
+                                            radioClass: 'iradio_flat-green'
+                                        });
+                                        //ajaxGetData
+                                        $.ajax({
+                                            url: '../getProfileServlet',
+                                            data: {
+                                                username: "${username}"
+                                            },
+                                            success: function(data) {
+                                                $('#inputName').val(data.data[0].Fullname);
+                                                $('#inputEmail').val(data.data[0].EmailAddress);
+                                                $('#datemask').val(data.data[0].DOB);
+                                                $('#inputHeight').val(data.data[0].Height);
+                                                $('#inputWeight').val(data.data[0].Weight);
+                                                if (data.data[0].Gender === "Active") {
+                                                    $('#genderMale').iCheck('check');
+                                                } else {
+                                                    $('#genderFemale').iCheck('check');
+                                                }
+                                            }
+                                        });
+                                    });
+                            function checkChangePasswordForm() {
+                                if ($("*").hasClass("has-error")) {
+                                    $("*").removeClass("has-error");
                                 }
-                            }
-                        });
+                                $('#errorPassMsg').empty();
+                                var oldPassValue = '${password}';
+                                var oldPassInput = $('#oldPassword').val();
+                                var newPassInput = $('#newPassword').val();
+                                var confirmPassInput = $('#confirmPassword').val();
+                                var checkOldPassResult = checkOldPass(oldPassValue, oldPassInput);
+                                var checkOldNewPassResult = checkOldNewPass(oldPassInput, newPassInput);
+                                var checkNewConfirmPassResult = checkNewConfirmPass(newPassInput, confirmPassInput);
+                                var checkOldPassBlankResult = checkOldPassBlank(oldPassInput);
+                                var checkNewPassBlankResult = checkNewPassBlank(newPassInput);
+                                var checkConfirmPassBlankResult = checkConfirmPassBlank(confirmPassInput);
+                                var checkPassStrengthResult = checkPassStrength(newPassInput);
 
-                        //checkConfirmPasswrod
-                        $("#oldPassword").focusout(function() {
-                            var oldPass = $(this).val().toString();
-                            
-                            console.log(oldPass);
-                                    m = '${password}';
-                                    console.log(m);
-                                    console.log(m!= oldPass);
-                                    if (${password} != oldPass) {
-                                        toastr.remove();
-                                        showToastr('error', 'Status', "Wrong Old Password");
-                                        $('#formOldPass').addClass("has-error");
-                                        $('#btnChangePass').attr("disabled", "disabled");
-                                    } else if (${password} == oldPass) {
-                                        if ($("#formOldPass").hasClass("has-error")) {
-                                            $("#formOldPass").removeClass("has-error");
-                                            return true;
-                                        }
-                                        if ($('#btnChangePass').attr("disabled") !== undefined) {
-                                            $('#btnChangePass').removeAttr("disabled");
-                                        }
-                                    }
-//                            $.ajax({
-//                                url: '../getOldPassword',
-//                                data: {
-//                                    username: "${username}"
-//                                },
-//                                success: function(data) {                                    
-//                                    
-//                                }
-//                            });
 
-                            if ($("#formOldPass").hasClass("has-error")) {
-                                $("#formOldPass").removeClass("has-error");
-                                return true;
-                            }
-                        });
 
-                        //check both password is the same
-                        $("#confirmPassword").focusout(function() {
-                            var a = $("#newPassword").val();
-                            var b = $(this).val();
-                            console.log(a);
-                            console.log(b);
-                            if (a !== b) {
-                                $("#formNewPass").addClass("has-error");
-                                toastr.remove();
-                                showToastr('error', 'Status', "New Password and Confirm Password is not the same");
-                                $('#btnChangePass').attr("disabled", "disabled");
-                                return false;
-                            } else if (a === b) {
-                                if ($("#formNewPass").hasClass("has-error")) {
-                                    $("#formNewPass").removeClass("has-error");
+                                if (checkOldPassBlankResult != "") {
+                                    $('#errorPassMsg').append(checkOldPassBlankResult);
+                                    $('#oldPassword').parent().addClass("has-error");
+                                    $('#oldPassword').focus();
+                                } else if (checkNewPassBlankResult != "") {
+                                    $('#errorPassMsg').append(checkNewPassBlankResult);
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#newPassword').focus();
+                                } else if (checkPassStrengthResult != "") {
+                                    $('#errorPassMsg').append(checkPassStrengthResult);
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#newPassword').focus();
                                     return true;
                                 }
-                                if ($('#btnChangePass').attr("disabled") !== undefined) {
-                                            $('#btnChangePass').removeAttr("disabled");
-                                        }
+                                else if (checkConfirmPassBlankResult != "") {
+                                    $('#errorPassMsg').append(checkConfirmPassBlankResult);
+                                    $('#confirmPassword').parent().addClass("has-error");
+                                    $('#confirmPassword').focus();
+                                } else if (checkOldNewPassResult != "") {
+                                    $('#errorPassMsg').append(checkOldNewPassResult);
+                                    $('#oldPassword').parent().addClass("has-error");
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#oldPassword').focus();
+                                } else if (checkNewConfirmPassResult != "") {
+                                    $('#errorPassMsg').append(checkNewConfirmPassResult);
+                                    $('#newPassword').parent().addClass("has-error");
+                                    $('#confirmPassword').parent().addClass("has-error");
+                                    $('#newPassword').focus();
+                                } else if (checkOldPassResult != "") {
+                                    $('#errorPassMsg').append(checkOldPassResult);
+                                    $('#oldPassword').parent().addClass("has-error");
+                                    $('#oldPassword').focus();
+                                }
+                                else {
+                                    $('#confirmChangePassword').modal("show");
+                                }
+                            }
+                            function checkOldPassBlank(oldPassInput) {
+                                if (oldPassInput == "") {
+                                    return "Old Password cannot be blank!! Please input old password!!";
+                                }
+                                return "";
+                            }
+                            function checkOldPass(oldPassValue, oldPassInput) {
+                                if (oldPassValue != oldPassInput) {
+                                    return "Old Password do not match!! Please try again!";
+                                }
+                                return "";
+                            }
+                            function checkOldNewPass(oldPass, newPass) {
+                                if (oldPass === newPass) {
+                                    return "Old Password and New Password must be different!!";
+                                }
+                                return "";
+                            }
+                            function checkNewConfirmPass(newPass, confirmPass) {
+                                if (newPass != confirmPass) {
+                                    return "New Password and Confirm Password do not match!!";
+                                }
+                                return "";
+                            }
+                            function checkNewPassBlank(newPass) {
+                                if (newPass == "") {
+                                    return "New Password cannot be blank!! Please input old password!!";
+                                }
+                                return "";
+                            }
+                            function checkConfirmPassBlank(confirmPass) {
+                                if (confirmPass == "") {
+                                    return "Confirm Password cannot be blank!! Please input old password!!";
+                                }
+                                return "";
+                            }
+                            function checkPassStrength(passValue) {
+
+                                if (!passValue.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
+                                    return "Password need to contain at least 1 number, 1 lowercase character, 1 uppercase character and at least 8 characters";
+                                }
+                                return "";
                             }
 
 
+                            //validatioon profile input
+                            function checkSubmitForm() {
+                                if ($("*").hasClass("has-error")) {
+                                    $("*").removeClass("has-error");
+                                }
+                                $('#errorMsg').empty();
+                                var nameValue = $('#inputName').val();
+                                var dateValue = $('#datemask').val();
+                                var emailValue = $('#inputEmail').val();
+                                var checkEmailResult = checkEmailValid(emailValue);
+                                var checkDateResult = checkDate(dateValue);
+                                var checkNameResult = checkNameLength(nameValue);
+                                console.log(emailValue);
+                                console.log(checkEmailResult);
+                                console.log(!emailValidation(emailValue));
 
-                        });
+                                if (checkNameResult != "") {
+                                    $('#errorMsg').append(checkNameResult);
+                                    $('#inputName').parent().addClass("has-error");
+                                    $('#inputName').focus();
+                                } else if (checkEmailResult != "") {
+                                    $('#errorMsg').append(checkEmailResult);
+                                    $('#inputEmail').parent().addClass("has-error");
+                                    $('#inputEmail').focus();
+                                }
+                                else if (checkDateResult != "") {
+                                    $('#errorMsg').append(checkDateResult);
+                                    $('#datemask').parent().addClass("has-error");
+                                    $('#datemask').focus();
+                                }
+                                else {
+                                    $('#confirmModal').modal("show");
+                                }
 
 
-                        //open the submit button
+                                function checkEmailValid(checkEmail) {
 
+                                    if (!emailValidation(checkEmail)) {
+                                        return "Email is not valid please try another email";
+                                    }
+                                    return "";
+                                }
 
-
-
-                        //click update
-//                        $('#btnSubmit').click(function() {
-//                            if ($('#genderMale').parent('[class*="icheckbox"]').hasClass("checked")) {
-//                                var gender = "true";
-//                            } else {
-//                                var gender = "false";
-//                            };
-//                            
-//                            
-//                            $.ajax({
-//                                url: '../updateProfileServlet',
-//                                data: {
-//                                    userName: "${username}",
-//                                    fullName: $('#inputName').val(),
-//                                    email: $('#inputEmail').val(),
-//                                    dob: formatDate2($('#datemask').val()),
-//                                    height: $('#inputHeight').val(),
-//                                    weight: $('#inputWeight').val(),
-//                                    gender: gender
-//                                },
-//                                success: function(responseText) {
-//                                    if (responseText.toString() === 'Success') {
-//                                        toastr.remove();
-//                                        showToastr('success', 'Status', "Successfully Updated");
-//                                        $('#confirm-delete').modal('hide');
-//                                        $('#example2').DataTable().destroy();
-//                                        loadDatatable();
-//                                    } else {
-//                                        toastr.remove();
-//                                        showToastr('error', 'Status', "Updating Failed");
-//                                        $('#confirm-delete').modal('hide');
-//                                    }
-//                                },
-//                                error: function(data) {
-//                                    toastr.remove();
-//                                    showToastr('error', 'Status', "Connection Error");
-//                                    $('#confirm-delete').modal('hide');
-//                                }                            
-//                            });
-//                            //het ajax
-//                        });
-                        //het function
-
-                    });
+                                function emailValidation(checkEmail) {
+                                    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                    return re.test(String(checkEmail).toLowerCase());
+                                }
+                            }
+                            function submitFormChangePassword() {
+                                $('#formChangePassword').submit();
+                            }
+                            function submitForm() {
+                                $('#formProfile').submit();
+                            }
         </script>
         <!--UPLOAD AVATAR-->
         <script src="../dist/js/profile.js"></script>
         <!--GET PROFILE DATA-->
         <script>
-            function formatDate(date) {
-                var d = new Date(date),
-                        month = '' + (d.getMonth() + 1),
-                        day = '' + d.getDate(),
-                        year = d.getFullYear();
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-                return [day, month, year].join("/");
-            };
-
-            function formatDate2(date) {
-                var d = new Date(date),
-                        month = '' + (d.getMonth() + 1),
-                        day = '' + d.getDate(),
-                        year = d.getFullYear();
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-                return [year, month, day].join("-");
-            };
-            //GET AVATAR
-            function getAvatar(){
-                    var username='${username}';
-                    username=username.toString();
-                    if (username!='') {
-                    $.ajax({
-                    url: '../getAvatarServlet',
-                    data: {
-                        username: "${username}"
-                    },
-                    success: function(data) {
-                        $('.profile-pic').attr("src",data);
-                    }
-                    });
-                    }
-                };
+                            function formatDate(date) {
+                                var d = new Date(date),
+                                        month = '' + (d.getMonth() + 1),
+                                        day = '' + d.getDate(),
+                                        year = d.getFullYear();
+                                if (month.length < 2)
+                                    month = '0' + month;
+                                if (day.length < 2)
+                                    day = '0' + day;
+                                return [day, month, year].join("/");
+                            }
+                            ;
+                            function formatDate2(date) {
+                                var d = new Date(date),
+                                        month = '' + (d.getMonth() + 1),
+                                        day = '' + d.getDate(),
+                                        year = d.getFullYear();
+                                if (month.length < 2)
+                                    month = '0' + month;
+                                if (day.length < 2)
+                                    day = '0' + day;
+                                return [year, month, day].join("-");
+                            }
+                            ;
+                            //GET AVATAR
+                            function getAvatar() {
+                                var username = '${username}';
+                                username = username.toString();
+                                if (username != '') {
+                                    $.ajax({
+                                        url: '../getAvatarServlet',
+                                        data: {
+                                            username: "${username}"
+                                        },
+                                        success: function(data) {
+                                            $('.profile-pic').attr("src", data);
+                                            $('.img-circle').attr("src", data);
+                                            $('.user-image').attr("src", data);
+                                        }
+                                    });
+                                }
+                            }
+                            ;
         </script>
-
+        <script type="text/javascript">
+            function onSignIn(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.get); // This is null if the 'email' scope is not present.
+                //                    window.location.href = '../googleLoginServlet?name='+profile.getName()+"&image="+profile.getImageUrl()+"&";
+            }
+        </script>
     </body>
 </html>
 

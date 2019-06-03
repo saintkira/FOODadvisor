@@ -38,7 +38,8 @@ public class logOutServlet extends HttpServlet {
             session.removeAttribute("fullName");
             session.removeAttribute("password");
             session.removeAttribute("error");
-            response.sendRedirect("pages/list_ingredients.jsp");
+            session.invalidate();
+            response.sendRedirect("pages/login.jsp");
             
         }
     }

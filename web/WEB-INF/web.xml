@@ -57,12 +57,53 @@
         <servlet-class>quang.getAvatarServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>menu7daysServlet</servlet-name>
         <servlet-class>trang.menu7daysServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>setMenuServlet</servlet-name>
         <servlet-class>trang.setMenuServlet</servlet-class>
+=======
+        <servlet-name>startupServlet</servlet-name>
+        <servlet-class>toan.startupServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>insertRecipeServlet</servlet-name>
+        <servlet-class>toan.insertRecipeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getTagforinsServlet</servlet-name>
+        <servlet-class>toan.getTagforinsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validationServlet</servlet-name>
+        <servlet-class>quang.validationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>googleLoginServlet</servlet-name>
+        <servlet-class>quang.googleLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkLoginServlet</servlet-name>
+        <servlet-class>quang.checkLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkAdminLoginServlet</servlet-name>
+        <servlet-class>quang.checkAdminLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginAdminServlet</servlet-name>
+        <servlet-class>quang.loginAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changeAdminPasswordServlet</servlet-name>
+        <servlet-class>quang.changeAdminPasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminLogoutServlet</servlet-name>
+        <servlet-class>quang.adminLogoutServlet</servlet-class>
+>>>>>>> merge23
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
@@ -121,16 +162,60 @@
         <url-pattern>/getAvatarServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>menu7daysServlet</servlet-name>
         <url-pattern>/menu7daysServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>setMenuServlet</servlet-name>
         <url-pattern>/setMenuServlet</url-pattern>
+=======
+        <servlet-name>startupServlet</servlet-name>
+        <url-pattern>/startupServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insertRecipeServlet</servlet-name>
+        <url-pattern>/insertRecipeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getTagforinsServlet</servlet-name>
+        <url-pattern>/getTagforinsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validationServlet</servlet-name>
+        <url-pattern>/validationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>googleLoginServlet</servlet-name>
+        <url-pattern>/googleLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkLoginServlet</servlet-name>
+        <url-pattern>/checkLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkAdminLoginServlet</servlet-name>
+        <url-pattern>/checkAdminLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginAdminServlet</servlet-name>
+        <url-pattern>/loginAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeAdminPasswordServlet</servlet-name>
+        <url-pattern>/changeAdminPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminLogoutServlet</servlet-name>
+        <url-pattern>/adminLogoutServlet</url-pattern>
+>>>>>>> merge23
     </servlet-mapping>
     <session-config>
         <session-timeout>
             1800
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>startupServlet</welcome-file>
+    </welcome-file-list>
 </web-app>

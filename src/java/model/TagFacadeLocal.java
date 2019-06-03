@@ -29,5 +29,7 @@ public interface TagFacadeLocal {
     List<Tag> findRange(int[] range);
 
     int count();
+
+    String getTagforins();
     
 }

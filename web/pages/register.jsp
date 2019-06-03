@@ -15,15 +15,15 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+        <link type="text/css" rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+        <link type="text/css" rel="stylesheet" href="../dist/css/AdminLTE.min.css">
         <!-- iCheck -->
-        <link rel="stylesheet" href="../plugins/iCheck/square/blue.css">
+        <link type="text/css" rel="stylesheet" href="../plugins/iCheck/square/blue.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,17 +66,21 @@
                     </div>
                     <div class="row">                        
                         <!-- /.col -->
-                        <div class="col-xs-4 hidden" id="notication">
-                            <p>Password and Repassword is not the same</p>
+                        <div class="col-xs-offset-1" id="notication">
+                            <p style="color:red;" id="errorMsg"></p>    
                         </div>
-
-                        <div class="col-xs-4 col-xs-offset-8">
-
-                            <button type="submit" class="btn btn-success btn-block btn-flat">Register</button>
+                        <div  class="hidden">
+                            <p id="checkExistedUser"></p> 
+                            <p id="checkExistedEmail"></p> 
                         </div>
                         <!-- /.col -->
                     </div>
-                </form>
+                </form> 
+                <div class="col-xs-4 col-xs-offset-8">
+                    <div>
+                        <button onclick="checkRegisterForm()" class="btn btn-success btn-block btn-flat">Register</button>
+                    </div>
+                </div>
 
                 <div class="social-auth-links text-center">
                     <p>- OR -</p>
@@ -98,35 +102,187 @@
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- iCheck -->
         <script src="../plugins/iCheck/icheck.min.js"></script>
+
         <script>
-            $(function() {
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_square-blue',
-                    radioClass: 'iradio_square-blue',
-                    increaseArea: '20%' /* optional */
-                });
-            });
-
-
-
-        </script>   
+                            $(function() {
+                                $('input').iCheck({
+                                    checkboxClass: 'icheckbox_square-blue',
+                                    radioClass: 'iradio_square-blue',
+                                    increaseArea: '20%' /* optional */
+                                });
+                            });</script>   
         <script>
-            $(document).ready(function() {
-                $("#rePassword").focusout(function() {
-                    var a = $("#password").val();
-                    var b = $(this).val();
-                    console.log(a);
-                    console.log(b);
-                    if (a !== b) {
-                        $("#formPass").addClass("has-error");
-                        return false;
-                    }
-                    if ($("#formPass").hasClass("has-error")) {
-                        $("#formPass").removeClass("has-error");
-                        return true;
+            function checkRegisterForm() {
+                if ($("*").hasClass("has-error")) {
+                    $("*").removeClass("has-error");
+                }
+                $('#errorMsg').empty();
+                var userValue = $('#username').val();
+                var fnameValue = $('#fullName').val();
+                var emailValue = $('#email').val();
+                var passValue = $('#password').val();
+                var repassValue = $('#rePassword').val();
+//               var checkAvailableUserResult = checkAvailableUser(userValue);
+                var checkEmailResult = checkEmailValid(emailValue);
+                var checkSamePassResult = checkSamePass(passValue, repassValue);
+                var checkBlankUserResult = checkBlankUser(userValue);
+                var checkBlankFnameResult = checkBlankFname(fnameValue);
+                var checkBlankEmailResult = checkBlankEmail(emailValue);
+                var checkBlankPassResult = checkBlankPass(passValue);
+                var checkBlankRepassResult = checkBlankRepass(repassValue);
+                var checkNameLengthResult = checkNameLength(fnameValue);
+                var checkPassStrengthResult = checkPassStrength(passValue);
+
+
+
+                if (checkBlankUserResult != "") {
+                    $('#errorMsg').append(checkBlankUserResult);
+                    $('#username').parent().addClass("has-error");
+                    $('#username').focus();
+                    return true;
+                } else if (checkBlankFnameResult != "") {
+
+                    $('#errorMsg').append(checkBlankFnameResult);
+                    $('#fullName').parent().addClass("has-error");
+                    $('#fullName').focus();
+                    return true;
+                } else if (checkNameLengthResult != "") {
+                    $('#errorMsg').append(checkNameLengthResult);
+                    $('#fullName').parent().addClass("has-error");
+                    $('#fullName').focus();
+                    return true;
+                }
+                else if (checkBlankEmailResult != "") {
+                    $('#errorMsg').append(checkBlankEmailResult);
+                    $('#email').parent().addClass("has-error");
+                    $('#email').focus();
+                    return true;
+                } else if (checkEmailResult != "") {
+                    $('#errorMsg').append(checkEmailResult);
+                    $('#email').parent().addClass("has-error");
+                    $('#email').focus();
+                    return true;
+                } else if (checkBlankPassResult != "") {
+                    $('#errorMsg').append(checkBlankPassResult);
+                    $('#password').parent().addClass("has-error");
+                    $('#password').focus();
+                    return true;
+                }
+                else if (checkPassStrengthResult != "") {
+                    $('#errorMsg').append(checkPassStrengthResult);
+                    $('#password').parent().addClass("has-error");
+                    $('#password').focus();
+                    return true;
+                } else if (checkBlankRepassResult != "") {
+                    $('#errorMsg').append(checkBlankRepassResult);
+                    $('#rePassword').parent().addClass("has-error");
+                    $('#rePassword').focus();
+                    return true;
+                } else if (checkSamePassResult != "") {
+                    $('#errorMsg').append(checkSamePassResult);
+                    $('#password').parent().addClass("has-error");
+                    $('#rePassword').parent().addClass("has-error");
+                    $('#password').focus();
+                    return true;
+                }
+                else {
+                    var checkExisted = checkAvailableUser(userValue, emailValue);
+                }
+            }
+
+            function checkAvailableUser(userValue, emailValue) {
+                $.ajax({
+                    url: "../validationServlet",
+                    data: {
+                        checkUser: userValue,
+                        checkEmail: emailValue
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        if (data == "User existed") {
+                            $('#errorMsg').empty;
+                            $('#username').focus();
+                            $('#username').parent().addClass("has-error");
+                            $('#errorMsg').append("This user is already existsed");
+                        } else if (data == "Email existed") {
+                            $('#errorMsg').empty;
+                            $('#email').parent().addClass("has-error");
+                            $('#email').focus();
+                            $('#errorMsg').append("This email is already existsed");
+                        }
+                        else if (data == "ok") {
+                            $("form[name=registerForm]").submit();
+                        }
                     }
                 });
-            });
+            }
+            ;
+
+
+
+            function checkSamePass(pass, rePass) {
+                if (pass !== rePass) {
+                    return "Password and Retype Password do not match"
+                }
+                return "";
+            }
+            function checkEmailValid(emailValue) {
+                if (!emailValidation(emailValue)) {
+                    return "Email is not valid please try another email";
+                }
+                return "";
+            }
+            function emailValidation(checkEmail) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(checkEmail).toLowerCase());
+            }
+            function checkBlankUser(userValue) {
+                if (userValue == "") {
+                    return "Username must not be blank!!";
+                }
+                return "";
+
+            }
+            function checkBlankFname(fnameValue) {
+                if (fnameValue == "") {
+                    return "Full Name must not be blank!!";
+                }
+                return "";
+            }
+            function checkBlankEmail(emailValue) {
+                if (emailValue == "") {
+                    return "Email must not be blank!!";
+                }
+                return "";
+            }
+            function checkBlankPass(passValue) {
+                if (passValue == "") {
+                    return "Password must not be blank!!";
+                }
+                return "";
+            }
+            function checkBlankRepass(repassValue) {
+                if (repassValue == "") {
+                    return "Retype password must not be blank";
+                }
+                return "";
+            }
+            function checkNameLength(checkName) {
+                if (checkName !== "") {
+                    if (checkName.length > 30) {
+                        return "Length of name must be smaller than 30 characters";
+                    }
+                }
+                return "";
+            }
+            function checkPassStrength(passValue) {
+
+                if (!passValue.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
+                    return "Password need to contain at least 1 number, 1 lowercase character, 1 uppercase character and at least 8 characters";
+                }
+                return "";
+            }
+
         </script>
 
     </body>

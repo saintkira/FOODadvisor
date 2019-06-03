@@ -6,9 +6,11 @@
 
 package model;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,18 @@ public class TagFacade extends AbstractFacade<Tag> implements TagFacadeLocal {
 
     public TagFacade() {
         super(Tag.class);
+    }
+
+    @Override
+    public String getTagforins() {
+        Query q = em.createNativeQuery("SELECT 'option' as [type], TagID AS 'value',TagName AS 'label' FROM Tag\n" +
+                             "FOR JSON AUTO");
+        List<String> results = q.getResultList();
+        String json="";
+        for (String s:results) {
+            json=json+s;
+        }
+        return json;
     }
     
 }
