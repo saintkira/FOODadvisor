@@ -29,5 +29,9 @@ public interface AdministratorFacadeLocal {
     List<Administrator> findRange(int[] range);
 
     int count();
+
+    boolean checkLogin(String user, String pass);
+
+    boolean changePassword(String password);
     
 }
