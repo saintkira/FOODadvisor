@@ -19,10 +19,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.jackson-core-2.9.2.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.commons-logging-1.2.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -127,10 +123,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.jackson-core-asl-1.9.11.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.jdo2-api-2.3-eb.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -156,6 +148,18 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.xpp3-1.1.4c.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.jackson-annotations-2.9.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.jackson-core-2.9.9.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.jackson-databind-2.9.9.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

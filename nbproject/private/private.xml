@@ -3,18 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/admin/insert_recipe.jsp</file>
-            <file>file:/D:/Project%204/FOODadvisor/web/bower_components/css_js_toan/jquery.mask.min.js</file>
-=======
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/partialpage/header.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/profile.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/model/AccountFacadeLocal.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/login.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/loginServlet.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/googleLoginServlet.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/model/AccountFacade.java</file>
->>>>>>> quang_common4
+            <file>file:/D:/Project%204/FOODadvisor/src/java/model/Menu7Days.java</file>
+            <file>file:/D:/Project%204/FOODadvisor/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Project%204/FOODadvisor/src/java/helper/JsonHelper.java</file>
         </group>
     </open-files>
 </project-private>
