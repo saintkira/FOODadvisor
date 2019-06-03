@@ -42,8 +42,8 @@ public class Menu implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "MenuID", nullable = false)
-    private Integer menuID;
+    @Column(name = "MenuID", length = 4)
+    private String menuID;
     @Size(max = 10)
     @Column(name = "Time", length = 10)
     private String time;
@@ -64,15 +64,15 @@ public class Menu implements Serializable {
     public Menu() {
     }
 
-    public Menu(Integer menuID) {
+    public Menu(String menuID) {
         this.menuID = menuID;
     }
 
-    public Integer getMenuID() {
+    public String getMenuID() {
         return menuID;
     }
 
-    public void setMenuID(Integer menuID) {
+    public void setMenuID(String menuID) {
         this.menuID = menuID;
     }
 

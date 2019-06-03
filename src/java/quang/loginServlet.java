@@ -47,8 +47,23 @@ public class loginServlet extends HttpServlet {
                 session.removeAttribute("error");
                 session.setAttribute("username", username);
                 session.setAttribute("password", password);
-                session.setAttribute("fullName", accountFacade.find(username).getFullname());
-                response.sendRedirect("pages/profile.jsp");
+                
+                String fullname = accountFacade.find(username).getFullname();
+                session.setAttribute("fullName", fullname);
+                
+                //get last 2 words of fullname
+                String[] fname = fullname.split(" ");
+                String name = fname[fname.length-2] + " " + fname[fname.length-1];
+                session.setAttribute("name", name);
+                
+                //check redirect
+                String locating = (String)session.getAttribute("redirect");
+                if(locating != null){
+                    response.sendRedirect(locating);
+                }else{
+                    response.sendRedirect("pages/profile.jsp");
+                }                
+                
             } else {
                 session.setAttribute("error", "error");
                 response.sendRedirect("pages/login.jsp");
