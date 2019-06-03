@@ -134,9 +134,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-top:0px">
-                                        <label>Tag</label>
-                                        <select id="my-select" name="character" multiple="multiple">
-                                        </select>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Tag</label>
+                                                <select id="my-select" name="character" multiple="multiple">
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <label>Price</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">$</span>
+                                                        <input type="text" maxlength="5" class="money" id="money"/>
+                                                    </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- input states 
@@ -265,11 +276,14 @@
         <script src="../../bower_components/ckeditor/ckeditor.js"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+        <!-- InputMask -->
+        <script src="../../bower_components/css_js_toan/jquery.mask.min.js"></script>
         <script>
           $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             CKEDITOR.replace('editor1');
+            $('.money').mask('##0,0', {reverse: true});
           })
         </script>
         
