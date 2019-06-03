@@ -36,7 +36,8 @@ public class menu7daysServlet extends HttpServlet {
 //                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
 //            } else {
                 
-                String root = "D:\\TrangNMT\\PRV\\PRJ4\\FOODadvisor\\recipes_document\\";
+                String root = request.getServletContext().getRealPath("//")+"\\recipes_document\\";
+                System.out.println(root);
 
                 List<Recipe> list = recipeFacade.findAll().subList(0, 20);
                 for (Recipe recipe : list) {
