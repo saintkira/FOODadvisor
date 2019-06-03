@@ -31,10 +31,10 @@ public class menu7daysServlet extends HttpServlet {
 
             HttpSession session = request.getSession();
 
-//            if (session.getAttribute("username") == null) {
-//                response.sendRedirect("pages/login.jsp");
-//                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
-//            } else {
+            if (session.getAttribute("username") == null) {
+                response.sendRedirect("pages/login.jsp");
+                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
+            } else {
                 
                 String root = request.getServletContext().getRealPath("//")+"\\recipes_document\\";
                 System.out.println(root);
@@ -51,7 +51,7 @@ public class menu7daysServlet extends HttpServlet {
 
                 session.setAttribute("list", list);
                 response.sendRedirect("pages/list_7days.jsp");
-//            }
+            }
 
         }
     }
