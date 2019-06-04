@@ -6,9 +6,11 @@
 
 package model;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,13 @@ public class RecipeDetailFacade extends AbstractFacade<RecipeDetail> implements 
 
     public RecipeDetailFacade() {
         super(RecipeDetail.class);
+    }
+
+    @Override
+    public List<IngredientModel> getIngredients(String recipeID) {
+        Query q = em.createQuery("SELECT r FROM RecipeDetail r WHERE r.recipeDetailPK.recipeID = :recipeID");
+        q.setParameter("recipeID", recipeID);
+        return q.getResultList();
     }
     
 }

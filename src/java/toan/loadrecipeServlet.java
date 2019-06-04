@@ -114,7 +114,8 @@ public class loadrecipeServlet extends HttpServlet {
             
             
             String resp="";
-            if(recipes.size()>=3){
+            try{
+                if(recipes.size()>=3){
                 Collections.shuffle(recipes);
                 resp = add_content(resp1, recipes.get(0)) + add_content(resp2, recipes.get(1)) + add_content(resp3, recipes.get(2));
                 recipes.remove(0);
@@ -137,6 +138,10 @@ public class loadrecipeServlet extends HttpServlet {
                         + "                        </div>\n"
                         + "                    </div>";
             }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            
              
             try{
                 out.write(resp);

@@ -29,5 +29,7 @@ public interface RecipeDetailFacadeLocal {
     List<RecipeDetail> findRange(int[] range);
 
     int count();
+
+    List<IngredientModel> getIngredients(String recipeID);
     
 }

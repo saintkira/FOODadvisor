@@ -21,72 +21,28 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-cart-plus"></i>
-                        <span class="label label-danger">4</span>
+                        <c:if test="${recipe_list_count eq null || recipe_list_count eq 0}"><span class="label label-danger" id="count">0</span></c:if>
+                        <c:if test="${recipe_list_count ne null || recipe_list_count > 0}"><span class="label label-danger" id="count">${recipe_list_count}</span></c:if>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 4 items</li>
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li><!-- start message -->
-
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <li class="header">
+                            <div class="row">
+                                    <c:if test="${recipe_list_count eq null || recipe_list_count eq 0}"><div class="col-md-9">You have no item</div></c:if>
+                                    <c:if test="${recipe_list_count ne null && recipe_list_count == 1}"><div class="col-md-9">You have ${recipe_list_count} item</div></c:if>
+                                    <c:if test="${recipe_list_count ne null && recipe_list_count > 1}"><div class="col-md-9">You have ${recipe_list_count} items</div></c:if>
+                                    <div class="col-md-3">
+                                    <button onclick="clearShoppingList();" style="width: 50px; position: absolute">
+                                        <div class="row">
+                                            <i class="fa fa-retweet" style="color:blue"></i>
+                                            Reset
                                         </div>
-                                        <h4>
-                                            Beef Steak                                            
-                                        </h4>
-                                        <p>Something something something</p>
-                                        <p style="text-align: right;;">  <a class="btn btn-social-icon btn-bitbucket bg-olive"><i class="fa fa-info-circle"></i></a>                                            
-                                            <a class="btn btn-social-icon btn-bitbucket bg-olive"><i class="fa fa-trash"></i></a></p>
-
-                                    </a>
-
-                                </li>
-                                <!-- end message --> 
-
-                                <li><!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            Support Team
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li><!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            Support Team
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li><!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            Support Team
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-
-
-                            </ul>
+                                    </button>
+                                    </div>    
+                            </div>
                         </li>
+                        
                         <li class="footer"><a href="#">See All Messages</a></li>
+                        
                     </ul>
                 </li>
                 <!-- User Account: style can be found in dropdown.less -->
@@ -108,7 +64,8 @@
                                 </p>
                             </li>
                             <!-- Menu Body -->
-
+                            <ul id="ul_menu">
+                            </ul>
                             <!-- Menu Footer-->
                             <li class="user-footer ">
                                 <div class="pull-left">

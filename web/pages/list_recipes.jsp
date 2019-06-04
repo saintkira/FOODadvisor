@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>    
 <head>
@@ -96,7 +96,7 @@
     </style>
 </head>
 
-<body class="hold-transition skin-green-light sidebar-mini">
+<body class="hold-transition skin-green-light sidebar-mini sidebar-collapse">
     <div class="warper"> 
         <jsp:include page="partialpage/header.jsp"/>
         <div class="content-wrapper">
@@ -176,7 +176,6 @@
                   </div>
               </div>
            
-
               <!-- footer -->
               <div class="modal-footer">
                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -266,24 +265,114 @@
             nav:false,
             items: 1,
             dots:false
-          },500); 
+          }); 
       });
     };
 </script>
 <script type="text/javascript">
-    function loveFunction(x,s) {
-      alert(s);
+    function loveFunction(x,id) {
+      tempid=id;
+      alert(tempid);
+      delete(tempid);
       x.classList.toggle("heart-love");
     };
-    function menuFunction(x,s) {
-      x.classList.toggle("fa-calendar-check-o");
-      alert(s);
-      if (x.classList.toString()==="fa fa-calendar-plus-o") {
-          $("#"+s).removeClass("selected");
-      }else{
-          $("#"+s).addClass("selected");
-      }  
+    
+    
+    function menuFunction(x,id) {
+        tempid=id;
+        x.classList.toggle("fa-calendar-check-o");
+        if (x.classList.toString()==="fa fa-calendar-plus-o") {
+            $.ajax({
+            url : '../shoppinglistServlet',
+            data : {
+                    ID : tempid,
+                    status : 'remove'
+            },
+            success : function(responseText) {
+                    data = JSON.parse(responseText);
+                    count=data.count;
+                    
+                    $("#count").html("<div>"+count+"</div>");
+                    if (count==0) {
+                        $("#list_header").html("<div>You have no item</div>");
+                    }else if (count==1) {
+                        $("#list_header").html("<div>You have 1 item</div>");
+                    }else{
+                        $("#list_header").html("<div>You have "+count+" items</div>");
+                    }
+                    
+                    $("#ul_menu").html("");
+                    for (i = 0; i < count; i++) {
+                        $("#ul_menu").append("<li>"
+                            +        "<a href=\"#\">"
+                            +            "<div class=\"pull-left\">"
+                            +               "<img src=\"../recipes_document/"+data.recipe[i].recipeID+"/"+data.recipe[i].recipeID+"-1.jpg\" class=\"img-circle\" alt=\"Recipe Image\">"
+                            +            "</div>"
+                            +            "<h4>"+data.recipe[i].recipeName+"</h4>"
+                            +            "<div class=\"pull-right\">"
+                            +                "<small><button id=\"\" onclick=\"\"><i class=\"fa fa-minus-circle\" style=\"color:red\"></i></button></small>"
+                            +            "</div>"
+                            +        "</a>"
+                            +    "</li>");
+                    }
+                    
+                    delete(tempid);
+                    delete(data);
+                    delete(count);
+                    $("#"+id).removeClass("selected");
+            }
+            });
+        }else{
+            $.ajax({
+            url : '../shoppinglistServlet',
+            data : {
+                    ID : tempid,
+                    status : 'add'
+            },
+            success : function(responseText) {
+                    data = JSON.parse(responseText);
+                    count=data.count;
+                    
+                    $("#count").html("<div>"+count+"</div>");
+                    if (count==0) {
+                        $("#list_header").html("<div>You have no item</div>");
+                    }else if (count==1) {
+                        $("#list_header").html("<div>You have 1 item</div>");
+                    }else{
+                        $("#list_header").html("<div>You have "+count+" items</div>");
+                    }
+                    
+                    $("#ul_menu").html("");
+                    for (i = 0; i < count; i++) {
+                        $("#ul_menu").append("<li>"
+                            +        "<a href=\"#\">"
+                            +            "<div class=\"pull-left\">"
+                            +               "<img src=\"../recipes_document/"+data.recipe[i].recipeID+"/"+data.recipe[i].recipeID+"-1.jpg\" class=\"img-circle\" alt=\"Recipe Image\">"
+                            +            "</div>"
+                            +            "<h4>"+data.recipe[i].recipeName+"</h4>"
+                            +            "<div class=\"pull-right\">"
+                            +                "<small><button id=\"\" onclick=\"\"><i class=\"fa fa-minus-circle\" style=\"color:red\"></i></button></small>"
+                            +            "</div>"
+                            +        "</a>"
+                            +    "</li>");
+                    }
+                    
+                    delete(tempid);
+                    delete(data);
+                    delete(count);
+                    $("#"+id).addClass("selected");
+            }
+            });
+        }
+    
     };
+    
+    
+    function clearShoppingList(){
+        
+    };
+    
+    
     //$("#img1").attr("src","../bower_components/css_js_toan/images/food6.jpg");
       // Custom Button
       $('.customNextBtn').click(function() {
