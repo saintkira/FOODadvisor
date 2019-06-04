@@ -14,22 +14,28 @@
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
-
+        <%toan.helpfunction help = new toan.helpfunction();
+          session.setAttribute("help", help);
+        %>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">  
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
+                <li class="dropdown messages-menu" id="messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-cart-plus"></i>
-                        <c:if test="${recipe_list_count eq null || recipe_list_count eq 0}"><span class="label label-danger" id="count">0</span></c:if>
-                        <c:if test="${recipe_list_count ne null || recipe_list_count > 0}"><span class="label label-danger" id="count">${recipe_list_count}</span></c:if>
+                        <c:choose>
+                            <c:when test="${recipe_list_count eq null || recipe_list_count eq 0}"><span class="label label-danger"><div id="count">0</div></span></c:when>    
+                            <c:otherwise><span class="label label-danger"><div id="count">${recipe_list_count}</div></span></c:otherwise>
+                        </c:choose>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">
                             <div class="row">
-                                    <c:if test="${recipe_list_count eq null || recipe_list_count eq 0}"><div class="col-md-9">You have no item</div></c:if>
-                                    <c:if test="${recipe_list_count ne null && recipe_list_count == 1}"><div class="col-md-9">You have ${recipe_list_count} item</div></c:if>
-                                    <c:if test="${recipe_list_count ne null && recipe_list_count > 1}"><div class="col-md-9">You have ${recipe_list_count} items</div></c:if>
+                                <c:choose>
+                                    <c:when test="${recipe_list_count eq null || recipe_list_count eq 0}"><div class="col-md-9" id="list_header">You have no item</div></c:when>
+                                    <c:when test="${recipe_list_count ne null && recipe_list_count == 1}"><div class="col-md-9" id="list_header">You have ${recipe_list_count} item</div></c:when>
+                                    <c:otherwise><div class="col-md-9" id="list_header">You have ${recipe_list_count} items</div></c:otherwise>
+                                </c:choose>
                                     <div class="col-md-3">
                                     <button onclick="clearShoppingList();" style="width: 50px; position: absolute">
                                         <div class="row">
@@ -40,7 +46,30 @@
                                     </div>    
                             </div>
                         </li>
-                        <li><ul class="menu" id="ul_menu"></ul></li>
+                        <li>
+                            <ul class="menu" id="ul_menu">
+                                <c:if test="${recipe_list_count ne null && recipe_list_count > 0}">
+                                    <c:forEach items="${recipe_cart_list}" var="recipe">
+                                        <li id="li-${recipe.getRecipeID()}">
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="../recipes_document/${recipe.getRecipeID()}/${recipe.getRecipeID()}-1.jpg" class="img-circle" alt="Recipe Image">
+                                                </div>
+                                                <h4>${help.shorten(recipe.getRecipeName())}</h4>
+                                                <div class="pull-right">
+                                                    <small style="margin-right:15px">
+                                                        <button onclick="loadmodalFunction('${recipe.getRecipeID()}')" data-toggle="modal" data-target="#fsModal"><i class="fa fa-id-card" style="color:green"></i></button>
+                                                    </small>
+                                                    <small>
+                                                        <button onclick="clearRecipefromlist('${recipe.getRecipeID()}')"><i class="fa fa-minus-circle" style="color:red"></i></button>
+                                                    </small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </c:forEach>
+                                </c:if>
+                            </ul>
+                        </li>
                         <li class="footer"><a href="#">See All Messages</a></li>
                         
                     </ul>
@@ -133,7 +162,37 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+<!-- jQuery 3 -->
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script>
+    function clearShoppingList(){
+      $.ajax({
+            url : '../shoppinglistServlet',
+            data : {
+                    ID : 'rmall',
+                    status : 'removeall'
+            },
+            success : function(responseText) {
+                    data1 = JSON.parse(responseText);
+                    count=data1.count;
+                    $("#count").html("");
+                    $("#count").append("0");
+                    $("#list_header").html("<div>You have no item</div>");
+                    $("#ul_menu").html("");
+                    for (i = 0; i < count; i++) {
+                        $("#"+data1.recipe[i].recipeID).removeClass("selected");
+                        recipeElement = document.getElementById("i-"+data1.recipe[i].recipeID);
+                        if (recipeElement!=null) {
+                            recipeElement.classList.toggle("fa-calendar-check-o");
+                        }
+                        delete(recipeElement);
+                    }
+                    delete(data1);
+                    delete(count);
+                    $("#messages-menu").addClass("open");
+            }
+            });  
+    };
     function signOut() {
 
 //        var auth2 = gapi.auth2.getAuthInstance();

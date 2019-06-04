@@ -292,7 +292,8 @@
                     data = JSON.parse(responseText);
                     count=data.count;
                     
-                    $("#count").html("<div>"+count+"</div>");
+                    $("#count").html("");
+                    $("#count").append(count);
                     if (count==0) {
                         $("#list_header").html("<div>You have no item</div>");
                     }else if (count==1) {
@@ -333,7 +334,8 @@
                     data = JSON.parse(responseText);
                     count=data.count;
                     
-                    $("#count").html("<div>"+count+"</div>");
+                    $("#count").html("");
+                    $("#count").append(count);
                     if (count==0) {
                         $("#list_header").html("<div>You have no item</div>");
                     }else if (count==1) {
@@ -344,14 +346,15 @@
                     
                     $("#ul_menu").html("");
                     for (i = 0; i < count; i++) {
-                        $("#ul_menu").append("<li>"
-                            +        "<a href=\"#\">"
+                        $("#ul_menu").append("<li id=\"li-"+data.recipe[i].recipeID+"\">"
+                            +       "<a href=\"#\">"
                             +            "<div class=\"pull-left\">"
                             +               "<img src=\"../recipes_document/"+data.recipe[i].recipeID+"/"+data.recipe[i].recipeID+"-1.jpg\" class=\"img-circle\" alt=\"Recipe Image\">"
                             +            "</div>"
                             +            "<h4>"+data.recipe[i].recipeName+"</h4>"
                             +            "<div class=\"pull-right\">"
-                            +                "<small><button id=\"\" onclick=\"\"><i class=\"fa fa-minus-circle\" style=\"color:red\"></i></button></small>"
+                            +                "<small style=\"margin-right:15px\"><button onclick=\"loadmodalFunction('"+data.recipe[i].recipeID+"')\" data-toggle=\"modal\" data-target=\"#fsModal\"><i class=\"fa fa-id-card\" style=\"color:green\"></i></button></small>"  
+                            +                "<small><button onclick=\"clearRecipefromlist('"+data.recipe[i].recipeID+"')\"><i class=\"fa fa-minus-circle\" style=\"color:red\"></i></button></small>"
                             +            "</div>"
                             +        "</a>"
                             +    "</li>");
@@ -361,16 +364,44 @@
                     delete(data);
                     delete(count);
                     $("#"+id).addClass("selected");
+                    $("#messages-menu").addClass("open");
             }
             });
         }
-    
     };
     
-    
-    function clearShoppingList(){
-        
-    };
+    function clearRecipefromlist(id){
+        tmpid=id;
+        $.ajax({
+            url : '../shoppinglistServlet',
+            data : {
+                    ID : tmpid,
+                    status : 'remove'
+            },
+            success : function(responseText) {
+                    data1 = JSON.parse(responseText);
+                    count=data1.count;
+                    
+                    $("#count").html("");
+                    $("#count").append(count);
+                    if (count==0) {
+                        $("#list_header").html("<div>You have no item</div>");
+                    }else if (count==1) {
+                        $("#list_header").html("<div>You have 1 item</div>");
+                    }else{
+                        $("#list_header").html("<div>You have "+count+" items</div>");
+                    }
+                    $("#li-"+tmpid).remove();
+                    $("#"+tmpid).removeClass("selected");
+                    document.getElementById("i-"+tmpid).classList.toggle("fa-calendar-check-o");
+                    delete(tmpid);
+                    delete(data1);
+                    delete(count);
+                    $("#messages-menu").addClass("open");
+            }
+            });
+    }
+ 
     
     
     //$("#img1").attr("src","../bower_components/css_js_toan/images/food6.jpg");

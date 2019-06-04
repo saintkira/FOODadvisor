@@ -26,6 +26,7 @@ public class shoppinglistServlet extends HttpServlet {
     private RecipeFacadeLocal recipeFacade;
     List<Recipe> recipe_cart_list = new ArrayList<>();
     List<RecipeModel> real_cart = new ArrayList<>();
+    helpfunction help = new helpfunction();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,11 +44,10 @@ public class shoppinglistServlet extends HttpServlet {
                 session.setAttribute("recipe_list_count", String.valueOf(recipe_cart_list.size()));
                 session.removeAttribute("recipe_cart_list");
                 session.setAttribute("recipe_cart_list", recipe_cart_list);
-                
                 //FOR AJAX ONLY
                 real_cart.clear();
                 for(Recipe recipe:recipe_cart_list){
-                    real_cart.add(new RecipeModel(recipe.getRecipeID(), shorten(recipe.getRecipeName()), recipe.getPrice(), recipe.getDescription(), recipe.getType()));
+                    real_cart.add(new RecipeModel(recipe.getRecipeID(), help.shorten(recipe.getRecipeName()), recipe.getPrice(), recipe.getDescription(), recipe.getType()));
                 }
                 
                 Gson gson = new Gson();
@@ -63,6 +63,26 @@ public class shoppinglistServlet extends HttpServlet {
                 response.setContentType("text/plain");
                 response.getWriter().write("false");
             }
+        }else if(status.equals("removeall")){
+            //FOR AJAX ONLY
+            real_cart.clear();
+            for (Recipe recipe : recipe_cart_list) {
+                real_cart.add(new RecipeModel(recipe.getRecipeID(), help.shorten(recipe.getRecipeName()), recipe.getPrice(), recipe.getDescription(), recipe.getType()));
+            }
+
+            Gson gson = new Gson();
+            JsonElement je = gson.toJsonTree(real_cart);
+            JsonObject jo = new JsonObject();
+            jo.add("recipe", je);
+            jo.addProperty("count", String.valueOf(recipe_cart_list.size()));
+            real_cart.clear();
+            recipe_cart_list.clear();
+            session.removeAttribute("recipe_list_count");
+            session.removeAttribute("recipe_cart_list");
+            System.out.println(jo.toString());
+            response.setContentType("text/plain");
+            response.getWriter().write(jo.toString());
+            //FOR AJAX ONLY
         }else{
             if (recipe_cart_list.remove(recipeFacade.find(ID))) {
                 session.removeAttribute("recipe_list_count");
@@ -73,7 +93,7 @@ public class shoppinglistServlet extends HttpServlet {
                 //FOR AJAX ONLY
                 real_cart.clear();
                 for (Recipe recipe : recipe_cart_list) {
-                    real_cart.add(new RecipeModel(recipe.getRecipeID(), shorten(recipe.getRecipeName()), recipe.getPrice(), recipe.getDescription(), recipe.getType()));
+                    real_cart.add(new RecipeModel(recipe.getRecipeID(), help.shorten(recipe.getRecipeName()), recipe.getPrice(), recipe.getDescription(), recipe.getType()));
                 }
 
                 Gson gson = new Gson();
@@ -92,25 +112,7 @@ public class shoppinglistServlet extends HttpServlet {
         }
           
     }
-    public String shorten(String RecipeName){
-        String[] words = RecipeName.split("\\s");
-        int count=0;
-        String result="";
-        for (int i = 0; i < words.length; i++) {
-            count = result.length();
-            if (count<=20) {
-                result=result+words[i]+" ";
-                if (result.length()>=25) {
-                    result=result.replace(words[i]+" ", "...");
-                    break;
-                }
-            }else{
-                result=result+"...";
-                break;
-            }
-        }
-        return result;
-    }
+    
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
