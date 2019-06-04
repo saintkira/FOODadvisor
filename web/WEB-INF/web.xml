@@ -228,8 +228,10 @@
         <filter-name>logFilter</filter-name>
         <filter-class>toan.LogFilter</filter-class>
     </filter>
+    <!--
     <filter-mapping>
         <filter-name>logFilter</filter-name>
         <url-pattern>/pages/admin/*</url-pattern>
     </filter-mapping>
+    -->
 </web-app>
