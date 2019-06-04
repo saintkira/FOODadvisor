@@ -29,6 +29,8 @@ public class Menu7Days {
     
     @JsonProperty("RecipeID")
     private String recipeID;
+    
+    private String recipeImage;
 
     public Menu7Days() {
     }
@@ -89,6 +91,13 @@ public class Menu7Days {
     public void setRecipeID(String recipeID) {
         this.recipeID = recipeID;
     }
-    
+
+    public String getRecipeImage() {
+        return recipeImage;
+    }
+
+    public void setRecipeImage(String recipeImage) {
+        this.recipeImage = recipeImage;
+    }    
     
 }

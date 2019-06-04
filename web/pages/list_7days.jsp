@@ -178,14 +178,14 @@
                                     </div>
                                 </li>                                
                                 <li>
-                                    <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#txt1"></i>
+                                    <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#yourMenuCollapse"></i>
                                     <div class="timeline-item" style="min-height: 10px">
 
                                         <h3 class="timeline-header"><a href="#">${name}</a> - Recipes you chose</h3>
 
-                                        <div class="timeline-body collapse" id="txt1">
+                                        <div class="timeline-body collapse" id="yourMenuCollapse">
                                             <div style="overflow-x:auto; height:130px">
-                                                <c:forEach items="${list}" var="i">
+                                                <c:forEach items="${recipeList}" var="i">
                                                     <div style="display:inline; position:relative;">    
                                                         <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">
                                                             <c:if test="${i.type.contains('Maincourse')}">
