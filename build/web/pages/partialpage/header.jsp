@@ -40,7 +40,7 @@
                                     </div>    
                             </div>
                         </li>
-                        
+                        <li><ul class="menu" id="ul_menu"></ul></li>
                         <li class="footer"><a href="#">See All Messages</a></li>
                         
                     </ul>
@@ -53,6 +53,7 @@
 
                             <span class=""> Welcome  <c:if test="${not empty name}">${name}</c:if><c:if test="${empty fullName}">Guest</c:if></span>
                         </a>
+                        
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
