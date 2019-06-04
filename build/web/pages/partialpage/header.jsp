@@ -70,7 +70,7 @@
                                 </c:if>
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">See All Messages</a></li>
+                        <li class="footer"><a href="../menu7daysServlet">Go To Menu</a></li>
                         
                     </ul>
                 </li>

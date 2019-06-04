@@ -526,7 +526,6 @@
                                         },
                                         success: function(data) {
                                             $('.profile-pic').attr("src", data);
-                                            $('.img-circle').attr("src", data);
                                             $('.user-image').attr("src", data);
                                         }
                                     });
