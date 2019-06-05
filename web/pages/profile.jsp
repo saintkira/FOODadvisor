@@ -302,6 +302,11 @@
         <script>
                             $(document).ready(
                                     function() {
+<<<<<<< HEAD
+=======
+                                        console.log('${fullName}');
+                                        getAvatar();
+>>>>>>> quang_common5
                                         //Datemask dd/mm/yyyy
                                         $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
                                         $('[data-mask]').inputmask();
@@ -439,12 +444,14 @@
                                 var nameValue = $('#inputName').val();
                                 var dateValue = $('#datemask').val();
                                 var emailValue = $('#inputEmail').val();
+                                var heightValue = $('#inputHeight').val();
+                                console.log(heightValue);
+                                var weightValue = $('#inputWeight').val();
                                 var checkEmailResult = checkEmailValid(emailValue);
                                 var checkDateResult = checkDate(dateValue);
                                 var checkNameResult = checkNameLength(nameValue);
-                                console.log(emailValue);
-                                console.log(checkEmailResult);
-                                console.log(!emailValidation(emailValue));
+                                var checkHeightBlankResult = checkHeightBlank(heightValue);
+                                var checkWeightBlankResult = checkWeightBlank(weightValue);
 
                                 if (checkNameResult != "") {
                                     $('#errorMsg').append(checkNameResult);
@@ -459,12 +466,32 @@
                                     $('#errorMsg').append(checkDateResult);
                                     $('#datemask').parent().addClass("has-error");
                                     $('#datemask').focus();
+                                } else if (checkHeightBlankResult != "") {
+                                    $('#errorMsg').append(checkHeightBlankResult);
+                                    $('#inputHeight').parent().addClass("has-error");
+                                    $('#inputHeight').focus();
+                                }
+                                else if (checkWeightBlankResult != "") {
+                                    $('#errorMsg').append(checkWeightBlankResult);
+                                    $('#inputWeight').parent().addClass("has-error");
+                                    $('#inputWeight').focus();
                                 }
                                 else {
                                     $('#confirmModal').modal("show");
                                 }
 
-
+                                function checkWeightBlank(weightValue) {
+                                    if (weightValue == "") {
+                                        return "Please input Weight";
+                                    }
+                                    return "";
+                                }
+                                function checkHeightBlank(heightValue) {
+                                    if (heightValue == "") {
+                                        return "Please input Height";
+                                    }
+                                    return "";
+                                }
                                 function checkEmailValid(checkEmail) {
 
                                     if (!emailValidation(checkEmail)) {

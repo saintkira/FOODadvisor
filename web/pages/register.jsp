@@ -24,6 +24,10 @@
         <link type="text/css" rel="stylesheet" href="../dist/css/AdminLTE.min.css">
         <!-- iCheck -->
         <link type="text/css" rel="stylesheet" href="../plugins/iCheck/square/blue.css">
+        
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="303545973941-s9tl1n04o5n2fr028fq0ec006b5hsv1j.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,7 +90,7 @@
                     <p>- OR -</p>
                     <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
                         Facebook</a>
-                    <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+                    <a href="#" class="btn g-signin2" data-onsuccess="onSignIn"><i class="fa fa-google-plus"></i> Sign in using
                         Google+</a>
                 </div>
 
@@ -104,6 +108,7 @@
         <script src="../plugins/iCheck/icheck.min.js"></script>
 
         <script>
+                            
                             $(function() {
                                 $('input').iCheck({
                                     checkboxClass: 'icheckbox_square-blue',
@@ -112,6 +117,15 @@
                                 });
                             });</script>   
         <script>
+            $(document).ready(function() {
+                var googleLogin = '${googleLogin}';
+                var username = '${username}';
+                if (googleLogin != "") {
+                    $('#username').val(username);
+                    $('#fullName').val('${fullName}');
+                    $('#email').val('${email}');
+                }
+            });
             function checkRegisterForm() {
                 if ($("*").hasClass("has-error")) {
                     $("*").removeClass("has-error");
@@ -132,16 +146,16 @@
                 var checkBlankRepassResult = checkBlankRepass(repassValue);
                 var checkNameLengthResult = checkNameLength(fnameValue);
                 var checkPassStrengthResult = checkPassStrength(passValue);
-
-
-
+                
+                
+                
                 if (checkBlankUserResult != "") {
                     $('#errorMsg').append(checkBlankUserResult);
                     $('#username').parent().addClass("has-error");
                     $('#username').focus();
                     return true;
                 } else if (checkBlankFnameResult != "") {
-
+                    
                     $('#errorMsg').append(checkBlankFnameResult);
                     $('#fullName').parent().addClass("has-error");
                     $('#fullName').focus();
@@ -189,7 +203,7 @@
                     var checkExisted = checkAvailableUser(userValue, emailValue);
                 }
             }
-
+            
             function checkAvailableUser(userValue, emailValue) {
                 $.ajax({
                     url: "../validationServlet",
@@ -217,9 +231,9 @@
                 });
             }
             ;
-
-
-
+            
+            
+            
             function checkSamePass(pass, rePass) {
                 if (pass !== rePass) {
                     return "Password and Retype Password do not match"
@@ -241,7 +255,7 @@
                     return "Username must not be blank!!";
                 }
                 return "";
-
+                
             }
             function checkBlankFname(fnameValue) {
                 if (fnameValue == "") {
@@ -276,13 +290,13 @@
                 return "";
             }
             function checkPassStrength(passValue) {
-
+                
                 if (!passValue.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
                     return "Password need to contain at least 1 number, 1 lowercase character, 1 uppercase character and at least 8 characters";
                 }
                 return "";
             }
-
+            
         </script>
 
     </body>

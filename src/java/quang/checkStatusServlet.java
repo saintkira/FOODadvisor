@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package quang;
 
 import java.io.IOException;
@@ -20,7 +19,8 @@ import model.AccountFacadeLocal;
  *
  * @author Windows 10
  */
-public class updateProfileServlet extends HttpServlet {
+public class checkStatusServlet extends HttpServlet {
+
     @EJB
     private AccountFacadeLocal accountFacade;
 
@@ -37,32 +37,16 @@ public class updateProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String userName = request.getSession(false).getAttribute("username").toString();
-            String fullName = request.getParameter("fullName");
-            String email = request.getParameter("email");
-            
-            String dob = request.getParameter("dob");
-            int height = Integer.parseInt(request.getParameter("height").replace("_","0"));
-            int weight = Integer.parseInt(request.getParameter("weight").replace("_","0"));
-            boolean gen = Boolean.parseBoolean(request.getParameter("gender"));
-            Account account = new Account();
-           account.setUsername(userName);
-           account.setFullname(fullName);
-           account.setDob(dob);
-           account.setHeight(height);
-           account.setWeight(weight);
-           account.setEmailAddress(email);
-           account.setGender(gen);
-            if (accountFacade.updateAccount(account)) {
-                response.sendRedirect("pages/profile.jsp");
-            }else{
-            response.sendRedirect("pages/profile.jsp");
+            String user = request.getParameter("user");
+            Account account = accountFacade.find("user");
+
+            if (account.getActiveStatus()) {
+                response.setContentType("text/html");
+                response.getWriter().write("active");
+            } else {
+                response.setContentType("text/html");
+                response.getWriter().write("ban");
             }
-//           
-           
-            
-                
         }
     }
 

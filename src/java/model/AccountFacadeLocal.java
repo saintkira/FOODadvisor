@@ -46,7 +46,7 @@ public interface AccountFacadeLocal {
 
     boolean findEmail(String email);
 
-    Account findByEmail(String email);
+    List<Account> findByEmail(String email);
 
    
     

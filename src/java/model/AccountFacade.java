@@ -106,12 +106,12 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
 
     @Override
-    public Account findByEmail(String email) {
+    public List<Account> findByEmail(String email) {
         Query q = em.createQuery("SELECT a FROM Account a WHERE a.emailAddress = :emailAddress");
         q.setParameter("emailAddress", email);
-        List<Account> resultList = q.getResultList();
-        Account resultAccount  = resultList.get(0);
-        return resultAccount;
+        
+        
+        return q.getResultList();
     }
     
     
