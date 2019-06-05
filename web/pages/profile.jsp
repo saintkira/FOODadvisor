@@ -140,8 +140,8 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Gender</label>
                                                     <div class="col-sm-10">
-                                                        <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender" id="genderMale" name="gender"/> 
-                                                            <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender" id="genderFemale"/></p>
+                                                        <p><label class="control-label">Male</label> <input type ="radio" class="flat-red" name="gender" id="genderMale" value="male"/> 
+                                                            <label class="control-label">Female</label> <input type ="radio" class="flat-red" name="gender" id="genderFemale" value="female"/></p>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

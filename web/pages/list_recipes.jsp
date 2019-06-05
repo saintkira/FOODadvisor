@@ -272,7 +272,10 @@
 <script type="text/javascript">
     function loveFunction(x,id) {
       tempid=id;
-      alert(tempid);
+      
+      
+      
+      
       delete(tempid);
       x.classList.toggle("heart-love");
     };
@@ -311,7 +314,8 @@
                             +            "</div>"
                             +            "<h4>"+data.recipe[i].recipeName+"</h4>"
                             +            "<div class=\"pull-right\">"
-                            +                "<small><button id=\"\" onclick=\"\"><i class=\"fa fa-minus-circle\" style=\"color:red\"></i></button></small>"
+                            +                "<small style=\"margin-right:15px\"><button onclick=\"loadmodalFunction('"+data.recipe[i].recipeID+"')\" data-toggle=\"modal\" data-target=\"#fsModal\"><i class=\"fa fa-id-card\" style=\"color:green\"></i></button></small>"  
+                            +                "<small><button onclick=\"clearRecipefromlist('"+data.recipe[i].recipeID+"')\"><i class=\"fa fa-minus-circle\" style=\"color:red\"></i></button></small>"
                             +            "</div>"
                             +        "</a>"
                             +    "</li>");
@@ -321,6 +325,7 @@
                     delete(data);
                     delete(count);
                     $("#"+id).removeClass("selected");
+                    $("#messages-menu").addClass("open");
             }
             });
         }else{
@@ -393,7 +398,10 @@
                     }
                     $("#li-"+tmpid).remove();
                     $("#"+tmpid).removeClass("selected");
-                    document.getElementById("i-"+tmpid).classList.toggle("fa-calendar-check-o");
+                    element = document.getElementById("i-"+tmpid);
+                    if (element!=null) {
+                        element.classList.toggle("fa-calendar-check-o");
+                    }
                     delete(tmpid);
                     delete(data1);
                     delete(count);

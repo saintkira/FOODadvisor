@@ -45,7 +45,7 @@ public class updateProfileServlet extends HttpServlet {
             String dob = request.getParameter("dob");
             int height = Integer.parseInt(request.getParameter("height").replace("_","0"));
             int weight = Integer.parseInt(request.getParameter("weight").replace("_","0"));
-            boolean gen = Boolean.parseBoolean(request.getParameter("gender"));
+            String gen = request.getParameter("gender");
             Account account = new Account();
            account.setUsername(userName);
            account.setFullname(fullName);
@@ -53,7 +53,11 @@ public class updateProfileServlet extends HttpServlet {
            account.setHeight(height);
            account.setWeight(weight);
            account.setEmailAddress(email);
-           account.setGender(gen);
+            if (gen.equals("male")) {
+                account.setGender(true);
+            }else{
+                account.setGender(false);
+            }
             if (accountFacade.updateAccount(account)) {
                 response.sendRedirect("pages/profile.jsp");
             }else{
