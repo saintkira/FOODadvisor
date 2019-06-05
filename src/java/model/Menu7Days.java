@@ -6,6 +6,7 @@
 
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -24,11 +25,14 @@ public class Menu7Days {
     
     @JsonProperty("Weekdays")
     private String weekdays;    
-
+    
     private String isDiet;
     
     @JsonProperty("RecipeID")
     private String recipeID;
+    
+    @JsonIgnore
+    private String recipeImage;
 
     public Menu7Days() {
     }
@@ -89,6 +93,13 @@ public class Menu7Days {
     public void setRecipeID(String recipeID) {
         this.recipeID = recipeID;
     }
-    
+
+    public String getRecipeImage() {
+        return recipeImage;
+    }
+
+    public void setRecipeImage(String recipeImage) {
+        this.recipeImage = recipeImage;
+    }    
     
 }

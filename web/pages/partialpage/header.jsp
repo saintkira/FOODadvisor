@@ -137,7 +137,7 @@
             </li>
             <!--CHUC NANG THU 2-->
             <li class="">
-                <a href="/FOODadvisor/menu7daysServlet">
+                <a href="/FOODadvisor/getMenuServlet">
                     <i class="fa fa-calendar"></i>
                     <span>FULL COURSE MEAL</span>
                     <span class="pull-right-container">

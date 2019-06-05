@@ -1,0 +1,57 @@
+#tlmenu{
+    padding: 0 45px 0 45px;
+}
+
+#tmenu{
+    padding: 1% 5% 1% 5% !important;
+}            
+
+.menu td{
+    width: 12.5%;
+    padding: 4px !important;                
+}
+
+.table{
+    box-shadow: 2px 3px 3px #888;
+    margin-bottom: 5px !important;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #bbb !important;
+}
+
+.cycle{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    padding: 12px;
+    margin: 0px 10px 18px 10px;
+    box-shadow: 8px 10px 8px #888;
+    cursor: move;
+}   
+
+.cell{
+    min-height: 65px;
+    max-heigt: 100%;
+    border: 1px solid #fff;
+    padding: 10%;
+}
+
+.fa-times{
+    color: crimson;
+    float: right;
+}            
+
+.thumbnail{
+    width: 80%;
+    height: 80%;
+    padding: 8%;
+    margin: 5%;
+    box-shadow: 4px 6px 4px #888;
+}
+
+.btn{
+    width: 70px;
+}
+
