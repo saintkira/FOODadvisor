@@ -40,10 +40,10 @@ public class setMenuServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            
             //Get username from session
             HttpSession session = request.getSession();
-            String username = "tuansang93";//(String) session.getAttribute("username");
+            String username = (String) session.getAttribute("username");
 
             //get directory of recipes_document folder
             String root = request.getServletContext().getRealPath("//") + "\\recipes_document\\";
