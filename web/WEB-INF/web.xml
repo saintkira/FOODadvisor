@@ -125,13 +125,12 @@
         <servlet-class>trang.clearMenuServlet</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>activeuserServlet</servlet-name>
         <servlet-class>toan.activeuserServlet</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>searchRecipeServlet</servlet-name>
         <servlet-class>trang.searchRecipeServlet</servlet-class>
->>>>>>> trang123
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
@@ -258,13 +257,12 @@
         <url-pattern>/clearMenuServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>activeuserServlet</servlet-name>
         <url-pattern>/activeuserServlet</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>searchRecipeServlet</servlet-name>
         <url-pattern>/searchRecipeServlet</url-pattern>
->>>>>>> trang123
     </servlet-mapping>
     <session-config>
         <session-timeout>
