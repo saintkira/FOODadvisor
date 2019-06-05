@@ -94,13 +94,22 @@ public class googleLoginServlet extends HttpServlet {
                 String locale = (String) payload.get("locale");
                 String familyName = (String) payload.get("family_name");
                 String givenName = (String) payload.get("given_name");
-                Account checkList = accountFacade.findByEmail(email);
-                if (checkList!=null) {
-                    session.setAttribute("username",checkList.getUsername());
-                    session.setAttribute("password", checkList.getPassword());
-                    session.setAttribute("fullName", checkList.getFullname());
+                ///////======
+                List<Account> checkList = accountFacade.findByEmail(email);
+                if (!checkList.isEmpty()) {
+                    session.setAttribute("username", checkList.get(0).getUsername());
+                    session.setAttribute("password", checkList.get(0).getPassword());
+                    session.setAttribute("fullName", checkList.get(0).getFullname());
+                    session.setAttribute("googleLogin", "true");
                     session.setAttribute("error", null);
                     response.sendRedirect("pages/profile.jsp");
+                } else {
+                    session.setAttribute("googleLogin", "true");
+                    session.setAttribute("username", givenName);
+                    session.setAttribute("email", email);
+                    session.setAttribute("fullName", name);
+                    response.sendRedirect("pages/register.jsp");
+
                 }
 
                 // Use or store profile information

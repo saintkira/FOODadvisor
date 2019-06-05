@@ -112,6 +112,7 @@
                                 return true;
                             }
                             else {
+                                checkStatus();
                                 var checkLoginValue = checkLogin(userValue, passValue);
                             }
                         }
@@ -142,6 +143,20 @@
                             });
                         }
 
+                        function checkStatus(userValue) {
+                            $.ajax({
+                                url: "../checkStatusServlet",
+                                data: {
+                                    user: userValue
+                                },
+                                success: function(data) {
+                                    if (data == "ban") {
+                                        $('#errorMsg').append("This user is banned. Please contact admin");
+                                    }
+                                }
+                            });
+                        }
+
 
 
 
@@ -158,9 +173,9 @@
 // The ID token you need to pass to your backend:
                 var id_token = googleUser.getAuthResponse().id_token;
                 console.log("ID Token: " + id_token);
-                window.location.href = '../googleLoginServlet?token=' +id_token;
+                window.location.href = '../googleLoginServlet?token=' + id_token;
             }
-            
+
         </script>
     </body>
 </html>
