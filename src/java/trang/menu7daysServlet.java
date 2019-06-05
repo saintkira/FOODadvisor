@@ -30,7 +30,9 @@ public class menu7daysServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             HttpSession session = request.getSession();
-
+            
+            //remove menuList
+            session.removeAttribute("menuList");
 //            if (session.getAttribute("username") == null) {
 //                response.sendRedirect("pages/login.jsp");
 //                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");

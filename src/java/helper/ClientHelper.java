@@ -27,6 +27,18 @@ public class ClientHelper {
         return result;
     }
     
+    public static <T> boolean doCreate(String spName, T object, String user){
+        boolean result = false;
+        String json = null;
+        
+        json = JsonHelper.toJson(object);
+        if(json != null){
+            result = ConnectionHelper.callSP(spName, json, user);
+        }
+        
+        return result;
+    }
+    
     public static <T> boolean doEdit(String spName, T object){
         boolean result = false;
         String json = null;

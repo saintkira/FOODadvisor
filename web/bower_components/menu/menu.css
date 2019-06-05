@@ -23,18 +23,19 @@
 
 .cycle{
     border-radius: 50%;
-    width: 75px;
-    height: 75px;
-    padding: 8px;
-    margin: 5px;
+    width: 120px;
+    height: 120px;
+    padding: 12px;
+    margin: 0px 10px 18px 10px;
     box-shadow: 8px 10px 8px #888;
     cursor: move;
-}          
+}   
 
 .cell{
     min-height: 65px;
+    max-heigt: 100%;
     border: 1px solid #fff;
-    padding: 8%;
+    padding: 10%;
 }
 
 .fa-times{
@@ -53,3 +54,4 @@
 .btn{
     width: 70px;
 }
+

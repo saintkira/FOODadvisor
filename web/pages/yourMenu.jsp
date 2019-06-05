@@ -98,14 +98,16 @@
                                                                     <c:forEach var="x" begin="1" end="7">
                                                                         <td>
                                                                             <div class="cell" id="B${x}" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
-                                                                                <c:forEach items="${menuList}" var="i">
-                                                                                    <c:if test="${i.time eq 'B' && i.weekdays == x}">
-                                                                                        <div id="${i.recipeID}div">
-                                                                                            <span class="fa fa-times" id="${i.recipeID}i" style="cursor: pointer"></span>
-                                                                                            <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">                                                                                            
-                                                                                        </div>
-                                                                                    </c:if>
-                                                                                </c:forEach>
+                                                                                
+                                                                                    <c:forEach items="${menuList}" var="i">
+                                                                                        <c:if test="${i.time eq 'B' && i.weekdays == x}">
+                                                                                            <div id="${i.recipeID}div">
+                                                                                                <span class="fa fa-times" id="${i.recipeID}B${x}i" style="cursor: pointer"></span>
+                                                                                                <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle thumbnail" id="${i.recipeID}B${x}" draggable="true" ondragstart="dragstart_handler(event);" ondragenter="mark(event)" ondragleave="unmark(event)">
+                                                                                                <input type="hidden" name="B${x}" value="${recipeID}" id="${recipeID}B${x}ip"/>
+                                                                                            </div>
+                                                                                        </c:if>
+                                                                                    </c:forEach>
                                                                             </div>
                                                                         </td>
                                                                     </c:forEach>
@@ -118,8 +120,9 @@
                                                                                 <c:forEach items="${menuList}" var="i">
                                                                                     <c:if test="${i.time eq 'L' && i.weekdays == x}">
                                                                                         <div id="${i.recipeID}div">
-                                                                                            <span class="fa fa-times" id="${i.recipeID}i" style="cursor: pointer"></span>
-                                                                                            <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">                                                                                            
+                                                                                            <span class="fa fa-times" id="${i.recipeID}L${x}i" style="cursor: pointer"></span>
+                                                                                            <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle thumbnail" id="${i.recipeID}L${x}" draggable="true" ondragstart="dragstart_handler(event);" ondragenter="mark(event)" ondragleave="unmark(event)">                                                                                            
+                                                                                            <input type="hidden" name="L${x}" value="${recipeID}" id="${recipeID}L${x}ip"/>
                                                                                         </div>
                                                                                     </c:if>
                                                                                 </c:forEach>
@@ -135,8 +138,9 @@
                                                                                 <c:forEach items="${menuList}" var="i">
                                                                                     <c:if test="${i.time eq 'D' && i.weekdays == x}">
                                                                                         <div id="${i.recipeID}div">
-                                                                                            <span class="fa fa-times" id="${i.recipeID}i" style="cursor: pointer"></span>
-                                                                                            <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">                                                                                            
+                                                                                            <span class="fa fa-times" id="${i.recipeID}D${x}i" style="cursor: pointer"></span>
+                                                                                            <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle thumbnail" id="${i.recipeID}D${x}" draggable="true" ondragstart="dragstart_handler(event);" ondragenter="mark(event)" ondragleave="unmark(event)">                                                                                            
+                                                                                            <input type="hidden" name="D${x}" value="${recipeID}" id="${recipeID}D${x}ip"/>
                                                                                         </div>
                                                                                     </c:if>
                                                                                 </c:forEach>
@@ -157,28 +161,16 @@
                                     </div>
                                 </li>                                
                                 <li>
-                                    <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#txt1"></i>
+                                    <i class="fa fa-cutlery bg-yellow"></i>
                                     <div class="timeline-item" style="min-height: 10px">
 
                                         <h3 class="timeline-header"><a href="#">${name}</a> - Recipes you chose</h3>
 
-                                        <div class="timeline-body collapse" id="txt1">
+                                        <div class="timeline-body">
                                             <div style="overflow-x:auto; height:130px">
                                                 <c:forEach items="${recipeList}" var="i">
                                                     <div style="display:inline; position:relative;">    
                                                         <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">
-                                                            <c:if test="${i.type.contains('Maincourse')}">
-                                                                <i class="fa fa-tags" style="position:absolute;right:10%"></i>
-                                                            </c:if>
-                                                            <c:if test="${i.type.contains('Desert')}">
-                                                                <i class="fa fa-bomb" style="position:absolute;right:25%;color:red"></i>
-                                                            </c:if>
-                                                            <c:if test="${i.type.contains('Appetizer')}">
-                                                                <i class="fa fa-tags" style="position:absolute;right:50%;color:green"></i>
-                                                            </c:if>
-                                                            <c:if test="${i.type.contains('Salad')}">
-                                                                <i class="fa fa-bomb" style="position:absolute;right:75%;color:black"></i>
-                                                            </c:if>    
                                                     </div>
                                                 </c:forEach>
                                             </div>                                            
@@ -193,46 +185,21 @@
                 </section>
             </div>
             <jsp:include page="partialpage/footer.jsp"/>
-
-            <!--             jQuery 3 
-                        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-                         jQuery UI 1.11.4 
-                        <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
-                         Resolve conflict in jQuery UI tooltip with Bootstrap tooltip 
-                        <script>
-                                $.widget.bridge('uibutton', $.ui.button);
-                        </script>
-                         Bootstrap 3.3.7 
-                        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-                         Morris.js charts 
-                        <script src="../bower_components/raphael/raphael.min.js"></script>
-                        <script src="../bower_components/morris.js/morris.min.js"></script>
-                         Sparkline 
-                        <script src="../bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-                         jvectormap 
-                        <script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-                        <script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-                         jQuery Knob Chart 
-                        <script src="../bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-                         daterangepicker 
-                        <script src="../bower_components/moment/min/moment.min.js"></script>
-                        <script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-                         datepicker 
-                        <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-                         Bootstrap WYSIHTML5 
-                        <script src="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-                         Slimscroll 
-                        <script src="../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-                         FastClick 
-                        <script src="../bower_components/fastclick/lib/fastclick.js"></script>
-                         AdminLTE App 
-                        <script src="../dist/js/adminlte.min.js"></script>
-                         AdminLTE dashboard demo (This is only for demo purposes) 
-                        <script src="../dist/js/pages/dashboard.js"></script>
-                         AdminLTE for demo purposes 
-                        <script src="../dist/js/demo.js"></script>-->
-            <script src="../bower_components/menu/jquery-1.10.2.min.js"></script>
-            <script src="../bower_components/menu/menu7days.js"></script>
-        </div>        
+        </div> 
     </body>
+
+    <!-- jQuery 3 -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>	
+    <!-- FastClick -->
+    <script src="../bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- CK Editor -->
+    <script src="../bower_components/ckeditor/ckeditor.js"></script>
+
+    <script src="../bower_components/menu/menu7days.js"></script>
 </html>

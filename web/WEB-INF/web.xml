@@ -63,7 +63,7 @@
     <servlet>
         <servlet-name>setMenuServlet</servlet-name>
         <servlet-class>trang.setMenuServlet</servlet-class>
-    </servlet>    
+    </servlet>
     <servlet>
         <servlet-name>startupServlet</servlet-name>
         <servlet-class>toan.startupServlet</servlet-class>
@@ -104,7 +104,10 @@
         <servlet-name>adminLogoutServlet</servlet-name>
         <servlet-class>quang.adminLogoutServlet</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>getMenuServlet</servlet-name>
+        <servlet-class>trang.getMenuServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -168,7 +171,7 @@
     <servlet-mapping>
         <servlet-name>setMenuServlet</servlet-name>
         <url-pattern>/setMenuServlet</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>startupServlet</servlet-name>
         <url-pattern>/startupServlet</url-pattern>
@@ -208,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>adminLogoutServlet</servlet-name>
         <url-pattern>/adminLogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getMenuServlet</servlet-name>
+        <url-pattern>/getMenuServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

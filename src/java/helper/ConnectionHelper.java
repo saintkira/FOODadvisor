@@ -83,5 +83,22 @@ public class ConnectionHelper {
         return boo_result;
     }
     
+    public static boolean callSP(String spName, String param1, String param2){
+        boolean boo_result = false;        
+        connection = getCon();
+        
+        try {
+            cStmt = connection.prepareCall("{call "+spName+"(?,?)}");
+            cStmt.setString(1, param1);
+            cStmt.setString(2, param2);
+            cStmt.execute();
+            if(cStmt.getUpdateCount()>0)
+             boo_result = true;            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return boo_result;
+    }
+    
 }
 

@@ -1,6 +1,9 @@
 package trang;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import helper.ClientHelper;
+import helper.ConnectionHelper;
 import helper.JsonHelper;
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +43,7 @@ public class setMenuServlet extends HttpServlet {
 
             //Get username from session
             HttpSession session = request.getSession();
-            String username = "manhtrang";//(String) session.getAttribute("username");
+            String username = "tuansang93";//(String) session.getAttribute("username");
 
             //get directory of recipes_document folder
             String root = request.getServletContext().getRealPath("//") + "\\recipes_document\\";
@@ -57,7 +62,7 @@ public class setMenuServlet extends HttpServlet {
                     String[] values = request.getParameterValues(key);
 
                     for (int k = 0; k < values.length; k++) {
-                        out.println(key + " - " + values[k] + "<br/>");
+
                         //random MenuID
                         String menuID = randomID();
                         //set model
@@ -79,9 +84,9 @@ public class setMenuServlet extends HttpServlet {
                     }
                 }
             }
-            ClientHelper.doCreate("Menu_Insert_SP", menu);
-            session.setAttribute("menuList", menu);
-            response.sendRedirect("pages/yourMenu.jsp");
+            ClientHelper.doCreate("Menu_Save_SP", menu, username);
+
+            response.sendRedirect("/FOODadvisor/getMenuServlet");
         }
     }
 
@@ -95,6 +100,14 @@ public class setMenuServlet extends HttpServlet {
         }
 
         return id;
+    }
+
+    public String getImageDir(String root, String recipeID) {
+        //get directory contains image + get first image-name from folder
+        String fname = recipeID;
+        File folder = new File(root + fname);
+        String img_dir = fname + "/" + folder.listFiles()[0].getName();
+        return img_dir;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
