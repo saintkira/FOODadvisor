@@ -105,17 +105,16 @@
         <servlet-class>quang.adminLogoutServlet</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>shoppinglistServlet</servlet-name>
         <servlet-class>toan.shoppinglistServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>getIDinsertRecipeServlet</servlet-name>
         <servlet-class>toan.getIDinsertRecipeServlet</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>getMenuServlet</servlet-name>
         <servlet-class>trang.getMenuServlet</servlet-class>
->>>>>>> trang_merge_all
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
@@ -222,17 +221,16 @@
         <url-pattern>/adminLogoutServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>shoppinglistServlet</servlet-name>
         <url-pattern>/shoppinglistServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>getIDinsertRecipeServlet</servlet-name>
         <url-pattern>/getIDinsertRecipeServlet</url-pattern>
-=======
+    </servlet-mapping>    
+    <servlet-mapping>    
         <servlet-name>getMenuServlet</servlet-name>
         <url-pattern>/getMenuServlet</url-pattern>
->>>>>>> trang_merge_all
     </servlet-mapping>
     <session-config>
         <session-timeout>
