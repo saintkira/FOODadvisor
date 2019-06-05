@@ -223,7 +223,7 @@
                                                                                 </c:if>
                                                                         </ul>
                                                                     </div>
-                                                                    <img style="float:left; margin-right:0px" src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">
+                                                                    <img style="float:left; margin-right:0px" src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src2" draggable="true" ondragstart="dragstart_handler(event);">
                                                                 </div>
                                                                 <!--<li><i class="fa fa-tags" style="position:absolute;right:10%"></i></li>-->
                                                             </div>
@@ -239,15 +239,15 @@
 
                                 <!-- Searching Another recipes -->
                                 <li>
-                                    <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#searchCollapse"></i>
+                                    <i class="fa fa-spinner bg-blue" data-toggle="collapse" data-target="#searchCollapse"></i>
                                     <div class="timeline-item" style="min-height: 10px">
-                                        <span class="time"><i class="fa fa-search"></i> <input type="text"/></span>
+                                        <span class="time"><form action="/FOODadvisor/searchRecipeServlet"><i class="fa fa-search"></i> <input name="searcher" title="you can search by Type, Name, Ingd..." style="borde: 1px solid #f3f3f3; width:200px;"/></form></span>
 
                                         <h3 class="timeline-header"><a href="#">${name}</a> - You can searching more ...</h3>
 
-                                        <div class="timeline-body collapse" id="searchCollapse">
+                                        <div class="timeline-body collapse in" id="searchCollapse">
                                             <div style="overflow-x:auto; height:140px">
-                                                <c:if test="${not empty sRecipeList}">
+                                                <c:if test="${sRecipeList ne null}">
                                                     <c:forEach items="${sRecipeList}" var="i">
                                                         <div>
                                                             <!-- image list -->
