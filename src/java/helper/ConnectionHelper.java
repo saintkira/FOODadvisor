@@ -66,6 +66,25 @@ public class ConnectionHelper {
         return json;
     }
     
+    //call query by param store procedure
+    public static String callQuerySP(String spName, String param1, String param2){
+        String json = null;
+        connection = getCon();
+        
+        try {
+            cStmt = connection.prepareCall("{call "+spName+"(?,?,?)}");
+            cStmt.setString(1, param1);
+            cStmt.setString(2, param2);
+            cStmt.registerOutParameter(3, Types.VARCHAR);
+            cStmt.execute();
+            json = cStmt.getString(3);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return json;
+    }
+    
     //call create/edit/delete store procedure
     public static boolean callSP(String spName, String param){
         boolean boo_result = false;        

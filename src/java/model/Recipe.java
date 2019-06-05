@@ -6,6 +6,7 @@
 
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -44,6 +45,7 @@ public class Recipe implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 4)
+    @JsonProperty("RecipeID")
     @Column(name = "RecipeID", nullable = false, length = 4)
     private String recipeID;
     @Size(max = 99)
@@ -62,6 +64,7 @@ public class Recipe implements Serializable {
     @Column(name = "Description", length = 2147483647)
     private String description;
     @Size(max = 50)
+    @JsonProperty("Type")
     @Column(name = "Type", length = 50)
     private String type;
     @ManyToMany(mappedBy = "recipeCollection")

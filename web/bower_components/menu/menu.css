@@ -48,7 +48,11 @@
     height: 80% !important;
     padding: 8% !important;
     margin: 5% !important;
+<<<<<<< HEAD
     box-shadow: 4px 6px 4px #888;
+=======
+    box-shadow: 4px 6px 4px #888 !important;
+>>>>>>> trang123
 }
 
 .btn{
