@@ -117,13 +117,12 @@
         <servlet-class>trang.getMenuServlet</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>checkStatusServlet</servlet-name>
         <servlet-class>quang.checkStatusServlet</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>clearMenuServlet</servlet-name>
         <servlet-class>trang.clearMenuServlet</servlet-class>
->>>>>>> trang123
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
