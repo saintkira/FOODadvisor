@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 import model.AccountFacadeLocal;
 
 /**
@@ -38,13 +39,20 @@ public class checkLoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String user = request.getParameter("user");
             String pass = request.getParameter("pass");
-            if (accountFacade.checkLogIn(user, pass)) {
-                response.setContentType("text/html");
-                response.getWriter().write("true");
+            Account account = accountFacade.find(user);
+            if (account.getActiveStatus()) {
+                if (accountFacade.checkLogIn(user, pass)) {
+                    response.setContentType("text/html");
+                    response.getWriter().write("true");
+                } else {
+                    response.setContentType("text/html");
+                    response.getWriter().write("false");
+                }
             } else {
                 response.setContentType("text/html");
-                response.getWriter().write("false");
+                response.getWriter().write("ban");
             }
+
         }
     }
 

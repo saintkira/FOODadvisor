@@ -112,7 +112,7 @@
                                 return true;
                             }
                             else {
-                                checkStatus();
+//                                checkStatus();
                                 var checkLoginValue = checkLogin(userValue, passValue);
                             }
                         }
@@ -135,10 +135,12 @@
                                 },
                                 success: function(data) {
                                     if (data == "false") {
-                                        $('#errorMsg').append("Wrong username or email");
-                                    } else if (data == "true") {
-                                        $('form[name=loginForm]').submit();
-                                    }
+                                    $('#errorMsg').append("Wrong username or email");
+                                    } else if (data == "ban") {
+                                    $('#errorMsg').append("The user is banned.");
+                                            else if (data == "true") {
+                                    $('form[name=loginForm]').submit();
+                                }
                                 }
                             });
                         }
