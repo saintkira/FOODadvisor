@@ -302,11 +302,6 @@
         <script>
                             $(document).ready(
                                     function() {
-<<<<<<< HEAD
-=======
-                                        console.log('${fullName}');
-                                        getAvatar();
->>>>>>> quang_common5
                                         //Datemask dd/mm/yyyy
                                         $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
                                         $('[data-mask]').inputmask();
@@ -526,8 +521,7 @@
                                 if (day.length < 2)
                                     day = '0' + day;
                                 return [day, month, year].join("/");
-                            }
-                            ;
+                            };
                             function formatDate2(date) {
                                 var d = new Date(date),
                                         month = '' + (d.getMonth() + 1),
@@ -538,8 +532,7 @@
                                 if (day.length < 2)
                                     day = '0' + day;
                                 return [year, month, day].join("-");
-                            }
-                            ;
+                            };
         </script>
         <script type="text/javascript">
             function onSignIn(googleUser) {

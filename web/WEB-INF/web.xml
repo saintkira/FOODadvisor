@@ -105,7 +105,6 @@
         <servlet-class>quang.adminLogoutServlet</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>shoppinglistServlet</servlet-name>
         <servlet-class>toan.shoppinglistServlet</servlet-class>
     </servlet>
@@ -116,10 +115,10 @@
     <servlet>
         <servlet-name>getMenuServlet</servlet-name>
         <servlet-class>trang.getMenuServlet</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>checkStatusServlet</servlet-name>
         <servlet-class>quang.checkStatusServlet</servlet-class>
->>>>>>> quang_common5
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
@@ -226,7 +225,6 @@
         <url-pattern>/adminLogoutServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>shoppinglistServlet</servlet-name>
         <url-pattern>/shoppinglistServlet</url-pattern>
     </servlet-mapping>
@@ -237,10 +235,10 @@
     <servlet-mapping>    
         <servlet-name>getMenuServlet</servlet-name>
         <url-pattern>/getMenuServlet</url-pattern>
-=======
+    </servlet-mapping>    
+    <servlet-mapping>
         <servlet-name>checkStatusServlet</servlet-name>
         <url-pattern>/checkStatusServlet</url-pattern>
->>>>>>> quang_common5
     </servlet-mapping>
     <session-config>
         <session-timeout>
