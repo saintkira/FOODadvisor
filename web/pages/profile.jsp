@@ -87,10 +87,7 @@
 
                                         <ul class="list-group list-group-unbordered">
                                             <li class="list-group-item">
-                                                <b>Favorites Item</b> <a class="pull-right">322</a>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Recipes</b> <a class="pull-right">43</a>
+                                                <b>Favorites Item</b> <a class="pull-right">22</a>
                                             </li>
                                         </ul>
 
@@ -151,14 +148,14 @@
                                                     <label class="col-sm-2 control-label">Height</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control"
-                                                               data-inputmask="'mask': ['999']" data-mask placeholder="KG" id="inputHeight" name="height">
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="CM" id="inputHeight" name="height">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Weight</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control"
-                                                               data-inputmask="'mask': ['999']" data-mask placeholder="CM" id="inputWeight" name="weight">
+                                                               data-inputmask="'mask': ['999']" data-mask placeholder="KG" id="inputWeight" name="weight">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -302,6 +299,7 @@
         <script>
                             $(document).ready(
                                     function() {
+                                        console.log('${googleLogin}');
                                         //Datemask dd/mm/yyyy
                                         $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
                                         $('[data-mask]').inputmask();

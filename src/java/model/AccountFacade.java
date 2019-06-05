@@ -38,9 +38,11 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
 
     @Override
     public int deleteUser(String username) {
-        Query q = em.createQuery("DELETE FROM Account a WHERE a.username = :username");
-        q.setParameter("username", username);
-        return q.executeUpdate();
+        if (em.createQuery("SELECT a FROM Account a WHERE a.username ='"+username+"'").getResultList().isEmpty()==false) {
+             Query q = em.createQuery("UPDATE Account a SET a.activeStatus="+false+" WHERE a.username ='"+username+"'");
+             return q.executeUpdate();
+        }
+        return -1;
     }
 
     @Override
@@ -112,6 +114,15 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         
         
         return q.getResultList();
+    }
+
+    @Override
+    public int activeUser(String username) {
+        if (em.createQuery("SELECT a FROM Account a WHERE a.username ='" + username + "'").getResultList().isEmpty() == false) {
+            Query q = em.createQuery("UPDATE Account a SET a.activeStatus=" + true + " WHERE a.username ='" + username + "'");
+            return q.executeUpdate();
+        }
+        return -1;
     }
     
     

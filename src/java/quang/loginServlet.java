@@ -40,9 +40,11 @@ public class loginServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            
             HttpSession session = request.getSession();
             session.removeAttribute("error");
             session.setAttribute("error", null);
+            
             if (accountFacade.checkLogIn(username, password)) {
                 session.removeAttribute("error");
                 session.setAttribute("username", username);

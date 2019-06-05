@@ -79,7 +79,7 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Generated ID</label>
-                                                <input type="text" class="form-control" readonly="true" value="${NewID}">
+                                                <input name="recipeID" type="text" class="form-control" readonly="true" value="${NewID}">
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="form-group" id="fg-rname">

@@ -114,6 +114,26 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="confirm-active" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-confirm-delete">
+                    <div class="modal-content modal-radius">
+                        <div class="modal-header bg-green-active">
+                            <div class="icon-box bg-green-active">
+                                <i class="fa fa-ban"></i>
+                            </div>
+                            <h3 class="modal-title" style="text-align: center;font-weight: 600;margin: 10px;">ACTIVE</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Do you want to active</h4>
+                            <span style="font-weight: 600;" id="setting-name"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-danger btn-ok" id="btn123">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- jQuery 3 -->
             <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
@@ -164,7 +184,7 @@
                             { 'data': 'Username',
                               'render': function (data, type, row, meta) {
                                 if (type === 'display') {
-                                    data = '<a class="btn btn-social-icon btn-bitbucket" onclick="showToastr(\'success\', \'Active User\',\'Active Successfully\')">' + '<i class="disable fa fa-check-circle"></i>' + '</a>'+
+                                    data = '<a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-active" onclick="active(\''+data+'\');">' + '<i class="disable fa fa-check-circle"></i>' + '</a>'+
                                     '<a class="btn btn-social-icon btn-bitbucket" data-toggle="modal" data-target="#confirm-delete" onclick="handleDelete(\''+data+'\');"><i class="fa fa-ban"></i></a>';
                                 }
                                 return data;
@@ -173,8 +193,43 @@
                         ]
                     });
                 };
-                var handleDelete = function(Username) {
-                    x= Username;
+                var active = function(uname) {
+                    x= uname;
+                    $('#confirm-active').find('.btn-ok').click(function() { 
+                        $.ajax({
+                        url : '../../activeuserServlet',
+                        data : {
+                            Username : x
+                        },
+                        success: function(responseText) {
+                            if (responseText.toString()==='Success') {
+                                toastr.remove();
+                                showToastr('success', 'Status', "Successfully Active");
+                                $('#confirm-active').modal('hide');
+                                $('#example2').DataTable().destroy();
+                                loadDatatable();
+                                delete(x);
+                            }else{
+                                toastr.remove();
+                                showToastr('error', 'Status', "Activating Failed");
+                                $('#confirm-active').modal('hide');
+                                delete(x);
+                            }
+                        },
+                        error: function() {
+                            toastr.remove();
+                            showToastr('error', 'Status', "Connection Error");
+                            $('#confirm-active').modal('hide');
+                            delete(x);
+                        }
+                        });
+                        delete(x);
+                        
+                    });
+                };
+                
+                var handleDelete = function(uname) {
+                    x= uname;
                     $('#confirm-delete').find('.btn-ok').click(function() { 
                         $.ajax({
                         url : '../../banuserServlet',

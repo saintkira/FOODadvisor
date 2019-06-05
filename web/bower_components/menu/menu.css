@@ -44,10 +44,10 @@
 }            
 
 .thumbnail{
-    width: 80%;
-    height: 80%;
-    padding: 8%;
-    margin: 5%;
+    width: 80% !important;
+    height: 80% !important;
+    padding: 8% !important;
+    margin: 5% !important;
     box-shadow: 4px 6px 4px #888;
 }
 

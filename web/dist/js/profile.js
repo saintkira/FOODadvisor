@@ -11,7 +11,9 @@ $(document).ready(function() {
             reader.readAsDataURL(input.files[0]);
         }
     };
+    
     $("#saveBtn").click(function(){
+        
         var fd = new FormData();
         var ext = document.getElementById("file").value;//GET Filename for extension
         console.log(ext);
@@ -24,7 +26,9 @@ $(document).ready(function() {
             req = new XMLHttpRequest();
         }
         req.open("post", "../saveAvatarServlet", true);
+        location.reload();
         req.send(fd); 
+        
     });
     
     $(".file-upload").on('change', function(){

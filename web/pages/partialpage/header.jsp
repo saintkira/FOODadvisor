@@ -224,7 +224,7 @@
             //        window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
             var google = '${googleLogin}';
             if (google != "") {
-                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/foodadvisor/logOutServlet";
+                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/FOODadvisor/logOutServlet";
 
             } else {
                 window.location.href = '../logOutServlet';

@@ -112,7 +112,7 @@
                                 return true;
                             }
                             else {
-//                                checkStatus();
+//                               
                                 var checkLoginValue = checkLogin(userValue, passValue);
                             }
                         }
@@ -135,29 +135,17 @@
                                 },
                                 success: function(data) {
                                     if (data == "false") {
-                                    $('#errorMsg').append("Wrong username or email");
+                                        $('#errorMsg').append("Wrong username or email");
                                     } else if (data == "ban") {
-                                    $('#errorMsg').append("The user is banned.");
-                                            else if (data == "true") {
-                                    $('form[name=loginForm]').submit();
-                                }
-                                }
-                            });
-                        }
-
-                        function checkStatus(userValue) {
-                            $.ajax({
-                                url: "../checkStatusServlet",
-                                data: {
-                                    user: userValue
-                                },
-                                success: function(data) {
-                                    if (data == "ban") {
-                                        $('#errorMsg').append("This user is banned. Please contact admin");
+                                        $('#errorMsg').append("The user is banned.");
+                                    }
+                                    else if (data == "true") {
+                                        $('form[name=loginForm]').submit();
                                     }
                                 }
                             });
                         }
+
 
 
 

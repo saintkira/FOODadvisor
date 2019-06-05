@@ -38,6 +38,7 @@ public class logOutServlet extends HttpServlet {
             session.removeAttribute("fullName");
             session.removeAttribute("password");
             session.removeAttribute("error");
+            session.removeAttribute("googleLogin");
             session.invalidate();
             response.sendRedirect("pages/login.jsp");
             

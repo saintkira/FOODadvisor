@@ -48,6 +48,8 @@ public interface AccountFacadeLocal {
 
     List<Account> findByEmail(String email);
 
+    int activeUser(String username);
+
    
     
 }

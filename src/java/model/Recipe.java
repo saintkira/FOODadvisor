@@ -81,6 +81,14 @@ public class Recipe implements Serializable {
     public Recipe() {
     }
 
+    public Recipe(String recipeID, String recipeName, String price, String description, String type) {
+        this.recipeID = recipeID;
+        this.recipeName = recipeName;
+        this.price = price;
+        this.description = description;
+        this.type = type;
+    }
+
     public Recipe(String recipeID) {
         this.recipeID = recipeID;
     }

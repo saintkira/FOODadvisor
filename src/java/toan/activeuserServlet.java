@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package toan;
 
 import java.io.IOException;
@@ -13,36 +7,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Recipe;
-import model.RecipeDetailFacadeLocal;
-import model.RecipeFacadeLocal;
+import model.AccountFacadeLocal;
 
-/**
- *
- * @author Toan
- */
-public class insertRecipeServlet extends HttpServlet {
+public class activeuserServlet extends HttpServlet {
     @EJB
-    private RecipeDetailFacadeLocal recipeDetailFacade;
-    @EJB
-    private RecipeFacadeLocal recipeFacade;
+    private AccountFacadeLocal accountFacade;
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String id = request.getParameter("recipeID");
-        String name = request.getParameter("recipename");
-        String des = request.getParameter("recipedescription");
-        String price = request.getParameter("recipeprice");
-        String direction = request.getParameter("editor1");
-        String ingred = request.getParameter("recipeingred");
-        recipeFacade.create(new Recipe(id, name, price, direction, "Maincourse"));
-        response.sendRedirect("pages/admin/recipes_manage.jsp");
-        //out.println("Success");
-        //out.print(request.getParameter("editor1"));
-        //System.out.println(request.getParameter("editor1"));
+        if (accountFacade.activeUser(request.getParameter("Username").toString())==1) {
+            response.setContentType("text/plain");
+            response.getWriter().write("Success");
+        }else{
+            response.setContentType("text/plain");
+            response.getWriter().write("Failed");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

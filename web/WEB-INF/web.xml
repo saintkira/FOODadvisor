@@ -124,6 +124,10 @@
         <servlet-name>clearMenuServlet</servlet-name>
         <servlet-class>trang.clearMenuServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>activeuserServlet</servlet-name>
+        <servlet-class>toan.activeuserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -239,7 +243,7 @@
     <servlet-mapping>
         <servlet-name>getMenuServlet</servlet-name>
         <url-pattern>/getMenuServlet</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>checkStatusServlet</servlet-name>
         <url-pattern>/checkStatusServlet</url-pattern>
@@ -247,6 +251,10 @@
     <servlet-mapping>
         <servlet-name>clearMenuServlet</servlet-name>
         <url-pattern>/clearMenuServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>activeuserServlet</servlet-name>
+        <url-pattern>/activeuserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -263,7 +271,7 @@
     <!--
     <filter-mapping>
         <filter-name>logFilter</filter-name>
-        <url-pattern>/pages/admin/*</url-pattern>
+        <url-pattern>/pages/admin*</url-pattern>
     </filter-mapping>
     -->
 </web-app>
