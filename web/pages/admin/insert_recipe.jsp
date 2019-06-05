@@ -62,7 +62,7 @@
             <section class="content">
                 <div class="row">
                     <!-- left column -->
-                    <form action="../../insertRecipeServlet">
+                    <form>
                         <div class="col-md-12">
                             <!-- general form elements -->
                             <!-- form start -->
@@ -79,40 +79,59 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Generated ID</label>
-                                                <input type="text" class="form-control" readonly="true">
+                                                <input type="text" class="form-control" readonly="true" value="${NewID}">
                                             </div>
                                             <div class="col-md-8">
-                                                <label>Recipe Name</label>
-                                                <input type="text" class="form-control" placeholder="Recipe Name" name="recipename">
+                                                <div class="form-group" id="fg-rname">
+                                                    <label>Recipe Name</label>
+                                                    <input name="recipename" type="text" class="form-control" placeholder="Recipe Name">
+                                                    <span class="help-block" id="error-rname"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-bottom:0px;">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Description</label>
-                                                <input type="text" class="form-control" placeholder="Describe your recipe simply!" style="margin-bottom: 10px">
+                                                <div class="form-group" id="fg-rdescription">
+                                                    <label>Description</label>
+                                                    <input name="recipedescription" type="text" class="form-control" placeholder="Describe your recipe simply!" style="margin-bottom: 10px">
+                                                    <span class="help-block" id="error-description"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Tag</label>
+                                                <select id="my-select" name="character" multiple="multiple">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-top:0px">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <div class="form-group" id="fg-rtype">
+                                                <label></label>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox">
-                                                            Maincourse
-                                                        </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox">
-                                                            Appetizer
-                                                        </label>
+                                                            <label>
+                                                                <input name="Maincourse" value="Maincourse" onclick="checktype(this)" type="checkbox">
+                                                                Maincourse
+                                                            </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="checkbox">
                                                             <label>
-                                                                <input type="checkbox">
+                                                                <input name="Appetizer" value="Appetizer" onclick="checktype(this)" type="checkbox">
+                                                                Appetizer
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input name="Salad" value="Salad" onclick="checktype(this)" type="checkbox">
                                                                 Salad
                                                             </label>
                                                         </div>
@@ -120,32 +139,35 @@
                                                     <div class="col-md-3">
                                                         <div class="checkbox">
                                                             <label>
-                                                                <input type="checkbox">
+                                                                <input name="Desert" value="Desert" onclick="checktype(this)" type="checkbox">
                                                                 Desert
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <span class="help-block" id="error-rtype"></span>
+                                            </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label>Ingredients</label>
-                                                <textarea class="form-control" rows="3" placeholder="Ingredients List"></textarea>
+                                                <div class="form-group" id="fg-rprice">
+                                                <label>Price</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">$</span>
+                                                        <input name="recipeprice" type="text" maxlength="5" class="money form-control" id="money"/>
+                                                    </div>
+                                                    <span class="help-block" id="error-price"></span>
+                                                </div>    
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-top:0px">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Tag</label>
-                                                <select id="my-select" name="character" multiple="multiple">
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                    <label>Price</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">$</span>
-                                                        <input type="text" maxlength="5" class="money" id="money"/>
-                                                    </div>
+                                                <div class="form-group" id="fg-ringred">
+                                                <label>Ingredients</label>
+                                                <textarea name="recipeingred" class="form-control" rows="3" placeholder="Ingredients List"></textarea>
+                                                <span class="help-block" id="error-ingred"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -168,31 +190,7 @@
                                         <input type="text" class="form-control" id="inputError" placeholder="Enter ...">
                                         <span class="help-block">Help block with error</span>
                                     </div>
-                                    -->    
-                                    <!-- checkbox 
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox">
-                                                Checkbox 1
-                                            </label>
-                                        </div>
-
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox">
-                                                Checkbox 2
-                                            </label>
-                                        </div>
-
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" disabled>
-                                                Checkbox disabled
-                                            </label>
-                                        </div>
-                                    </div>
-                                    -->
+                                    --> 
 
                                 </div>
                                 <!-- /.box-body -->
@@ -204,10 +202,10 @@
                             </div>
                             <!-- /.box -->
 
-                            <div class="box collapsed-box">
+                            <div class="box">
                                 <div class="box-header">
-                                    <label>Direction</label>
-                                    <small>Please describe direction carefully</small>
+                                    <label class="rdirection">Direction</label>
+                                    <small class="rdirection">Please describe direction carefully</small>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
                                         <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
@@ -228,8 +226,8 @@
                             
                             <div class="box">
                                 <div class="box-header">
-                                    <label>Image</label>
-                                    <small>Please upload at least 1 image</small>
+                                    <label class="rimage">Image</label>
+                                    <small class="rimage">Please upload at least 1 image</small>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
                                         <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
@@ -247,13 +245,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            
                             <!-- /.box -->
 
                         </div>
                         <!--/.col (left) -->
                     </form>
-                    
+                    <button onclick="validate();" class="btn btn-primary" style="margin-left: 50px;">Submit</button>
                 </div>
                 <!-- /.row -->
             </section>
@@ -283,7 +281,7 @@
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             CKEDITOR.replace('editor1');
-            $('.money').mask('##0,0', {reverse: true});
+            $('.money').mask('##0.0', {reverse: true});
           })
         </script>
         
@@ -351,7 +349,107 @@
                 });
             });
         </script>
+        <script>
+            function validate(){
+                
+                name=$("input[name=recipename]").val().toString();
+                if (name.length<3 || name.length>50 || name.match(/[ ]*/i)==true) {
+                    $("#fg-rname").addClass("has-error");
+                    $("#error-rname").html("Name must between 3 and 50 characters!!!");
+                }else{
+                    $("#fg-rname").removeClass("has-error");
+                    $("#error-rname").html("");
+                }
+                
+                description=$("input[name=recipedescription]").val().toString();
+                if (description.length<15 || description.length>80 || description.match(/[ ]*/i)==true) {
+                    $("#fg-rdescription").addClass("has-error");
+                    $("#error-description").html("Description must between 15 and 80 characters!!!");
+                }else{
+                    $("#fg-rdescription").removeClass("has-error");
+                    $("#error-description").html("");
+                }
+                
+                price=$("input[name=recipeprice]").val().toString();
+                if (price=="" || price==null || parseInt(price.replace(".",""))<=0) {
+                    $("#fg-rprice").addClass("has-error");
+                    $("#error-price").html("Price cannot be blank and must be greater than 0");
+                }else{
+                    $("#fg-rprice").removeClass("has-error");
+                    $("#error-price").html("");
+                }
+                
+                ingreds=$("textarea[name=recipeingred]").val().toString();
+                if (ingreds.length<15 || ingreds.match(/[ ]*/i)==true) {
+                    $("#fg-ringred").addClass("has-error");
+                    $("#error-ingred").html("List of ingredients must contains 15 characters or above!!!");
+                }else{
+                    $("#fg-ringred").removeClass("has-error");
+                    $("#error-ingred").html("");
+                }
+                
+                if (document.getElementsByName("Appetizer")[0].checked==false && document.getElementsByName("Desert")[0].checked==false && document.getElementsByName("Salad")[0].checked==false && document.getElementsByName("Maincourse")[0].checked==false){
+                    $("#fg-rtype").addClass("has-error");
+                    $("#error-rtype").html("Please choose at least one option!!");
+                }else{
+                    $("#fg-rtype").removeClass("has-error");
+                    $("#error-rtype").html("");
+                }
+                
+                if (CKEDITOR.instances.editor1.document.getBody().getText().length<15 || CKEDITOR.instances.editor1.document.getBody().getText().length>250) {
+                    $(".rdirection").css("color","rgb(205,50,50)");
+                }else{
+                    $(".rdirection").css("color","");
+                }
+                
+                recipeimg = document.getElementsByClassName("img_");
+                if (recipeimg.length<=1) {
+                    $(".rimage").css("color","rgb(205,50,50)");
+                }else{
+                    $(".rimage").css("color","");
+                }
+
+            }
+        </script>
         
+        <script>
+            function checktype(x){
+                tempType = x.name.toString();
+                checkStatus = x.checked;
+                if (tempType=="Maincourse") {
+                    if (checkStatus==true) {
+                        $("input[name=Salad]").attr("disabled", true);
+                        $("input[name=Appetizer]").attr("disabled", true);
+                        $("input[name=Desert]").attr("disabled", true);
+                    }else{
+                        $("input[name=Salad]").removeAttr("disabled");
+                        $("input[name=Appetizer]").removeAttr("disabled");
+                        $("input[name=Desert]").removeAttr("disabled");
+                    }
+                }else if(tempType=="Desert") {
+                    if (checkStatus==true) {
+                        $("input[name=Salad]").attr("disabled", true);
+                        $("input[name=Appetizer]").attr("disabled", true);
+                        $("input[name=Maincourse]").attr("disabled", true);
+                    }else{
+                        $("input[name=Salad]").removeAttr("disabled");
+                        $("input[name=Appetizer]").removeAttr("disabled");
+                        $("input[name=Maincourse]").removeAttr("disabled");
+                    }
+                }else{
+                    checkAppetizer = document.getElementsByName("Appetizer")[0].checked;
+                    checkSalad = document.getElementsByName("Salad")[0].checked;
+                    if (checkAppetizer==true||checkSalad==true) {
+                        $("input[name=Desert]").attr("disabled", true);
+                        $("input[name=Maincourse]").attr("disabled", true);
+                    }else{
+                        $("input[name=Desert]").removeAttr("disabled");
+                        $("input[name=Maincourse]").removeAttr("disabled");
+                    }
+                }
+                
+            }
+        </script>
         <!--
         <script>
             $("#btn1").click(function(){

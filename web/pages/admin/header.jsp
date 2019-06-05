@@ -83,7 +83,7 @@
                 </a>
                 <ul class="treeview-menu" style="display: block;">
                     <li>
-                        <a href="add_recipes.jsp">
+                        <a href="../../getIDinsertRecipeServlet">
                             <i class="fa fa-circle-o"></i>
                             Add New Recipe
                         </a>

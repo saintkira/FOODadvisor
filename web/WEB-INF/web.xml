@@ -108,6 +108,10 @@
         <servlet-name>shoppinglistServlet</servlet-name>
         <servlet-class>toan.shoppinglistServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getIDinsertRecipeServlet</servlet-name>
+        <servlet-class>toan.getIDinsertRecipeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>shoppinglistServlet</servlet-name>
         <url-pattern>/shoppinglistServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getIDinsertRecipeServlet</servlet-name>
+        <url-pattern>/getIDinsertRecipeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
