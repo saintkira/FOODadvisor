@@ -32,8 +32,9 @@ public class insertRecipeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.print(request.getParameter("editor1"));
-        System.out.println(request.getParameter("editor1"));
+        //out.print(request.getParameter("editor1"));
+        //System.out.println(request.getParameter("editor1"));
+        out.println("Success");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

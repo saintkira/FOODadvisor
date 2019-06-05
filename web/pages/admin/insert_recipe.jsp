@@ -62,7 +62,7 @@
             <section class="content">
                 <div class="row">
                     <!-- left column -->
-                    <form>
+                    <form action="../../insertRecipeServlet" id="insert-form">
                         <div class="col-md-12">
                             <!-- general form elements -->
                             <!-- form start -->
@@ -398,15 +398,23 @@
                 
                 if (CKEDITOR.instances.editor1.document.getBody().getText().length<15 || CKEDITOR.instances.editor1.document.getBody().getText().length>250) {
                     $(".rdirection").css("color","rgb(205,50,50)");
+                    $(".rdirection").addClass("has-error");
                 }else{
                     $(".rdirection").css("color","");
+                    $(".rdirection").removeClass("has-error");
                 }
                 
                 recipeimg = document.getElementsByClassName("img_");
                 if (recipeimg.length<=1) {
                     $(".rimage").css("color","rgb(205,50,50)");
+                    $(".rimage").addClass("has-error");
                 }else{
                     $(".rimage").css("color","");
+                    $(".rimage").removeClass("has-error");
+                }
+                alert(document.getElementsByClassName("has-error").length);
+                if (document.getElementsByClassName("has-error").length==0) {
+                    $("#insert-form").submit();
                 }
 
             }

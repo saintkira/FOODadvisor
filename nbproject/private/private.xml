@@ -3,23 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/list_recipes.jsp</file>
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/list_7days.jsp</file>
+            <file>file:/D:/Project%204/FOODadvisor/web/pages/admin/insert_recipe.jsp</file>
             <file>file:/D:/Project%204/FOODadvisor/web/pages/profile.jsp</file>
-            <file>file:/D:/Project%204/FOODadvisor/web/pages/partialpage/header.jsp</file>
-            <file>file:/D:/Project%204/FOODadvisor/src/java/trang/getMenuServlet.java</file>
-=======
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/partialpage/header.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/profile.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/login.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/updateProfileServlet.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/checkStatusServlet.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/checkLoginServlet.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/register.jsp</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/googleLoginServlet.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/registerServlet.java</file>
->>>>>>> quang_common5
+            <file>file:/D:/Project%204/FOODadvisor/src/java/model/RecipeDetail.java</file>
+            <file>file:/D:/Project%204/FOODadvisor/src/java/toan/shoppinglistServlet.java</file>
+            <file>file:/D:/Project%204/FOODadvisor/web/dist/js/profile.js</file>
+            <file>file:/D:/Project%204/FOODadvisor/src/java/toan/insertRecipeServlet.java</file>
         </group>
     </open-files>
 </project-private>
