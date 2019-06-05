@@ -26,8 +26,7 @@ import model.RecipeFacadeLocal;
  *
  * @author trangnmt
  */
-public class getMenuServlet extends HttpServlet {
-
+public class clearMenuServlet extends HttpServlet {
     @EJB
     private RecipeFacadeLocal recipeFacade;
 
@@ -44,79 +43,40 @@ public class getMenuServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
             //Get username from session
             HttpSession session = request.getSession();
-            //check login
-            if (session.getAttribute("username") == null) {
-                response.sendRedirect("pages/login.jsp");
-                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
+            String username = (String) session.getAttribute("username");
+
+            //get directory of recipes_document folder
+            String root = request.getServletContext().getRealPath("//") + "\\recipes_document\\";
+
+            //set menuList from db            
+            session.setAttribute("menuList", null);
+            
+
+            //check recipeList in session
+            if (session.getAttribute("recipeList") != null) {
+                session.setAttribute("recipeList", session.getAttribute("recipeList"));
             } else {
-                String username = (String) session.getAttribute("username");
+                //set recomment list
+                List<Recipe> rcmList = recipeFacade.findAll().subList(0, 100);
+                for (Recipe recipe : rcmList) {
+                    //get directory contains image
+                    String fname = recipe.getRecipeID();
+                    File folder = new File(root + fname);
 
-                //get directory of recipes_document folder
-                String root = request.getServletContext().getRealPath("//") + "\\recipes_document\\";
-
-                //set menuList from db
-                String preJson = ConnectionHelper.callQuerySP("Menu_GetByUser_SP", username);
-                if (preJson != null) {
-                    String json = changeJson(preJson);
-
-                    ObjectMapper mapper = new ObjectMapper();
-
-                    CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Menu7Days.class);
-                    List<Menu7Days> list = mapper.readValue(json, javaType);
-
-                    for (Menu7Days menu7Days : list) {
-                        menu7Days.setRecipeImage(getImageDir(root, menu7Days.getRecipeID()));
-                    }
-
-                    session.setAttribute("menuList", list);
-
-                } else {
-                    session.setAttribute("menuList", null);
+                    String img_dir = fname + "/" + folder.listFiles()[0].getName();
+                    recipe.setRecipeImage(img_dir);
                 }
 
-                //check recipeList in session
-                if (session.getAttribute("recipe_cart_list") != null) { 
-                    List<Recipe> recipeList = (List<Recipe>) session.getAttribute("recipe_cart_list");
-                    for (Recipe recipe : recipeList) {
-                        //get directory contains image
-                        String fname = recipe.getRecipeID();
-                        File folder = new File(root + fname);
-
-                        String img_dir = fname + "/" + folder.listFiles()[0].getName();
-                        recipe.setRecipeImage(img_dir);
-                    }
-                    
-                    session.setAttribute("recipeList", recipeList); System.out.println(recipeList.size());
-                    session.setAttribute("rcmList", null);
-                } else {
-                    //set recomment list
-                    List<Recipe> rcmList = recipeFacade.findAll().subList(0, 100);
-                    for (Recipe recipe : rcmList) {
-                        //get directory contains image
-                        String fname = recipe.getRecipeID();
-                        File folder = new File(root + fname);
-
-                        String img_dir = fname + "/" + folder.listFiles()[0].getName();
-                        recipe.setRecipeImage(img_dir);
-                    }
-
-                    session.setAttribute("rcmList", rcmList);
-                    session.setAttribute("recipeList", null);
-                }
-
-                response.sendRedirect("pages/list_7days.jsp");
+                session.setAttribute("rcmList", rcmList);
+                session.setAttribute("recipeList", null);
             }
+
+            response.sendRedirect("pages/list_7days.jsp");
         }
     }
-
-    public String changeJson(String preJson) {
-        String json = preJson.replace("\"md\":[{", "").replace("}]},", "},").replace("\"}]}]", "\"}]");
-        return json;
-    }
-
+    
     public String getImageDir(String root, String recipeID) {
         //get directory contains image + get first image-name from folder
         String fname = recipeID;

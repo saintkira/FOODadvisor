@@ -90,7 +90,7 @@
                                                                     <c:forEach var="x" begin="1" end="7">
                                                                         <td>
                                                                             <div class="cell" id="B${x}" ondrop="drop_handler(event)" ondragover="dragover_handler(event)" ondragenter="mark(event)" ondragleave="unmark(event)">
-                                                                                <c:if test="${not empty menuList}">
+                                                                                <c:if test="${menuList ne null}">
                                                                                     <c:forEach items="${menuList}" var="i">
                                                                                         <c:if test="${i.time eq 'B' && i.weekdays == x}">
                                                                                             <span class="fa fa-times" id="${i.recipeID}B${x}i" style="cursor: pointer" onclick="remove('${i.recipeID}B${x}')"></span>
@@ -108,7 +108,7 @@
                                                                     <c:forEach var="x" begin="1" end="7">
                                                                         <td>
                                                                             <div class="cell" id="L${x}" ondrop="drop_handler(event)" ondragover="dragover_handler(event)" ondragenter="mark(event)" ondragleave="unmark(event)">
-                                                                                <c:if test="${not empty menuList}">
+                                                                                <c:if test="${menuList ne null}">
                                                                                     <c:forEach items="${menuList}" var="i">
                                                                                         <c:if test="${i.time eq 'L' && i.weekdays == x}">
                                                                                             <span class="fa fa-times" id="${i.recipeID}L${x}i" style="cursor: pointer" onclick="remove('${i.recipeID}L${x}')"></span>
@@ -126,7 +126,7 @@
                                                                     <c:forEach var="x" begin="1" end="7">
                                                                         <td>
                                                                             <div class="cell" id="D${x}" ondrop="drop_handler(event)" ondragover="dragover_handler(event)" ondragenter="mark(event)" ondragleave="unmark(event)">
-                                                                                <c:if test="${not empty menuList}">
+                                                                                <c:if test="${menuList ne null}">
                                                                                     <c:forEach items="${menuList}" var="i">
                                                                                         <c:if test="${i.time eq 'D' && i.weekdays == x}">
                                                                                             <span class="fa fa-times" id="${i.recipeID}D${x}i" style="cursor: pointer" onclick="remove('${i.recipeID}D${x}')"></span>
@@ -142,9 +142,9 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <div class="col-md-2">
-                                                        <input type="submit" class="btn btn-default"/>
-                                                        <input type="button" class="btn btn-default" value="Print"/>
+                                                    <div class="col-md-2" style="padding-top: 15px">
+                                                        <input type="submit" class="btn btn-default" value="Save"/><br/>
+                                                        <a href="/FOODadvisor/clearMenuServlet"><span class="btn btn-default" style="margin-top: 8px">Clear</span></a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -153,43 +153,131 @@
                                 </li>
 
                                 <!-- Recipe You Chose -->
-                                <li>
-                                    <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#list7daysCollapse"></i>
-                                    <div class="timeline-item" style="min-height: 10px">
+                                <c:choose>
+                                    <c:when test="${recipeList ne null}">
+                                        <li>
+                                            <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#list7daysCollapse"></i>
+                                            <div class="timeline-item" style="min-height: 10px">
 
-                                        <h3 class="timeline-header"><a href="#">${name}</a> - Recipes you chose</h3>
+                                                <h3 class="timeline-header"><a href="#">${name}</a> - Recipes you chose</h3>
 
-                                        <div class="timeline-body collapse in" id="list7daysCollapse">
-                                            <div style="overflow-x:auto; height:140px">
-                                                <c:forEach items="${recipeList}" var="i">
-                                                    <div style="display:inline; position:relative;">
-                                                        <!-- image list -->
-                                                        <div style="display: block-inline; width:10%">
-                                                            <img src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">
+                                                <div class="timeline-body collapse in" id="list7daysCollapse">
+                                                    <div style="overflow-x:auto; height:140px">
+                                                        <c:forEach items="${recipeList}" var="i">
                                                             <div>
-                                                                <ul style="list-style-type: none; margin:0; padding:0; ">
-                                                                    <c:if test="${i.type.contains('Maincourse')}">
-                                                                        <li style="float:right"><i class="fa fa-tags" style="display:block; padding:1px; color:red"></i></li>
-                                                                    </c:if>
-                                                                    <c:if test="${i.type.contains('Appetizer')}">
-                                                                        <li style="float:right"><i class="fa fa-tags" style="display:block; padding:1px; color:blue"></i></li>
-                                                                    </c:if>
-                                                                    <c:if test="${i.type.contains('Salad')}">
-                                                                        <li style="float:right"><i class="fa fa-tags" style="display:block; padding:1px; color:orange"></i></li>
-                                                                    </c:if>
-                                                                    <c:if test="${i.type.contains('Desert')}">
-                                                                        <li style="float:right"><i class="fa fa-tags" style="display:block; padding:1px; color:gr"></i></li>
-                                                                    </c:if>
-                                                                </ul>
+                                                                <!-- image list -->
+                                                                <div style="display: block-inline; float: left; margin-bottom:15px; margin-top:8px">
+                                                                    <div style="float:right">
+                                                                        <ul style="list-style-type: none; margin:0; padding:0;">
+                                                                            <c:if test="${i.type.contains('Maincourse')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:red"></i></li>
+                                                                                </c:if>
+                                                                                <c:if test="${i.type.contains('Appetizer')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:blue"></i></li>
+                                                                                </c:if>
+                                                                                <c:if test="${i.type.contains('Salad')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:orange"></i></li>
+                                                                                </c:if>
+                                                                                <c:if test="${i.type.contains('Desert')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:gr"></i></li>
+                                                                                </c:if>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <img style="float:left; margin-right:0px" src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">
+                                                                </div>
+                                                                <!--<li><i class="fa fa-tags" style="position:absolute;right:10%"></i></li>-->
                                                             </div>
+                                                        </c:forEach>
+                                                    </div>                                            
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:when>
+
+                                    <c:when test="${rcmList ne null}">
+                                        <li>
+                                            <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#list7daysCollapse"></i>
+                                            <div class="timeline-item" style="min-height: 10px">
+
+                                                <h3 class="timeline-header"><a href="#">${name}</a> - May be you like ...</h3>
+
+                                                <div class="timeline-body collapse in" id="list7daysCollapse">
+                                                    <div style="overflow-x:auto; height:140px">
+                                                        <c:forEach items="${rcmList}" var="i">
+                                                            <div>
+                                                                <!-- image list -->
+                                                                <div style="display: block-inline; float: left; margin-bottom:15px; margin-top:8px">
+                                                                    <div style="float:right">
+                                                                        <ul style="list-style-type: none; margin:0; padding:0;">
+                                                                            <c:if test="${i.type.contains('Maincourse')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:red"></i></li>
+                                                                                </c:if>
+                                                                                <c:if test="${i.type.contains('Appetizer')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:blue"></i></li>
+                                                                                </c:if>
+                                                                                <c:if test="${i.type.contains('Salad')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:orange"></i></li>
+                                                                                </c:if>
+                                                                                <c:if test="${i.type.contains('Desert')}">
+                                                                                <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:gr"></i></li>
+                                                                                </c:if>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <img style="float:left; margin-right:0px" src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">
+                                                                </div>
+                                                                <!--<li><i class="fa fa-tags" style="position:absolute;right:10%"></i></li>-->
+                                                            </div>
+                                                        </c:forEach>
+                                                    </div>                                            
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:when>
+                                </c:choose>
+
+
+
+                                <!-- Searching Another recipes -->
+                                <li>
+                                    <i class="fa fa-cutlery bg-yellow" data-toggle="collapse" data-target="#searchCollapse"></i>
+                                    <div class="timeline-item" style="min-height: 10px">
+                                        <span class="time"><i class="fa fa-search"></i> <input type="text"/></span>
+
+                                        <h3 class="timeline-header"><a href="#">${name}</a> - You can searching more ...</h3>
+
+                                        <div class="timeline-body collapse" id="searchCollapse">
+                                            <div style="overflow-x:auto; height:140px">
+                                                <c:if test="${not empty sRecipeList}">
+                                                    <c:forEach items="${sRecipeList}" var="i">
+                                                        <div>
+                                                            <!-- image list -->
+                                                            <div style="display: block-inline; float: left; margin-bottom:15px; margin-top:8px">
+                                                                <div style="float:right">
+                                                                    <ul style="list-style-type: none; margin:0; padding:0;">
+                                                                        <c:if test="${i.type.contains('Maincourse')}">
+                                                                            <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:red"></i></li>
+                                                                            </c:if>
+                                                                            <c:if test="${i.type.contains('Appetizer')}">
+                                                                            <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:blue"></i></li>
+                                                                            </c:if>
+                                                                            <c:if test="${i.type.contains('Salad')}">
+                                                                            <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:orange"></i></li>
+                                                                            </c:if>
+                                                                            <c:if test="${i.type.contains('Desert')}">
+                                                                            <li style="float:right"><i class="fa fa-tags" style="display:block; padding:0px; color:gr"></i></li>
+                                                                            </c:if>
+                                                                    </ul>
+                                                                </div>
+                                                                <img style="float:left; margin-right:0px" src="../recipes_document/${i.recipeImage}" alt="..." class="cycle" id="${i.recipeID}_src" draggable="true" ondragstart="dragstart_handler(event);">
+                                                            </div>
+                                                            <!--<li><i class="fa fa-tags" style="position:absolute;right:10%"></i></li>-->
                                                         </div>
-                                                        <!--<li><i class="fa fa-tags" style="position:absolute;right:10%"></i></li>-->
-                                                    </div>
-                                                </c:forEach>
+                                                    </c:forEach>
+                                                </c:if>
                                             </div>                                            
                                         </div>
                                     </div>
-                                </li>  
+                                </li>
                             </ul>
                         </div>                       
                     </div>
