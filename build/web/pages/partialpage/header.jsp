@@ -86,7 +86,7 @@
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                            <c:if test="${not empty fullName}"><img src="../dist/img/avatar.png" class="img-circle" alt="User Image"></c:if>
+                            <c:if test="${not empty fullName}"><img src="../dist/img/avatar.png" class="img-circle avatar" alt="User Image"></c:if>
                             <c:if test="${empty fullName}"> </c:if>
 
                                 <p>
@@ -165,6 +165,27 @@
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script>
+    $(document).ready(function(){
+        getAvatar();
+    });
+    //GET AVATAR
+    function getAvatar() {
+        var username = '${username}';
+        username = username.toString();
+        if (username != '') {
+            $.ajax({
+                url: '../getAvatarServlet',
+                data: {
+                    username: "${username}"
+                },
+                success: function(data) {
+                    $('.profile-pic').attr("src", data);
+                    $('.avatar').attr("src", data);
+                    $('.user-image').attr("src", data);
+                }
+            });
+        }
+    };
     function clearShoppingList(){
       $.ajax({
             url : '../shoppinglistServlet',

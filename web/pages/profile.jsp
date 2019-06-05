@@ -302,7 +302,6 @@
         <script>
                             $(document).ready(
                                     function() {
-                                        getAvatar();
                                         //Datemask dd/mm/yyyy
                                         $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
                                         $('[data-mask]').inputmask();
@@ -512,24 +511,6 @@
                                 if (day.length < 2)
                                     day = '0' + day;
                                 return [year, month, day].join("-");
-                            }
-                            ;
-                            //GET AVATAR
-                            function getAvatar() {
-                                var username = '${username}';
-                                username = username.toString();
-                                if (username != '') {
-                                    $.ajax({
-                                        url: '../getAvatarServlet',
-                                        data: {
-                                            username: "${username}"
-                                        },
-                                        success: function(data) {
-                                            $('.profile-pic').attr("src", data);
-                                            $('.user-image').attr("src", data);
-                                        }
-                                    });
-                                }
                             }
                             ;
         </script>
