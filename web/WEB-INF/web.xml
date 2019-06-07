@@ -136,6 +136,10 @@
         <servlet-name>recipedetailReportServlet</servlet-name>
         <servlet-class>toan.recipedetailReportServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loveServlet</servlet-name>
+        <servlet-class>toan.loveServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -271,6 +275,10 @@
     <servlet-mapping>
         <servlet-name>recipedetailReportServlet</servlet-name>
         <url-pattern>/recipedetailReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loveServlet</servlet-name>
+        <url-pattern>/loveServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -33,4 +33,10 @@ public interface RecipeFacadeLocal {
     String getAllrecipestoJSON();
 
     int deleteRecipe(String recipeID);
+
+    boolean likeRecipe(String recipeID, String username);
+
+    boolean unlikeRecipe(String recipeID, String username);
+
+    boolean checklikeStatus(String recipeID, String username);
 }

@@ -277,13 +277,48 @@
 </script>
 <script type="text/javascript">
     function loveFunction(x,id) {
+      status=x.classList.toString();
       tempid=id;
+      if ("${username}"=="") {
+          alert("You must login to use this function");
+      }else{
+          if (status.includes("heart-love")) {
+             $.ajax({
+                url : '../loveServlet',
+                data : {
+                       recipeID : tempid,
+                       username : "${username}",
+                       status : "unlike"
+                },
+                success : function(responseText) {
+                        console.log(responseText);
+                },
+                complete: function(){
+                    x.classList.toggle("heart-love");
+                }
+            });   
+        }else{
+            $.ajax({
+                url : '../loveServlet',
+                data : {
+                       recipeID : tempid,
+                       username : "${username}",
+                       status : "like"
+                },
+                success : function(responseText) {
+                        console.log(responseText);
+                },
+                complete: function(){
+                    x.classList.toggle("heart-love");
+                }
+            });
+        }
+          
+          
+      }
       
-      
-      
-      
+      delete(status);
       delete(tempid);
-      x.classList.toggle("heart-love");
     };
     
     function closemodal(){

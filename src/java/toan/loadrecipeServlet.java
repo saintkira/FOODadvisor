@@ -4,7 +4,6 @@ package toan;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.ejb.EJB;
@@ -12,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.RecipeFacadeLocal;
 import model.Recipe;
 
@@ -21,9 +21,10 @@ public class loadrecipeServlet extends HttpServlet {
     private RecipeFacadeLocal recipeFacade;
     List<Recipe> recipes;
     
-    public String add_content(String resp, Recipe recipe){
+    public String add_content(String resp, Recipe recipe,HttpSession session){
         String ID = recipe.getRecipeID();
         String description = recipe.getDescription();
+        String username = session.getAttribute("username").toString();
         if (description.length()>70) {
             description = description.substring(0, 60)+"...";
         }
@@ -31,6 +32,13 @@ public class loadrecipeServlet extends HttpServlet {
                 .replace("$ID", ID)
                 .replace("$recipename", recipe.getRecipeName()).replace("$price", recipe.getPrice())
                 .replace("$description", description);
+        if (username.isEmpty()) {
+            resp=resp.replace("$check", "");
+        }else if(recipeFacade.checklikeStatus(ID, username)){
+            resp=resp.replace("$check", " heart-love");
+        }else{
+            resp = resp.replace("$check", "");
+        }
         return resp;
     }
     
@@ -38,6 +46,7 @@ public class loadrecipeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
         if (request.getParameter("status").equals("scroll")==false) {
             recipes = recipeFacade.findAll();
             String resp1 = "<div class=\"row\" style=\"padding-bottom: 30px\">\n"
@@ -47,7 +56,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
                     + "                                        </div>\n"
-                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
+                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon$check\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
                     + "                                    </div>\n"
                     + "                                    <div class=\"food-content\" style=\"height:190px\">\n"
                     + "                                        <div class=\"d-flex justify-content-between\">\n"
@@ -70,7 +79,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
                     + "                                        </div>\n"
-                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
+                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon$check\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
                     + "                                    </div>\n"
                     + "                                    <div class=\"food-content\" style=\"height:190px\">\n"
                     + "                                        <div class=\"d-flex justify-content-between\">\n"
@@ -93,7 +102,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
                     + "                                        </div>\n"
-                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
+                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon$check\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
                     + "                                    </div>\n"
                     + "                                    <div class=\"food-content\" style=\"height:190px\">\n"
                     + "                                        <div class=\"d-flex justify-content-between\">\n"
@@ -117,17 +126,17 @@ public class loadrecipeServlet extends HttpServlet {
             try{
                 if(recipes.size()>=3){
                 Collections.shuffle(recipes);
-                resp = add_content(resp1, recipes.get(0)) + add_content(resp2, recipes.get(1)) + add_content(resp3, recipes.get(2));
+                resp = add_content(resp1, recipes.get(0),session) + add_content(resp2, recipes.get(1),session) + add_content(resp3, recipes.get(2),session);
                 recipes.remove(0);
                 recipes.remove(0);
                 recipes.remove(0);
             }else if(recipes.size()==2){
                 Collections.shuffle(recipes);
-                resp = add_content(resp1, recipes.get(0)) + add_content(resp3, recipes.get(1));
+                resp = add_content(resp1, recipes.get(0),session) + add_content(resp3, recipes.get(1),session);
                 recipes.remove(0);
                 recipes.remove(0);
             }else if(recipes.size()==1){
-                resp = add_content(resp1, recipes.get(0))+"</div>";
+                resp = add_content(resp1, recipes.get(0),session)+"</div>";
                 recipes.remove(0);
             }else{
                 resp = "<div class=\"row\">\n"
@@ -157,7 +166,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
                     + "                                        </div>\n"
-                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
+                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon$check\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
                     + "                                    </div>\n"
                     + "                                    <div class=\"food-content\" style=\"height:190px\">\n"
                     + "                                        <div class=\"d-flex justify-content-between\">\n"
@@ -180,7 +189,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
                     + "                                        </div>\n"
-                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
+                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon$check\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
                     + "                                    </div>\n"
                     + "                                    <div class=\"food-content\" style=\"height:190px\">\n"
                     + "                                        <div class=\"d-flex justify-content-between\">\n"
@@ -203,7 +212,7 @@ public class loadrecipeServlet extends HttpServlet {
                     + "                                        <div class=\"food-img\">\n"
                     + "                                            <img src=\"$background-image\" style=\"width:100%;height:300px\" class=\"img-fluid\" alt=\"Image Not Available\">     \n"
                     + "                                        </div>\n"
-                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
+                    + "                                        <i style=\"position:absolute;top:2%;left:85%;\" class=\"fa fa-heart circle-icon$check\" onclick=\"loveFunction(this,'$ID')\"></i>\n"
                     + "                                    </div>\n"
                     + "                                    <div class=\"food-content\" style=\"height:190px\">\n"
                     + "                                        <div class=\"d-flex justify-content-between\">\n"
@@ -224,17 +233,17 @@ public class loadrecipeServlet extends HttpServlet {
             String resp = "";
             if (recipes.size() >= 3) {
                 Collections.shuffle(recipes);
-                resp = add_content(resp1, recipes.get(0)) + add_content(resp2, recipes.get(1)) + add_content(resp3, recipes.get(2));
+                resp = add_content(resp1, recipes.get(0),session) + add_content(resp2, recipes.get(1),session) + add_content(resp3, recipes.get(2),session);
                 recipes.remove(0);
                 recipes.remove(0);
                 recipes.remove(0);
             } else if (recipes.size() == 2) {
                 Collections.shuffle(recipes);
-                resp = add_content(resp1, recipes.get(0)) + add_content(resp3, recipes.get(1));
+                resp = add_content(resp1, recipes.get(0),session) + add_content(resp3, recipes.get(1),session);
                 recipes.remove(0);
                 recipes.remove(0);
             } else if (recipes.size() == 1) {
-                resp = add_content(resp1, recipes.get(0)) + "</div>";
+                resp = add_content(resp1, recipes.get(0),session) + "</div>";
                 recipes.remove(0);
             } else {
                 resp = "<div class=\"row\">\n"

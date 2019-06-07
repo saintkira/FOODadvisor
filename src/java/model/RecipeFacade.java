@@ -47,4 +47,39 @@ public class RecipeFacade extends AbstractFacade<Recipe> implements RecipeFacade
         q.setParameter("username", recipeID);
         return q.executeUpdate();
     }
+
+    @Override
+    public boolean likeRecipe(String recipeID, String username) {
+        Query q = em.createNativeQuery("SELECT * FROM Favorite WHERE Username='"+username+"' AND RecipeID='"+recipeID+"'");
+        if (q.getResultList().isEmpty()) {
+            em.createNativeQuery("INSERT INTO Favorite(Username,RecipeID) VALUES('"+username+"','"+recipeID+"')").executeUpdate();
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
+    @Override
+    public boolean unlikeRecipe(String recipeID, String username) {
+        Query q = em.createNativeQuery("SELECT * FROM Favorite WHERE Username='" + username + "' AND RecipeID='" + recipeID + "'");
+        if (q.getResultList().isEmpty()==false) {
+            em.createNativeQuery("DELETE FROM Favorite WHERE Username='" + username + "' AND RecipeID='" + recipeID + "'").executeUpdate();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean checklikeStatus(String recipeID, String username) {
+        Query q = em.createNativeQuery("SELECT * FROM Favorite WHERE Username='" + username + "' AND RecipeID='" + recipeID + "'");
+        if (q.getResultList().isEmpty()) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    
 }
