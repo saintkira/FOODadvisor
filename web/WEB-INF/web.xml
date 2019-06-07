@@ -132,6 +132,10 @@
         <servlet-name>searchRecipeServlet</servlet-name>
         <servlet-class>trang.searchRecipeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>recipedetailReportServlet</servlet-name>
+        <servlet-class>toan.recipedetailReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -263,6 +267,10 @@
     <servlet-mapping>
         <servlet-name>searchRecipeServlet</servlet-name>
         <url-pattern>/searchRecipeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>recipedetailReportServlet</servlet-name>
+        <url-pattern>/recipedetailReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

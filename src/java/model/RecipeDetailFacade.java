@@ -6,6 +6,7 @@
 
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,10 +32,15 @@ public class RecipeDetailFacade extends AbstractFacade<RecipeDetail> implements 
     }
 
     @Override
-    public List<IngredientModel> getIngredients(String recipeID) {
+    public RecipeModel getIngredients(String recipeID) {
         Query q = em.createQuery("SELECT r FROM RecipeDetail r WHERE r.recipeDetailPK.recipeID = :recipeID");
         q.setParameter("recipeID", recipeID);
-        return q.getResultList();
+        List<RecipeDetail> list = q.getResultList();
+        List<IngredientModel> result = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            result.add(new IngredientModel(list.get(i).getIngredientName(), i+1));
+        }
+        return new RecipeModel(recipeID, list.get(0).getRecipe().getRecipeName(), list.get(0).getRecipe().getPrice(), null, list.get(0).getRecipe().getType(), result);
     }
     
 }

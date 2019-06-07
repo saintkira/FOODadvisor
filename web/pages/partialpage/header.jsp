@@ -156,6 +156,8 @@
                 </li>
 
             </ul>
+            <%String path=request.getServerName()+ ":" + request.getServerPort()+ request.getContextPath();%>
+            <input type="hidden" id="hidVal" name="txt2" value="<%=path%>"/>
     </section>
     <!-- /.sidebar -->
 </aside>
@@ -212,7 +214,7 @@
             });  
     };
     function signOut() {
-
+            
             //        var auth2 = gapi.auth2.getAuthInstance();
             //        auth2.signOut().then(function() {
             //            console.log('User signed out.');
@@ -222,14 +224,15 @@
             //            auth2.disconnect();
             //        };
             //        window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
+            path = document.getElementById('hidVal').value;
             var google = '${googleLogin}';
             if (google != "") {
-                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/FOODadvisor/logOutServlet";
+                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://"+path+"/logOutServlet";
 
             } else {
                 window.location.href = '../logOutServlet';
             }
-
+            delete(path);
       }
 </script>
 

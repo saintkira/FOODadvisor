@@ -30,6 +30,6 @@ public interface RecipeDetailFacadeLocal {
 
     int count();
 
-    List<IngredientModel> getIngredients(String recipeID);
+    RecipeModel getIngredients(String recipeID);
     
 }

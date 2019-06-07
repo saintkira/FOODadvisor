@@ -364,7 +364,9 @@
                         <!-- /.col -->
                     </div>
                 </section>
-
+                <form action="../recipedetailReportServlet">
+                    <input type="submit" value="Submit"/>
+                </form>
             </div>
             <!--MODALS-->
             <div class="modal fade" id="modal-default">

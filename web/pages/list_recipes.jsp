@@ -135,7 +135,8 @@
         
         
         <!-- modal -->
-        <div id="fsModal" class="modal animated fadeIn">
+        <div id="fsModal" class="modal animated fadeIn" >
+            <div id="recipeID" class=""></div>
           <!-- dialog -->
           <div class="modal-dialog">
             <!-- content -->
@@ -178,16 +179,19 @@
            
               <!-- footer -->
               <div class="modal-footer">
-                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-secondary" data-dismiss="modal" onclick="closemodal()">
+                    <i class="fa fa-window-close" style="color:red"></i>
+                    Close
+                </button>
                 <!--
                 <button class="btn btn-default">
                   Default
                 </button>
                 -->
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" onclick="exportPDF();">
+                  <i class="fa fa-file" style="color:red"></i>
                   Print Report
                 </button>
-                
               </div>
               <!-- footer -->
             </div>
@@ -247,6 +251,7 @@
     function loadmodalFunction(x){
       temp=x.toString();
       include_temp='../recipes_document/'+temp+'/'+temp+'.html';
+      $("#recipeID").attr("class", temp);
       $("#include").attr("w3-include-html",include_temp);
       window.setTimeout(function(){
         w3IncludeHTML();
@@ -258,6 +263,7 @@
       $.get(temp, function(data){
         $(".owl-carousel").append(data);
       });
+      delete(temp);
       window.setTimeout(function(){
           $(".owl-carousel").owlCarousel({
             loop:true,
@@ -280,7 +286,23 @@
       x.classList.toggle("heart-love");
     };
     
+    function closemodal(){
+        $("#recipeID").attr("class", temp);
+    };
     
+    function exportPDF(){
+        id = document.getElementById("recipeID").className.split(/\s+/)[0];
+        $.ajax({
+            url : '../recipedetailReportServlet',
+            data : {
+                   recipeID : id
+            },
+            success : function() {
+                    console.log("Success");
+            }
+        });
+        delete(id);
+    }
     function menuFunction(x,id) {
         tempid=id;
         x.classList.toggle("fa-calendar-check-o");
