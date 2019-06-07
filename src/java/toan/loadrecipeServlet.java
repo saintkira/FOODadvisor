@@ -24,7 +24,10 @@ public class loadrecipeServlet extends HttpServlet {
     public String add_content(String resp, Recipe recipe,HttpSession session){
         String ID = recipe.getRecipeID();
         String description = recipe.getDescription();
-        String username = session.getAttribute("username").toString();
+        String username = "";
+        if (session.getAttribute("username")!=null) {
+            username = session.getAttribute("username").toString();
+        }
         if (description.length()>70) {
             description = description.substring(0, 60)+"...";
         }
