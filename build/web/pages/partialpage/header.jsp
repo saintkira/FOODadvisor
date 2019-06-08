@@ -148,9 +148,9 @@
                 </li>
 
                 <!--CHUC NANG THU 3-->
-                <li class=" treeview">
-                    <a href="#">
-                        <i class="fa fa-history"></i> <span>HISTORY USER</span>
+                <li class=" ">
+                    <a href="favorite.jsp">
+                        <i class="fa fa-heart"></i> <span>Favorite</span>
                         <span class="pull-right-container"></span>
                     </a>
                 </li>
@@ -224,7 +224,7 @@
             //        window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
             var google = '${googleLogin}';
             if (google != "") {
-                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/FOODadvisor/logOutServlet";
+                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/foodadvisor/logOutServlet";
 
             } else {
                 window.location.href = '../logOutServlet';

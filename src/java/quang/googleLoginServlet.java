@@ -97,7 +97,7 @@ public class googleLoginServlet extends HttpServlet {
                 ///////======
                 List<Account> checkList = accountFacade.findByEmail(email);
                 if (!checkList.isEmpty()) {
-                    session.setAttribute("username", checkList.get(0).getUsername());
+                    session.setAttribute("username", checkList.get(0).getUsername().replace(" ", ""));
                     session.setAttribute("password", checkList.get(0).getPassword());
                     session.setAttribute("fullName", checkList.get(0).getFullname());
                     session.setAttribute("googleLogin", "true");

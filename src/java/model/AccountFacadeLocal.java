@@ -50,6 +50,12 @@ public interface AccountFacadeLocal {
 
     int activeUser(String username);
 
+    String selectFavoriteRecipe(String username);
+
+    String countFavorite(String user);
+
+    boolean changPasswordByEmail(String emailAdd, String pass);
+
    
     
 }

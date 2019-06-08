@@ -87,7 +87,7 @@
 
                                         <ul class="list-group list-group-unbordered">
                                             <li class="list-group-item">
-                                                <b>Favorites Item</b> <a class="pull-right">22</a>
+                                                <b>Favorites Item</b> <a href="favorite.jsp" class="pull-right" id="favorite"></a>
                                             </li>
                                         </ul>
 
@@ -299,6 +299,7 @@
         <script>
                             $(document).ready(
                                     function() {
+                                        getFavorite();
                                         console.log('${googleLogin}');
                                         //Datemask dd/mm/yyyy
                                         $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
@@ -428,6 +429,7 @@
                             }
 
 
+
                             //validatioon profile input
                             function checkSubmitForm() {
                                 if ($("*").hasClass("has-error")) {
@@ -445,6 +447,8 @@
                                 var checkNameResult = checkNameLength(nameValue);
                                 var checkHeightBlankResult = checkHeightBlank(heightValue);
                                 var checkWeightBlankResult = checkWeightBlank(weightValue);
+                                var checkHeightValueResult = checkHeightValue(heightValue);
+                                var checkWeightValueResult = checkWeightValue(weightValue);
 
                                 if (checkNameResult != "") {
                                     $('#errorMsg').append(checkNameResult);
@@ -464,8 +468,18 @@
                                     $('#inputHeight').parent().addClass("has-error");
                                     $('#inputHeight').focus();
                                 }
+                                else if (checkHeightValueResult != "") {
+                                    $('#errorMsg').append(checkHeightValueResult);
+                                    $('#inputHeight').parent().addClass("has-error");
+                                    $('#inputHeight').focus();
+                                }
                                 else if (checkWeightBlankResult != "") {
                                     $('#errorMsg').append(checkWeightBlankResult);
+                                    $('#inputWeight').parent().addClass("has-error");
+                                    $('#inputWeight').focus();
+                                }
+                                else if (checkWeightValueResult != "") {
+                                    $('#errorMsg').append(checkWeightValueResult);
                                     $('#inputWeight').parent().addClass("has-error");
                                     $('#inputWeight').focus();
                                 }
@@ -473,6 +487,18 @@
                                     $('#confirmModal').modal("show");
                                 }
 
+                                function checkHeightValue(heightValue) {
+                                    if (heightValue >= 230) {
+                                        return "This Height is invalid. Please enter value <230";
+                                    }
+                                    return "";
+                                }
+                                function checkWeightValue(weightValue) {
+                                    if (weightValue >= 150) {
+                                        return "This Height is invalid. Please enter value <150";
+                                    }
+                                    return "";
+                                }
                                 function checkWeightBlank(weightValue) {
                                     if (weightValue == "") {
                                         return "Please input Weight";
@@ -504,6 +530,19 @@
                             function submitForm() {
                                 $('#formProfile').submit();
                             }
+
+                            function getFavorite() {
+                                $.ajax({
+                                    url: '../countFavoriteServlet',
+                                    data: {
+                                        username: "${username}"
+                                    },
+                                    success: function(data) {
+                                        $('#favorite').append(data);
+                                        console.log(data);
+                                    }
+                                });
+                            }
         </script>
         <!--UPLOAD AVATAR-->
         <script src="../dist/js/profile.js"></script>
@@ -519,7 +558,8 @@
                                 if (day.length < 2)
                                     day = '0' + day;
                                 return [day, month, year].join("/");
-                            };
+                            }
+                            ;
                             function formatDate2(date) {
                                 var d = new Date(date),
                                         month = '' + (d.getMonth() + 1),
@@ -530,7 +570,8 @@
                                 if (day.length < 2)
                                     day = '0' + day;
                                 return [year, month, day].join("-");
-                            };
+                            }
+                            ;
         </script>
         <script type="text/javascript">
             function onSignIn(googleUser) {

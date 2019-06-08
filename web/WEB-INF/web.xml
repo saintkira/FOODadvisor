@@ -132,6 +132,30 @@
         <servlet-name>searchRecipeServlet</servlet-name>
         <servlet-class>trang.searchRecipeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getFavoriteServlet</servlet-name>
+        <servlet-class>quang.getFavoriteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>countFavoriteServlet</servlet-name>
+        <servlet-class>quang.countFavoriteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sendForgetEmailServlet</servlet-name>
+        <servlet-class>quang.sendForgetEmailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkEmailServlet</servlet-name>
+        <servlet-class>quang.checkEmailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>moveToResetPasswordServlet</servlet-name>
+        <servlet-class>quang.moveToResetPasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>resetPasswordServlet</servlet-name>
+        <servlet-class>quang.resetPasswordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -263,6 +287,30 @@
     <servlet-mapping>
         <servlet-name>searchRecipeServlet</servlet-name>
         <url-pattern>/searchRecipeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getFavoriteServlet</servlet-name>
+        <url-pattern>/getFavoriteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>countFavoriteServlet</servlet-name>
+        <url-pattern>/countFavoriteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendForgetEmailServlet</servlet-name>
+        <url-pattern>/sendForgetEmailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkEmailServlet</servlet-name>
+        <url-pattern>/checkEmailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>moveToResetPasswordServlet</servlet-name>
+        <url-pattern>/moveToResetPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resetPasswordServlet</servlet-name>
+        <url-pattern>/resetPasswordServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
