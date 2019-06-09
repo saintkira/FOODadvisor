@@ -148,9 +148,9 @@
                 </li>
 
                 <!--CHUC NANG THU 3-->
-                <li class=" treeview">
-                    <a href="#">
-                        <i class="fa fa-history"></i> <span>HISTORY USER</span>
+                <li class="">
+                    <a href="favorite.jsp">
+                        <i class="fa fa-heart"></i> <span>Favorite</span>
                         <span class="pull-right-container"></span>
                     </a>
                 </li>
