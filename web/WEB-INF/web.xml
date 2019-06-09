@@ -133,7 +133,6 @@
         <servlet-class>trang.searchRecipeServlet</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>recipedetailReportServlet</servlet-name>
         <servlet-class>toan.recipedetailReportServlet</servlet-class>
     </servlet>
@@ -148,7 +147,8 @@
     <servlet>
         <servlet-name>top10recipeReportServlet</servlet-name>
         <servlet-class>quang.top10recipeReportServlet</servlet-class>
-=======
+	</servlet>
+    <servlet>
         <servlet-name>getFavoriteServlet</servlet-name>
         <servlet-class>quang.getFavoriteServlet</servlet-class>
     </servlet>
@@ -175,7 +175,6 @@
     <servlet>
         <servlet-name>sendActivationEmail</servlet-name>
         <servlet-class>quang.sendActivationEmail</servlet-class>
->>>>>>> quang_common10
     </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
@@ -310,7 +309,6 @@
         <url-pattern>/searchRecipeServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>recipedetailReportServlet</servlet-name>
         <url-pattern>/recipedetailReportServlet</url-pattern>
     </servlet-mapping>
@@ -325,7 +323,8 @@
     <servlet-mapping>
         <servlet-name>top10recipeReportServlet</servlet-name>
         <url-pattern>/top10recipeReportServlet</url-pattern>
-=======
+	</servlet-mapping>
+    <servlet-mapping>
         <servlet-name>getFavoriteServlet</servlet-name>
         <url-pattern>/getFavoriteServlet</url-pattern>
     </servlet-mapping>
@@ -352,7 +351,6 @@
     <servlet-mapping>
         <servlet-name>sendActivationEmail</servlet-name>
         <url-pattern>/sendActivationEmail</url-pattern>
->>>>>>> quang_common10
     </servlet-mapping>
     <session-config>
         <session-timeout>
