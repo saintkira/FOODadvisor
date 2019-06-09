@@ -50,11 +50,11 @@ public class registerServlet extends HttpServlet {
             account.setFullname(fullName);
             account.setPassword(password);
             account.setEmailAddress(email);
-            account.setActiveStatus(false);
+            account.setActiveStatus(true);
             account.setGender(true);
             accountFacade.create(account);
             session.setAttribute("emailActivate", email);
-            response.sendRedirect("pages/finishCreateAccount.jsp");
+            response.sendRedirect("pages/login.jsp");
 
         }
     }

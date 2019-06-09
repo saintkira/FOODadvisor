@@ -253,8 +253,8 @@
                         loadDatatable();
                     }
                 }
+            });
         }
-        );
     </script>
 
 </body>

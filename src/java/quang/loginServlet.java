@@ -54,10 +54,7 @@ public class loginServlet extends HttpServlet {
                 String fullname = accountFacade.find(username).getFullname();
                 session.setAttribute("fullName", fullname);
 
-                //get last 2 words of fullname
-                String[] fname = fullname.split(" ");
-                String name = fname[fname.length - 2] + " " + fname[fname.length - 1];
-                session.setAttribute("name", name);
+         
 
                 //check redirect
                 String locating = (String) session.getAttribute("redirect");
