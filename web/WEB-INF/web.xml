@@ -156,6 +156,10 @@
         <servlet-name>resetPasswordServlet</servlet-name>
         <servlet-class>quang.resetPasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sendActivationEmail</servlet-name>
+        <servlet-class>quang.sendActivationEmail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -311,6 +315,10 @@
     <servlet-mapping>
         <servlet-name>resetPasswordServlet</servlet-name>
         <url-pattern>/resetPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendActivationEmail</servlet-name>
+        <url-pattern>/sendActivationEmail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
