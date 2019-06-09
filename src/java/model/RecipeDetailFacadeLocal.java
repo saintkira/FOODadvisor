@@ -6,6 +6,7 @@
 
 package model;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,5 +32,9 @@ public interface RecipeDetailFacadeLocal {
     int count();
 
     RecipeModel getIngredients(String recipeID);
+
+    List<recipeCountModel> getTopRecipe();
+
+    String getLikes();
     
 }

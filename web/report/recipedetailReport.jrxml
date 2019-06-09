@@ -76,21 +76,27 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="86" splitType="Stretch">
+		<band height="95" splitType="Stretch">
 			<staticText>
-				<reportElement x="178" y="0" width="186" height="35" uuid="369d32c6-b24d-426f-9e87-f2a613779769"/>
+				<reportElement x="178" y="10" width="186" height="35" uuid="369d32c6-b24d-426f-9e87-f2a613779769"/>
 				<textElement textAlignment="Center">
-					<font size="24"/>
+					<font size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Recipe Detail]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="35" width="178" height="50" uuid="dca8de56-31a3-4882-9d1a-d842f57f2af6"/>
+				<reportElement x="0" y="45" width="178" height="50" uuid="dca8de56-31a3-4882-9d1a-d842f57f2af6"/>
 				<textElement>
-					<font size="20"/>
+					<font size="20" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{recipename}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="4" width="555" height="1" uuid="f330b98e-6cca-492d-8813-0aef1c44d3a2"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
 		</band>
 	</pageHeader>
 	<detail>
@@ -98,7 +104,7 @@
 			<staticText>
 				<reportElement x="0" y="0" width="94" height="25" uuid="5051800e-1b1e-4c23-b64e-faeec3a6f818"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ingredients:]]></text>
 			</staticText>

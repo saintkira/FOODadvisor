@@ -140,6 +140,14 @@
         <servlet-name>loveServlet</servlet-name>
         <servlet-class>toan.loveServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>top10recipeServlet</servlet-name>
+        <servlet-class>quang.top10recipeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>top10recipeReportServlet</servlet-name>
+        <servlet-class>quang.top10recipeReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -279,6 +287,14 @@
     <servlet-mapping>
         <servlet-name>loveServlet</servlet-name>
         <url-pattern>/loveServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>top10recipeServlet</servlet-name>
+        <url-pattern>/top10recipeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>top10recipeReportServlet</servlet-name>
+        <url-pattern>/top10recipeReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

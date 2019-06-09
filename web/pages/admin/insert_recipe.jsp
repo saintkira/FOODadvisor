@@ -412,9 +412,24 @@
                     $(".rimage").css("color","");
                     $(".rimage").removeClass("has-error");
                 }
-                alert(document.getElementsByClassName("has-error").length);
                 if (document.getElementsByClassName("has-error").length==0) {
-                    $("#insert-form").submit();
+                    $("#saveBtn").click(function(){
+                        var fd = new FormData();
+                        var ext = document.getElementById("file").value;//GET Filename for extension
+                        console.log(ext);
+                        fd.append('file', document.getElementById("file").files[0]);
+                        fd.append('ext',ext);
+                        var req;
+                        if (window.ActiveXObject) {
+                            req = new ActiveXObject();
+                        } else {
+                            req = new XMLHttpRequest();
+                        }
+                        req.open("post", "../saveAvatarServlet", true);
+                        location.reload();
+                        req.send(fd); 
+
+                    });
                 }
 
             }

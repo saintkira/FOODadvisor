@@ -364,7 +364,7 @@
                         <!-- /.col -->
                     </div>
                 </section>
-                <form action="../recipedetailReportServlet">
+                <form action="../top10recipeReportServlet">
                     <input type="submit" value="Submit"/>
                 </form>
             </div>
