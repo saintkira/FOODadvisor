@@ -163,6 +163,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+<<<<<<< HEAD
                     <file>${file.reference.jasperreports-6.2.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -296,6 +297,13 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.itext-2.1.7.js4.jar}</file>
+=======
+                    <file>${file.reference.activation.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.javax.mail-1.4.4.jar}</file>
+>>>>>>> quang_common10
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

@@ -38,9 +38,9 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
 
     @Override
     public int deleteUser(String username) {
-        if (em.createQuery("SELECT a FROM Account a WHERE a.username ='"+username+"'").getResultList().isEmpty()==false) {
-             Query q = em.createQuery("UPDATE Account a SET a.activeStatus="+false+" WHERE a.username ='"+username+"'");
-             return q.executeUpdate();
+        if (em.createQuery("SELECT a FROM Account a WHERE a.username ='" + username + "'").getResultList().isEmpty() == false) {
+            Query q = em.createQuery("UPDATE Account a SET a.activeStatus=" + false + " WHERE a.username ='" + username + "'");
+            return q.executeUpdate();
         }
         return -1;
     }
@@ -98,6 +98,15 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
 
     @Override
+    public boolean changPasswordByEmail(String emailAdd, String pass) {
+        Query q = em.createNativeQuery("UPDATE Account SET Password = '" + pass + "' WHERE EmailAddress = '" + emailAdd + "' ");
+        if (q.executeUpdate() >= 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean findEmail(String email) {
         Query q = em.createQuery("SELECT a FROM Account a WHERE a.emailAddress = :emailAddress");
         q.setParameter("emailAddress", email);
@@ -111,8 +120,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     public List<Account> findByEmail(String email) {
         Query q = em.createQuery("SELECT a FROM Account a WHERE a.emailAddress = :emailAddress");
         q.setParameter("emailAddress", email);
-        
-        
+
         return q.getResultList();
     }
 
@@ -124,7 +132,34 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         }
         return -1;
     }
-    
-    
+
+    @Override
+    public String selectFavoriteRecipe(String username) {
+        Query q = em.createNativeQuery("SELECT  Recipe.RecipeID,Recipe.RecipeName,Recipe.Type,Recipe.Price "
+                + "FROM Account "
+                + "INNER JOIN Favorite ON Account.Username = Favorite.Username "
+                + "INNER JOIN Recipe ON Recipe.RecipeID = Favorite.RecipeID "
+                + "WHERE Account.Username = '" + username + "'FOR JSON AUTO,Root('data')");
+
+        List<String> list = q.getResultList();
+        String result = "";
+        String abc = "";
+        for (int i = 0; i < list.size(); i++) {
+            abc = abc.concat(list.get(i).toString());
+
+        }
+        return abc;
+
+    }
+
+    @Override
+    public String countFavorite(String user) {
+        Query q = em.createNativeQuery("SELECT COUNT(Recipe.RecipeID) "
+                + "FROM Account "
+                + "INNER JOIN Favorite ON Account.Username = Favorite.Username "
+                + "INNER JOIN Recipe ON Recipe.RecipeID = Favorite.RecipeID "
+                + "WHERE Account.Username = '" + user + "' ");
+        return q.getSingleResult().toString();
+    }
 
 }

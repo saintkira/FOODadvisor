@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Account;
 import model.AccountFacadeLocal;
 
@@ -38,6 +39,7 @@ public class registerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String fullName = request.getParameter("fullName");
@@ -48,10 +50,11 @@ public class registerServlet extends HttpServlet {
             account.setFullname(fullName);
             account.setPassword(password);
             account.setEmailAddress(email);
-            account.setActiveStatus(true);
+            account.setActiveStatus(false);
             account.setGender(true);
             accountFacade.create(account);
-            response.sendRedirect("pages/login.jsp");
+            session.setAttribute("emailActivate", email);
+            response.sendRedirect("pages/finishCreateAccount.jsp");
 
         }
     }

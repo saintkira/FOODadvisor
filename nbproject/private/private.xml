@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Project%204/FOODadvisor/web/report/top10recipeReport.jrxml</file>
+=======
+            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/resetPassword.jsp</file>
+            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/resetPasswordServlet.java</file>
+            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/web/pages/sendResetCode.jsp</file>
+            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/changePasswordServlet.java</file>
+            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/quang/sendForgetEmailServlet.java</file>
+            <file>file:/C:/Users/Windows%2010/Desktop/PROJECT%204/foodadvisor/src/java/model/AccountFacade.java</file>
+>>>>>>> quang_common10
         </group>
     </open-files>
 </project-private>

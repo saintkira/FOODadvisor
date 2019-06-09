@@ -44,12 +44,12 @@
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="list_ingredients.jsp"><b style="color: #00a65a;">FOOD</b>advisor</a>
+                <a href="list_ingredients.jsp"><b style="color: #FF0000;">FOOD</b>advisor</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
 
-                <p class="login-box-msg" style="color: #00a65a;">SIGN IN TO START YOUR SESSION</p>
+                <p class="login-box-msg" style="color: #FF0000;">SIGN IN TO YOUR ADMIN ACCOUNT</p>
                 <form name="loginForm" action="../../loginAdminServlet" method="POST" >
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" placeholder="User name" name="username" id="username">
@@ -66,7 +66,7 @@
                     </div>
                 </form>
                 <div class="">
-                    <button onclick="checkLoginForm()" class="btn btn-success btn-block btn-lg" >Sign In</button>
+                    <button onclick="checkLoginForm()" class="btn btn-danger btn-block btn-lg" >Sign In</button>
                 </div>
 
                 <br/>

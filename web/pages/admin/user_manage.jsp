@@ -119,7 +119,7 @@
                     <div class="modal-content modal-radius">
                         <div class="modal-header bg-green-active">
                             <div class="icon-box bg-green-active">
-                                <i class="fa fa-ban"></i>
+                                <i class="fa fa-unlock-alt"></i>
                             </div>
                             <h3 class="modal-title" style="text-align: center;font-weight: 600;margin: 10px;">ACTIVE</h3>
                         </div>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button class="btn btn-danger btn-ok" id="btn123">OK</button>
+                            <button class="btn btn-success btn-ok" id="btn123">OK</button>
                         </div>
                     </div>
                 </div>
