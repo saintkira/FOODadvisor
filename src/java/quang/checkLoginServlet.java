@@ -40,17 +40,22 @@ public class checkLoginServlet extends HttpServlet {
             String user = request.getParameter("user");
             String pass = request.getParameter("pass");
             Account account = accountFacade.find(user);
-            if (account.getActiveStatus()) {
-                if (accountFacade.checkLogIn(user, pass)) {
-                    response.setContentType("text/html");
-                    response.getWriter().write("true");
+            if (account != null) {
+                if (account.getActiveStatus()) {
+                    if (accountFacade.checkLogIn(user, pass)) {
+                        response.setContentType("text/html");
+                        response.getWriter().write("true");
+                    } else {
+                        response.setContentType("text/html");
+                        response.getWriter().write("false");
+                    }
                 } else {
                     response.setContentType("text/html");
-                    response.getWriter().write("false");
+                    response.getWriter().write("ban");
                 }
             } else {
                 response.setContentType("text/html");
-                response.getWriter().write("ban");
+                response.getWriter().write("false");
             }
 
         }
