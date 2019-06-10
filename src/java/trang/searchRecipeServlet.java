@@ -45,76 +45,107 @@ public class searchRecipeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            //Get username from session
+//            //Get username from session
             HttpSession session = request.getSession();
-            //check login
-            if (session.getAttribute("username") == null) {
-                response.sendRedirect("pages/login.jsp");
-                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
-            } else {
-                String username = (String) session.getAttribute("username");
-
-                //get directory of recipes_document folder
+//            //check login
+//            if (session.getAttribute("username") == null) {
+//                response.sendRedirect("pages/login.jsp");
+//                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
+//            } else {
+//                String username = (String) session.getAttribute("username");
+//
+//                //get directory of recipes_document folder
                 String root = request.getServletContext().getRealPath("//") + "\\recipes_document\\";
-
-                //set menuList from db
-                String preJson = ConnectionHelper.callQuerySP("Menu_GetByUser_SP", username);
-                if (preJson != null) {
-                    String json = changeJson(preJson);
-
-                    ObjectMapper mapper = new ObjectMapper();
-
-                    CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Menu7Days.class);
-                    List<Menu7Days> list = mapper.readValue(json, javaType);
-
-                    for (Menu7Days menu7Days : list) {
-                        menu7Days.setRecipeImage(getImageDir(root, menu7Days.getRecipeID()));
-                    }
-
-                    session.setAttribute("menuList", list);
-
-                } else {
-                    session.setAttribute("menuList", null);
-                }
-
-                //check recipeList in session
-                if (session.getAttribute("recipe_cart_list") != null) { 
-                    List<Recipe> recipeList = (List<Recipe>) session.getAttribute("recipe_cart_list");
-                    for (Recipe recipe : recipeList) {
-                        //get directory contains image
-                        String fname = recipe.getRecipeID();
-                        File folder = new File(root + fname);
-
-                        String img_dir = fname + "/" + folder.listFiles()[0].getName();
-                        recipe.setRecipeImage(img_dir);
-                    }
-                    
-                    session.setAttribute("recipeList", recipeList); System.out.println(recipeList.size());
-                    session.setAttribute("rcmList", null);
-                } else {
-                    //set recomment list
-                    List<Recipe> rcmList = recipeFacade.findAll().subList(0, 100);
-                    for (Recipe recipe : rcmList) {
-                        //get directory contains image
-                        String fname = recipe.getRecipeID();
-                        File folder = new File(root + fname);
-
-                        String img_dir = fname + "/" + folder.listFiles()[0].getName();
-                        recipe.setRecipeImage(img_dir);
-                    }
-
-                    session.setAttribute("rcmList", rcmList);
-                    session.setAttribute("recipeList", null);
-                }
-                
-                //get searchList
+//
+//                //set menuList from db
+//                String preJson = ConnectionHelper.callQuerySP("Menu_GetByUser_SP", username);
+//                if (preJson != null) {
+//                    String json = changeJson(preJson);
+//
+//                    ObjectMapper mapper = new ObjectMapper();
+//
+//                    CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Menu7Days.class);
+//                    List<Menu7Days> list = mapper.readValue(json, javaType);
+//
+//                    for (Menu7Days menu7Days : list) {
+//                        menu7Days.setRecipeImage(getImageDir(root, menu7Days.getRecipeID()));
+//                    }
+//
+//                    session.setAttribute("menuList", list);
+//
+//                } else {
+//                    session.setAttribute("menuList", null);
+//                }
+//
+//                //check recipeList in session
+//                if (session.getAttribute("recipe_cart_list") != null) { 
+//                    List<Recipe> recipeList = (List<Recipe>) session.getAttribute("recipe_cart_list");
+//                    for (Recipe recipe : recipeList) {
+//                        //get directory contains image
+//                        String fname = recipe.getRecipeID();
+//                        File folder = new File(root + fname);
+//
+//                        String img_dir = fname + "/" + folder.listFiles()[0].getName();
+//                        recipe.setRecipeImage(img_dir);
+//                    }
+//                    
+//                    session.setAttribute("recipeList", recipeList); System.out.println(recipeList.size());
+//                    session.setAttribute("rcmList", null);
+//                } else {
+//                    //set recomment list
+//                    List<Recipe> rcmList = recipeFacade.findAll().subList(0, 100);
+//                    for (Recipe recipe : rcmList) {
+//                        //get directory contains image
+//                        String fname = recipe.getRecipeID();
+//                        File folder = new File(root + fname);
+//
+//                        String img_dir = fname + "/" + folder.listFiles()[0].getName();
+//                        recipe.setRecipeImage(img_dir);
+//                    }
+//
+//                    session.setAttribute("rcmList", rcmList);
+//                    session.setAttribute("recipeList", null);
+//                }
+//                
+//                //get searchList
+//                String searcher = request.getParameter("searcher"); System.out.println("Searcher: "+searcher);
+//                String[] s = searcher.split(":");System.out.println("split array: "+s.length);
+//                String key = s[0];
+//                String value = s[1];    System.out.println("split array: "+s.length + " - "+ key + " - " + value);
+//                String preJsonR = ConnectionHelper.callQuerySP("Menu_SearchRecipe_SP", key, value); System.out.println(preJsonR);
+//                if (preJsonR != null) {
+//                    
+//
+//                    ObjectMapper mapper = new ObjectMapper();
+//
+//                    CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Recipe.class);
+//                    List<Recipe> list = mapper.readValue(preJsonR, javaType);
+//
+//                    for (Recipe recipe : list) {
+//                        recipe.setRecipeImage(getImageDir(root, recipe.getRecipeID()));
+//                    }
+//
+//                    session.setAttribute("sRecipeList", list);
+//
+//                } else {
+//                    session.setAttribute("sRecipeList", null);
+//                }
+//                
+//
+//                response.sendRedirect("pages/list_7days.jsp");
+//            }
+//            
+//        }
+        
+        
+        //get searchList
                 String searcher = request.getParameter("searcher"); System.out.println("Searcher: "+searcher);
+//                
                 String[] s = searcher.split(":");System.out.println("split array: "+s.length);
                 String key = s[0];
                 String value = s[1];    System.out.println("split array: "+s.length + " - "+ key + " - " + value);
                 String preJsonR = ConnectionHelper.callQuerySP("Menu_SearchRecipe_SP", key, value); System.out.println(preJsonR);
-                if (preJsonR != null) {
-                    
+                if (preJsonR != null) {                    
 
                     ObjectMapper mapper = new ObjectMapper();
 
@@ -124,17 +155,13 @@ public class searchRecipeServlet extends HttpServlet {
                     for (Recipe recipe : list) {
                         recipe.setRecipeImage(getImageDir(root, recipe.getRecipeID()));
                     }
-
+                    System.out.println("list: size: "+list.size());
                     session.setAttribute("sRecipeList", list);
 
                 } else {
                     session.setAttribute("sRecipeList", null);
                 }
-                
-
-                response.sendRedirect("pages/list_7days.jsp");
-            }
-            
+                response.sendRedirect("pages/recipeSearchList.jsp");
         }
     }
     
