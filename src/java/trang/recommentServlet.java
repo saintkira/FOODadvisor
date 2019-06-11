@@ -57,7 +57,8 @@ public class recommentServlet extends HttpServlet {
             Account user = accountFacade.find(username);
 
             /* calculate BMI */
-            double BMI = 18;       //Double.parseDouble((String) session.getAttribute("BMI"))
+            String sBMI = (String) session.getAttribute("BMI"); 
+            double BMI = Double.parseDouble(sBMI);
 
             /* recomment by BMI */
             String json = null;
@@ -68,7 +69,6 @@ public class recommentServlet extends HttpServlet {
 
                 goal = Goal.WEIGHTGAIN;
                 desc = "You're in the underweight range.";
-                session.setAttribute("goal", goal);
             } else if (BMI >= 18.5 && BMI < 23) {    /* BMI >= 18.5 && BMI < 23 ----> cân nặng bình thường*/
 
                 goal = Goal.HEALTHY;
@@ -101,8 +101,8 @@ public class recommentServlet extends HttpServlet {
             } else {
                 session.setAttribute("sRecipeList", null);
             }
-
-
+            
+            session.setAttribute("goal", goal);
             /* redirect to list_7days.jsp */
             response.sendRedirect("pages/recommentList.jsp");
         }

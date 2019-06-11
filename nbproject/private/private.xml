@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/src/java/trang/recommentServlet.java</file>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/web/pages/list_7days.jsp</file>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/web/bower_components/menu/menu.css</file>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/web/pages/recommentList.jsp</file>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/src/java/trang/searchRecipeServlet.java</file>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/src/java/model/Goal.java</file>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/web/bower_components/menu/search.js</file>
-            <file>file:/D:/TrangNMT/PRV/PRJ4/v3/FOODadvisor/src/java/trang/getMenuServlet.java</file>
+            <file>file:/D:/ACCP/SEM_4/PRJ4/Final/FOODadvisor/web/pages/list_7days.jsp</file>
+            <file>file:/D:/ACCP/SEM_4/PRJ4/Final/FOODadvisor/web/pages/menuReport.jsp</file>
+            <file>file:/D:/ACCP/SEM_4/PRJ4/Final/FOODadvisor/web/WEB-INF/menuReport.jrxml</file>
         </group>
     </open-files>
 </project-private>

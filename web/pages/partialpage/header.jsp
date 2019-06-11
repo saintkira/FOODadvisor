@@ -156,6 +156,7 @@
                 </li>
 
             </ul>
+            <div id="recommentDiv"></div>
     </section>
     <!-- /.sidebar -->
 </aside>

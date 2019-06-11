@@ -54,11 +54,11 @@ public class getMenuServlet extends HttpServlet {
             //Get username from session
             HttpSession session = request.getSession();
             //check login
-//            if (session.getAttribute("username") == null) {
-//                response.sendRedirect("pages/login.jsp");
-//                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
-//            } else {
-                String username = "manhtrang";//String username = (String) session.getAttribute("username");
+            if (session.getAttribute("username") == null) {
+                response.sendRedirect("pages/login.jsp");
+                session.setAttribute("redirect", "/FOODadvisor/getMenuServlet");
+            } else {
+                String username = (String) session.getAttribute("username");
 
                 //get directory of recipes_document folder
                 String root = request.getServletContext().getRealPath("//") + "\\recipes_document\\";
@@ -150,7 +150,7 @@ public class getMenuServlet extends HttpServlet {
                 session.setAttribute("BMI_desc", desc);
 
                 response.sendRedirect("pages/list_7days.jsp");
-//            }
+            }
         }
     }
 

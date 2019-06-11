@@ -5,6 +5,7 @@ $(document).ready(function() {
             var searcher = $("#txtSearch").val();
             $.post("/FOODadvisor/searchRecipeServlet", {searcher: searcher}, function(data) {
                 $('#searchCollapse').html(data);
+                $('#searchCollapse').addClass("in");
             });
         }
 
@@ -31,4 +32,13 @@ $(document).ready(function() {
             $("#recommentDiv").empty();
         }
     });
+});
+
+$(document).ready(function() {
+    if ($("#recipeListCheck").val() == "") {
+        $("#list7daysCollapse").removeClass("in");
+    }
+    else {
+        $("#list7daysCollapse").addClass("in");
+    }
 });

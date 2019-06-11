@@ -70,7 +70,7 @@
                                         <div class="timeline-body" id="tlmenu">
                                             <div class="row">
                                                 <form action="/FOODadvisor/setMenuServlet" method="post">
-                                                    <div class="col-md-7" id="tmenu">
+                                                    <div class="col-md-9" id="tmenu">
                                                         <table class="table table-bordered" id="capture">
                                                             <thead class="bg-blue">
                                                                 <tr>
@@ -84,7 +84,7 @@
                                                                     <td>SUNDAY</td>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="menu">
+                                                            <tbody class="menu" id="tbMenu">
                                                                 <tr>
                                                                     <td class="bg-blue">BREAKFAST</td>
                                                                     <c:forEach var="x" begin="1" end="7">
@@ -143,7 +143,8 @@
                                                         </table>
                                                         <input type="submit" class="btn btn-default" value="Save"/>
                                                         <a href="/FOODadvisor/clearMenuServlet"><span class="btn btn-default" style="margin-top: 8px; margin-bottom:8px">Clear</span></a>
-                                                        <input type="button" class="btn btn-default" value="Print" id="toPDF" onclick="downloadimage()"/>
+                                                        <a href="/FOODadvisor/pages/menuReport.jsp?username=${username}"><span class="btn btn-default" style="margin-top: 8px; margin-bottom:8px">Print</span></a>
+                                                        <!--<input type="button" class="btn btn-default" value="Print" id="toPDF" onclick="downloadimage()"/>-->
                                                         <!-- Toggle button -->
                                                         <div style="float:right; padding-top:10px; vertical-align: middle">
                                                             <span style="padding-right:8px">Recomment </span>
@@ -153,11 +154,11 @@
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-5">   
+                                                    <div class="col-md-3">   
                                                         <h3 style="padding-left:20px; color:crimson">Your BMI: ${BMI}</h3>
                                                         <h4 style="padding-left:20px; color:dodgerblue">${BMI_desc}</h4> 
 
-                                                        <div id="recommentDiv"></div>
+<!--                                                        <div id="recommentDiv"></div>-->
                                                     </div>
                                                 </form>
                                             </div>
@@ -171,7 +172,7 @@
                                     <div class="timeline-item" style="min-height: 10px">
 
                                         <h3 class="timeline-header"><a href="#">${name}</a> - Recipes you chose</h3>
-
+                                        <input type="hidden" value="${recipeList}" id="recipeListCheck"/>
                                         <div class="timeline-body collapse in" id="list7daysCollapse">
                                             <div style="overflow-x:auto; height:140px">
                                                 <c:forEach items="${recipeList}" var="i">

@@ -84,6 +84,7 @@ public class setMenuServlet extends HttpServlet {
                     }
                 }
             }
+            System.out.println("test menuList: " + menu.size());
             ClientHelper.doCreate("Menu_Save_SP", menu, username);
 
             response.sendRedirect("/FOODadvisor/getMenuServlet");

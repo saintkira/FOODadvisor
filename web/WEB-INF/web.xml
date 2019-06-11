@@ -136,6 +136,10 @@
         <servlet-name>recommentServlet</servlet-name>
         <servlet-class>trang.recommentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>menuReportServlet</servlet-name>
+        <servlet-class>trang.menuReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -271,6 +275,10 @@
     <servlet-mapping>
         <servlet-name>recommentServlet</servlet-name>
         <url-pattern>/recommentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>menuReportServlet</servlet-name>
+        <url-pattern>/menuReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

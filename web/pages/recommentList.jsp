@@ -14,9 +14,9 @@
     </head>
     <body>
         <div style="box-shadow: 2px 3px 3px #888; border: 1px solid #eee; margin-top: 20px">
-            <h5 style="padding-left:20px">These are the recipes for <b>${goal}</b> you should choose</h6>
+            <h5 style="padding-left:20px; color: #888">These are the recipes for <b>${goal}</b> you should choose</h6>
             <hr/>
-            <div style="overflow-y:auto; width: 200px; height:155px">
+            <div style="overflow-y:auto; height:320px">
 
                 <c:if test="${sRecipeList ne null}">
                     <c:forEach items="${sRecipeList}" var="i">
