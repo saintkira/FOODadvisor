@@ -154,8 +154,9 @@
                         <span class="pull-right-container"></span>
                     </a>
                 </li>
-
+                
             </ul>
+            <div id="recommentDiv"></div>
             <%String path=request.getServerName()+ ":" + request.getServerPort()+ request.getContextPath();%>
             <input type="hidden" id="hidVal" name="txt2" value="<%=path%>"/>
     </section>

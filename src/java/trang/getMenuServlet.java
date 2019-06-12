@@ -11,6 +11,7 @@ import helper.ConnectionHelper;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Math.pow;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Account;
+import model.AccountFacadeLocal;
+import model.Goal;
 import model.Menu7Days;
 import model.Recipe;
 import model.RecipeFacadeLocal;
@@ -27,6 +31,8 @@ import model.RecipeFacadeLocal;
  * @author trangnmt
  */
 public class getMenuServlet extends HttpServlet {
+    @EJB
+    private AccountFacadeLocal accountFacade;
 
     @EJB
     private RecipeFacadeLocal recipeFacade;
@@ -50,7 +56,7 @@ public class getMenuServlet extends HttpServlet {
             //check login
             if (session.getAttribute("username") == null) {
                 response.sendRedirect("pages/login.jsp");
-                session.setAttribute("redirect", "/FOODadvisor/menu7daysServlet");
+                session.setAttribute("redirect", "/FOODadvisor/getMenuServlet");
             } else {
                 String username = (String) session.getAttribute("username");
 
@@ -78,7 +84,7 @@ public class getMenuServlet extends HttpServlet {
                 }
 
                 //check recipeList in session
-                if (session.getAttribute("recipe_cart_list") != null) { 
+                if (session.getAttribute("recipe_cart_list") != null) {
                     List<Recipe> recipeList = (List<Recipe>) session.getAttribute("recipe_cart_list");
                     for (Recipe recipe : recipeList) {
                         //get directory contains image
@@ -88,24 +94,60 @@ public class getMenuServlet extends HttpServlet {
                         String img_dir = fname + "/" + folder.listFiles()[0].getName();
                         recipe.setRecipeImage(img_dir);
                     }
-                    
-                    session.setAttribute("recipeList", recipeList); System.out.println(recipeList.size());
-                    session.setAttribute("rcmList", null);
-                } else {
-                    //set recomment list
-                    List<Recipe> rcmList = recipeFacade.findAll().subList(0, 100);
-                    for (Recipe recipe : rcmList) {
-                        //get directory contains image
-                        String fname = recipe.getRecipeID();
-                        File folder = new File(root + fname);
 
-                        String img_dir = fname + "/" + folder.listFiles()[0].getName();
-                        recipe.setRecipeImage(img_dir);
-                    }
-
-                    session.setAttribute("rcmList", rcmList);
+                    session.setAttribute("recipeList", recipeList);                    
+                } else {                   
                     session.setAttribute("recipeList", null);
                 }
+
+                //get user'g info
+                Account user = accountFacade.find(username);
+
+                /* calculate BMI */
+                double BMI;
+                float weight = user.getWeight();
+                float height = (float) user.getHeight() / 100;
+
+                BMI = (weight / pow(height, 2)); System.out.println(weight + " - " + height + " - "+BMI);
+
+                /* recomment by BMI */
+                String json = null;
+                String goal = null;
+                String desc = null;
+
+                if (BMI < 18.5) {    /* BMI < 18.5 ----> cân nặng thấp gầy */
+
+                    goal = Goal.WEIGHTGAIN;
+                    desc = "You're in the underweight range.";
+                } else if (BMI >= 18.5 && BMI < 23) {    /* BMI >= 18.5 && BMI < 23 ----> cân nặng bình thường*/
+
+                    goal = Goal.HEALTHY;
+                    desc = "You're in the healthy weight range";
+                } else if (BMI >= 23 && BMI < 25) {  /* BMI >= 23 && BMI < 25 ----> thừa cân*/
+
+                    goal = Goal.WEIGHTLOSS;
+                    desc = "You're in the overweight range";
+                } else {   /* BMI >= 25 ----> béo phì */
+
+                    goal = Goal.SUPERLOSS;
+                    desc = "You're in the obese range ";
+                }
+
+                json = ConnectionHelper.callQuerySP("Recipe_RecommentByBMI_SP", goal);
+
+                /* parse json to List + set into sesion = 'recommentList' */
+                if (json != null) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Recipe.class);
+
+                    List<Recipe> list = mapper.readValue(json, javaType);
+                    session.setAttribute("recommentList", list);
+                } else {
+                    session.setAttribute("recommentList", null);
+                }
+
+                session.setAttribute("BMI", String.format("%.2f", BMI));
+                session.setAttribute("BMI_desc", desc);
 
                 response.sendRedirect("pages/list_7days.jsp");
             }

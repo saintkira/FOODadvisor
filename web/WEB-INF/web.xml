@@ -148,6 +148,10 @@
         <servlet-name>top10recipeReportServlet</servlet-name>
         <servlet-class>quang.top10recipeReportServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>recommentServlet</servlet-name>
+        <servlet-class>trang.recommentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loaduserdataServlet</servlet-name>
         <url-pattern>/loaduserdataServlet</url-pattern>
@@ -295,6 +299,10 @@
     <servlet-mapping>
         <servlet-name>top10recipeReportServlet</servlet-name>
         <url-pattern>/top10recipeReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>recommentServlet</servlet-name>
+        <url-pattern>/recommentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

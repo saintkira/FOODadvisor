@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a31c6e1a-bf5e-4fe4-bc34-9cbacf3d4404">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="username" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select  *
+	From Menu m join MenuDetail md on m.MenuID = md.MenuID 
+	join Recipe r on r.RecipeID = md.RecipeID
+	where m.username = $P{username}
+	order by m.Weekdays asc, 
+	case
+		when m.[Time] = 'B' then '1'
+		when m.[Time] = 'L' then '2'
+		when m.[Time] = 'D' then '3'
+	end
+	
+]]>
+	</queryString>
+	<field name="MenuID" class="java.lang.String"/>
+	<field name="Username" class="java.lang.String"/>
+	<field name="Time" class="java.lang.String"/>
+	<field name="Weekdays" class="java.lang.String"/>
+	<field name="isDiet" class="java.lang.Boolean"/>
+	<field name="RecipeID" class="java.lang.String"/>
+	<field name="RecipeName" class="java.lang.String"/>
+	<field name="Price" class="java.lang.Double"/>
+	<field name="RecipeImage" class="java.lang.String"/>
+	<field name="Description" class="java.lang.String"/>
+	<field name="Type" class="java.lang.String"/>
+	<variable name="Price_1" class="java.lang.Double" resetType="Group" resetGroup="Time" calculation="Sum">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<variable name="Price_2" class="java.lang.Double" resetType="Group" resetGroup="Time" calculation="Average">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<variable name="Price_3" class="java.lang.Double" resetType="Group" resetGroup="Time" calculation="Sum">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<variable name="Price_4" class="java.lang.Double" resetType="Group" resetGroup="Time" calculation="Average">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<variable name="Price_5" class="java.lang.Double" resetType="Group" resetGroup="Time" calculation="Sum">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<variable name="Price_6" class="java.lang.Double" resetType="Group" resetGroup="Weekdays" calculation="Sum">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<variable name="Price_7" class="java.lang.Double" resetType="Group" resetGroup="Weekdays" calculation="Average">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<variable name="Price_8" class="java.lang.Double" resetType="Group" resetGroup="Weekdays" calculation="Average">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<group name="Weekdays">
+		<groupExpression><![CDATA[$F{Weekdays}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<line>
+					<reportElement x="0" y="31" width="555" height="1" forecolor="#FF9900" uuid="583c321d-01bb-4342-87b2-8ee6a468583f"/>
+					<graphicElement>
+						<pen lineWidth="2.0"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="30" y="3" width="100" height="26" forecolor="#FF9900" uuid="79b1d56f-14c7-4945-9433-3265086b2fe0"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{Weekdays}.equalsIgnoreCase("1") ? "MONDAY" :
+($F{Weekdays}.equalsIgnoreCase("2") ? "TUESDAY" :
+($F{Weekdays}.equalsIgnoreCase("3") ? "WEDNESDAY" :
+($F{Weekdays}.equalsIgnoreCase("4") ? "THURSDAY" :
+($F{Weekdays}.equalsIgnoreCase("5") ? "FRIDAY" :
+($F{Weekdays}.equalsIgnoreCase("6") ? "SATURDAY" : "SUNDAY"))))))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="233" y="12" width="47" height="16" forecolor="#FF9900" uuid="9db73b4c-d55c-439e-8cb9-6e0443e0ba90"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Average:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="133" y="12" width="37" height="16" forecolor="#FF9900" uuid="227590bc-f6ff-43a3-b922-4db7eed1a1f2"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Weekdays" pattern="¤ #,##0.00">
+					<reportElement x="172" y="11" width="35" height="16" forecolor="#FF9900" uuid="cafea70f-716d-4877-8959-1d015ec2d004"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+					<textFieldExpression><![CDATA[$V{Price_6}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Weekdays" pattern="¤ #,##0.00">
+					<reportElement x="282" y="11" width="31" height="16" forecolor="#FF9900" uuid="ae756287-d552-411c-82c3-e41cd97adb91"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+					<textFieldExpression><![CDATA[$V{Price_8}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Time">
+		<groupExpression><![CDATA[$F{Time}]]></groupExpression>
+		<groupHeader>
+			<band height="57">
+				<staticText>
+					<reportElement x="30" y="33" width="100" height="16" uuid="70353d18-9f20-4281-96e3-5576a9117d16"/>
+					<textElement>
+						<font size="12" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[RecipeName]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="366" y="33" width="100" height="16" uuid="e58462f0-2d9e-4f45-ad2c-b3f8ca429ae9"/>
+					<textElement>
+						<font size="12" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="493" y="33" width="38" height="16" uuid="bbf633e7-2603-4629-8ee6-cd94a4d1327b"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Price]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="52" width="555" height="1" forecolor="#666666" uuid="f90dea35-ef17-42e2-9e91-cbda3fa12a10"/>
+					<graphicElement>
+						<pen lineWidth="1.5"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="0" y="28" width="555" height="1" forecolor="#666666" uuid="2ac0ddcf-7571-41a3-aaf5-d7b54b341d52"/>
+					<graphicElement>
+						<pen lineWidth="1.5"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="236" y="6" width="95" height="20" forecolor="#009999" uuid="91419e43-5452-43b9-a0cd-b65f830c6433"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{Time}.equalsIgnoreCase("b") ? "BREAKFAST" :
+($F{Time}.equalsIgnoreCase("l") ? "LUNCH" : "DINNER"))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="32">
+				<line>
+					<reportElement x="0" y="3" width="555" height="1" forecolor="#666666" uuid="166fec17-73ac-4169-bb8b-725c962335f6"/>
+				</line>
+				<staticText>
+					<reportElement x="462" y="8" width="37" height="20" uuid="606a6d8d-c49d-4609-9c60-06c2e4d98774"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="507" y="8" width="24" height="20" uuid="360fce77-bde4-4065-900d-8773a975641f"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Price_5}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="130" y="9" width="295" height="35" forecolor="#666666" uuid="d754acde-07c9-4fc8-aa12-453a3b866a63"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[All Recipes In Your Menu]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="2" width="320" height="14" uuid="dd6149b1-59ef-491f-903c-f662e48f5ebb"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RecipeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="2" width="100" height="14" uuid="56b9a2f5-3807-414a-b0e6-804f66aab4eb"/>
+				<textElement>
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Type}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="493" y="2" width="38" height="14" uuid="7b4cfa13-fc0e-4018-99e1-6f787b2b3f65"/>
+				<textElement textAlignment="Right">
+					<font fontName="Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
